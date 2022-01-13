@@ -37,6 +37,13 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {FooterModule} from './shared/footer';
 import {NgxAudioPlayerModule} from 'ngx-audio-player';
 import { CommentComponent } from './posting/posting/comment/comment.component';
+import { DemoComponent } from './demo/demo.component';
+import { HomeComponent } from './home/home.component';
+import {httpInterceptorProviders} from './auth.interceptor';
+import { ProfileComponent } from './profile/profile.component';
+import { InfoComponent } from './profile/info/info.component';
+import { FriendComponent } from './profile/friend/friend.component';
+import { TimeLineComponent } from './profile/time-line/time-line.component';
 
 
 
@@ -55,6 +62,12 @@ import { CommentComponent } from './posting/posting/comment/comment.component';
     UploadAvatarComponent,
     NavBar2Component,
     CommentComponent,
+    DemoComponent,
+    HomeComponent,
+    ProfileComponent,
+    InfoComponent,
+    FriendComponent,
+    TimeLineComponent
   ],
   imports: [
     HttpClientModule,
@@ -80,7 +93,7 @@ import { CommentComponent } from './posting/posting/comment/comment.component';
     AngularFireStorageModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

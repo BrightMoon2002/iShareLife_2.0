@@ -1,35 +1,53 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {PostingComponent} from './posting/posting/posting.component';
 import {RegisterComponent} from './form-login/register/register.component';
-import {LogoutComponent} from './form-login/logout/logout.component';
 import {LoginComponent} from './form-login/login/login.component';
-import {UserAccountComponent} from './form-login/user-account/user-account.component';
 import {NewComponent} from './new/new.component';
+import {HomeComponent} from './home/home.component';
+import {SecurityGuard} from './security.guard';
+import {ProfileComponent} from './profile/profile.component';
+import {TimeLineComponent} from './profile/time-line/time-line.component';
+import {FriendComponent} from './profile/friend/friend.component';
+import {InfoComponent} from './profile/info/info.component';
+
 
 const routes: Routes = [
-  {path: '',
-  component: PostingComponent},
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
   {
     path: 'register',
     component: RegisterComponent
   },
   {
-    path: 'logout',
-    component: LogoutComponent
+    path: 'home', canActivate: [SecurityGuard],
+    component: HomeComponent,
+    children: [
+      {
+        path: '',
+        component: NewComponent
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent,
+        children: [
+          {
+            path: '',
+            component: TimeLineComponent
+          },
+          {
+            path: 'friend',
+            component: FriendComponent
+          },
+          {
+            path: 'info',
+            component: InfoComponent
+          }
+        ]
+      }
+    ]
   },
   {
     path: 'login',
     component: LoginComponent
-  },
-  {
-    path: 'user-account',
-    component: UserAccountComponent,
-    data: {title: 'User-Account'}
-  },
-  {
-    path: 'new',
-    component: NewComponent
   }
 ];
 

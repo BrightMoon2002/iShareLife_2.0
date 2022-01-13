@@ -1840,6 +1840,7 @@ form button {
 }
 
 .post-meta {
+    z-index: 1;
     float: left;
     margin-top: 15px;
     width: 100%;
@@ -3229,7 +3230,7 @@ footer .widget .colla-apps > li a{
     position: absolute;
     top: 0;
     width: 100%;
-    z-index: 999;
+    z-index: 99;
     transition: all 0.5s linear 0s;
     visibility: hidden;
     opacity: 0;
@@ -4673,7 +4674,7 @@ canvas {
 /*--- responsive header ---*/
 .fixed-top {
   position: fixed;
-  z-index: 9666;
+  z-index: 866;
 }
 .responsive-header {
   position: fixed;
@@ -7150,7 +7151,7 @@ a.addnewforum {
 	height: 100vh;
 }
 .we-login-register {
-    background: rgba(250,99,66,.99);
+    background-color: #063970;
     float: left;
     padding: 40px 55px 50px;
     position: relative;
@@ -7159,7 +7160,7 @@ a.addnewforum {
 	color:#fff;
 }
 .we-login-register::before {
-    border-color: rgba(250,99,66,.99) transparent transparent;
+    border-color: #154c79 transparent;
     border-style: solid;
     border-width: 40px 175px 0;
     bottom: -39px;
@@ -7177,7 +7178,9 @@ a.addnewforum {
     padding-bottom: 40px;
     padding-top: 30px;
 }
+.login {
 
+}
 .form-title {
     float: left;
     font-size: 20px;
@@ -7202,6 +7205,7 @@ a.addnewforum {
     margin-bottom: 30px;
     position: relative;
     width: 100%;
+    text-align: center;
 }
 .we-form > input {
     border: 1px solid #eaeaea;
@@ -7216,6 +7220,10 @@ a.addnewforum {
 .we-form > input[type="checkbox"] {
     margin-top: 10px;
     width: auto;
+}
+
+.we-form mat-form-field label {
+color: wheat;
 }
 .we-form > button {
     border: medium none;
@@ -7299,7 +7307,7 @@ a.with-smedia {
 }
 
 .we-form::before {
-    background: rgba(255,255,255,.1);
+    background: rgba(12, 31, 112, 0.1);
     content: "";
     height: 100%;
     left: -30px;
