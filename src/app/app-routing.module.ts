@@ -6,30 +6,29 @@ import {LogoutComponent} from './form-login/logout/logout.component';
 import {LoginComponent} from './form-login/login/login.component';
 import {UserAccountComponent} from './form-login/user-account/user-account.component';
 import {NewComponent} from './new/new.component';
+import {HomeComponent} from './home/home.component';
+import {SecurityGuard} from './security.guard';
 
 const routes: Routes = [
   {path: '',
-  component: PostingComponent},
+  component: LoginComponent},
   {
     path: 'register',
     component: RegisterComponent
   },
   {
-    path: 'logout',
-    component: LogoutComponent
+    path: 'home', canActivate: [SecurityGuard],
+    component: HomeComponent,
+    children: [
+      {
+        path: '',
+        component: NewComponent
+      }
+    ]
   },
   {
     path: 'login',
     component: LoginComponent
-  },
-  {
-    path: 'user-account',
-    component: UserAccountComponent,
-    data: {title: 'User-Account'}
-  },
-  {
-    path: 'new',
-    component: NewComponent
   }
 ];
 

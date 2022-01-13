@@ -1,17 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import {SignInForm} from '../../model/SignInForm';
+import {FormControl, Validators} from '@angular/forms';
+import {SignUp} from '../model/SignUp';
+import {AuthService} from '../service/auth/auth.service';
+import {SignInForm} from '../model/SignInForm';
+import {TokenService} from '../service/token/token.service';
 import {Router} from '@angular/router';
-import {TokenService} from '../../service/token/token.service';
-import {AuthService} from '../../service/auth/auth.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-demo',
+  templateUrl: './demo.component.html',
+  styleUrls: ['./demo.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class DemoComponent implements OnInit {
   hide = true;
-  status: any;
+  status = 'Please Login to use the SocialNet';
   form: any = {};
   roles: string[] = [];
   name: string;
@@ -35,7 +37,7 @@ export class LoginComponent implements OnInit {
         this.tokenService.setName(data.name);
         this.tokenService.setRoles(data.roles);
         this.tokenService.setIdKey(data.id);
-        this.router.navigate(['home']).then(() => {
+        this.router.navigate(['new']).then(() => {
           window.location.reload();
         });
       } else {

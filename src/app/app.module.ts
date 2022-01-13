@@ -37,6 +37,9 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {FooterModule} from './shared/footer';
 import {NgxAudioPlayerModule} from 'ngx-audio-player';
 import {PostingListComponent} from './posting/posting/posting-list/posting-list.component';
+import { DemoComponent } from './demo/demo.component';
+import { HomeComponent } from './home/home.component';
+import {httpInterceptorProviders} from './auth.interceptor';
 
 
 
@@ -54,7 +57,9 @@ import {PostingListComponent} from './posting/posting/posting-list/posting-list.
     UserAccountComponent,
     UploadAvatarComponent,
     NavBar2Component,
-    PostingListComponent
+    PostingListComponent,
+    DemoComponent,
+    HomeComponent
   ],
   imports: [
     HttpClientModule,
@@ -80,7 +85,7 @@ import {PostingListComponent} from './posting/posting/posting-list/posting-list.
     AngularFireStorageModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
