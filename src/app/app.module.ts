@@ -40,6 +40,10 @@ import {PostingListComponent} from './posting/posting/posting-list/posting-list.
 import { DemoComponent } from './demo/demo.component';
 import { HomeComponent } from './home/home.component';
 import {httpInterceptorProviders} from './auth.interceptor';
+import { ProfileComponent } from './profile/profile.component';
+import { InfoComponent } from './profile/info/info.component';
+import { FriendComponent } from './profile/friend/friend.component';
+import { TimeLineComponent } from './profile/time-line/time-line.component';
 
 
 
@@ -59,7 +63,11 @@ import {httpInterceptorProviders} from './auth.interceptor';
     NavBar2Component,
     PostingListComponent,
     DemoComponent,
-    HomeComponent
+    HomeComponent,
+    ProfileComponent,
+    InfoComponent,
+    FriendComponent,
+    TimeLineComponent
   ],
   imports: [
     HttpClientModule,
