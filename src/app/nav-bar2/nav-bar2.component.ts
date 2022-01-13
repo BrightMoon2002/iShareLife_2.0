@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-nav-bar2',
@@ -7,11 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavBar2Component implements OnInit {
   userSettings = document.querySelector('.user-settings');
-  constructor() {
+  constructor(
+    private router: Router
+  ) {
   }
   ngOnInit(): void {
   }
-
+  logout(): void{
+    window.sessionStorage.clear();
+    this.router.navigate(['login']).then(() => {
+      window.location.reload();
+    });
+  }
   UserSettingToggle(): void {
     alert(this.userSettings);
     // @ts-ignore

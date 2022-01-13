@@ -10,7 +10,7 @@ import {FormControl, Validators} from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
   hide = true;
-  status = 'Please fill the information to register';
+  status: any;
   form: any = {};
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
   signUpForm: SignUp;
