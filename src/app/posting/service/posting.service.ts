@@ -3,6 +3,7 @@ import {environment} from '../../../environments/environment.prod';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Posting} from '../model/posting';
+import {PostingComment} from '../model/comment';
 
 const API = environment.API;
 
@@ -49,5 +50,16 @@ export class PostingService {
 
   unLikePost(accId: number, pId: number): Observable<string> {
     return this.http.delete<string>(API + 'api/postLike/unLike/' + pId + '/' + accId);
+  }
+
+  getCommentsByPostingId(id: number): Observable<PostingComment[]> {
+    return this.http.get<PostingComment[]>(API + 'api/postingComment/post/' + id);
+  }
+
+  getAllCommentsByPostingId(id: number): Observable<PostingComment[]> {
+    return this.http.get<PostingComment[]>(API + 'api/postingComment/post/all/' + id);
+  }
+  saveNewComment(postingComment: PostingComment): Observable<PostingComment> {
+    return this.http.post<PostingComment>(API + 'api/postingComment', postingComment);
   }
 }

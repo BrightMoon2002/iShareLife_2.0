@@ -1,11 +1,13 @@
 import {Account} from './account';
 import {PostingStatusType} from './postingStatusType';
+import {PostingComment} from './comment';
 
 export class Posting {
   id?: any;
   content?: any;
   dateOfPosting?: Date;
   owner?: Account;
+  private _comments: any;
   postingStatusType: PostingStatusType;
   images?: string[];
   private Likes?: any;
@@ -36,5 +38,12 @@ export class Posting {
 
   set tags(value: Account[] | undefined) {
     this.Tags = value;
+  }
+  get comments(): any {
+    return this._comments;
+  }
+
+  set comments(value: any) {
+    this._comments = value;
   }
 }

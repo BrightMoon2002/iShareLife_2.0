@@ -1,5 +1,5 @@
 <div class="wrapper" fxLayout="column">
   <div *ngFor="let posting of postings">
-    <app-card [posting]="posting"></app-card>
+    <app-card [posting]="posting" [comments]="posting.comments"></app-card>
   </div>
 </div>

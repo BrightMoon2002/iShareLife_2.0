@@ -36,7 +36,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {FooterModule} from './shared/footer';
 import {NgxAudioPlayerModule} from 'ngx-audio-player';
-import {PostingListComponent} from './posting/posting/posting-list/posting-list.component';
+import { CommentComponent } from './posting/posting/comment/comment.component';
 import { DemoComponent } from './demo/demo.component';
 import { HomeComponent } from './home/home.component';
 import {httpInterceptorProviders} from './auth.interceptor';
@@ -61,7 +61,7 @@ import { TimeLineComponent } from './profile/time-line/time-line.component';
     UserAccountComponent,
     UploadAvatarComponent,
     NavBar2Component,
-    PostingListComponent,
+    CommentComponent,
     DemoComponent,
     HomeComponent,
     ProfileComponent,
