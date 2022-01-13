@@ -36,7 +36,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {FooterModule} from './shared/footer';
 import {NgxAudioPlayerModule} from 'ngx-audio-player';
-import {PostingListComponent} from './posting/posting/posting-list/posting-list.component';
+import { CommentComponent } from './posting/posting/comment/comment.component';
 
 
 
@@ -54,7 +54,7 @@ import {PostingListComponent} from './posting/posting/posting-list/posting-list.
     UserAccountComponent,
     UploadAvatarComponent,
     NavBar2Component,
-    PostingListComponent
+    CommentComponent,
   ],
   imports: [
     HttpClientModule,
