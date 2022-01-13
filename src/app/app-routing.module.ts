@@ -7,6 +7,8 @@ import {HomeComponent} from './home/home.component';
 import {SecurityGuard} from './security.guard';
 import {ProfileComponent} from './profile/profile.component';
 import {TimeLineComponent} from './profile/time-line/time-line.component';
+import {FriendComponent} from './profile/friend/friend.component';
+import {InfoComponent} from './profile/info/info.component';
 
 
 const routes: Routes = [
@@ -30,6 +32,14 @@ const routes: Routes = [
           {
             path: '',
             component: TimeLineComponent
+          },
+          {
+            path: 'friend',
+            component: FriendComponent
+          },
+          {
+            path: 'info',
+            component: InfoComponent
           }
         ]
       }
