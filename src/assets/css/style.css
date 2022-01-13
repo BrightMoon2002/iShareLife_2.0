@@ -1840,6 +1840,7 @@ form button {
 }
 
 .post-meta {
+    z-index: 1;
     float: left;
     margin-top: 15px;
     width: 100%;
@@ -3229,7 +3230,7 @@ footer .widget .colla-apps > li a{
     position: absolute;
     top: 0;
     width: 100%;
-    z-index: 999;
+    z-index: 99;
     transition: all 0.5s linear 0s;
     visibility: hidden;
     opacity: 0;
@@ -4673,7 +4674,7 @@ canvas {
 /*--- responsive header ---*/
 .fixed-top {
   position: fixed;
-  z-index: 9666;
+  z-index: 866;
 }
 .responsive-header {
   position: fixed;
