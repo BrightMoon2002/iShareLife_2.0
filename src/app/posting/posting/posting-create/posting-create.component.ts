@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {TokenService} from '../../../service/token/token.service';
 import {Posting} from '../../model/posting';
 import {Account} from '../../model/account';
@@ -26,7 +26,8 @@ export class PostingCreateComponent implements OnInit {
   avatar: string;
   @Output()
   postingChange = new EventEmitter();
-  urls: string;
+  urls: string[];
+  imagesJoin: string;
   constructor(
     private tokenService: TokenService,
     private postingService: PostingService,
@@ -42,8 +43,11 @@ export class PostingCreateComponent implements OnInit {
   }
 
   ngSubmit() {
-    this.posting = new PostingCreate(this.form.content, Date.now().toString(), new Account(this.tokenService.getIdKey(), this.tokenService.getUsername(), this.tokenService.getName(), this.tokenService.getAvatar()), new PostingStatusType(this.form.select), 'aaaaa');
+    this.posting = new PostingCreate(this.form.content, Date.now().toString(), new Account(this.tokenService.getIdKey(), this.tokenService.getUsername(), this.tokenService.getName(), this.tokenService.getAvatar()), new PostingStatusType(this.form.select), this.imagesJoin);
+    console.log(this.posting);
     this.postingService.create(this.posting).subscribe();
+    this.imagesJoin = null;
+    this.urls = null;
     this.postingChange.emit(this.posting);
     this.form.content = '';
   }
@@ -57,6 +61,8 @@ export class PostingCreateComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       this.urls = result;
+      this.imagesJoin = this.urls.join(',');
+      console.log(this.imagesJoin);
     });
   }
 }

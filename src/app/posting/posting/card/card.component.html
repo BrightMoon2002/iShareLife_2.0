@@ -28,7 +28,7 @@
                 <figure>
                     <div class="img-bunch">
                         <div class="row">
-                            <div *ngFor="let img of posting.images" class="col-lg-6 col-md-6 col-sm-6">
+                            <div *ngFor="let img of posting._imagesArray" class="col-lg-6 col-md-6 col-sm-6">
                                 <figure>
                                     <a class="strip" href="{{img}}" title="" data-strip-group="mygroup"
                                        data-strip-group-options="loop: false">
@@ -81,7 +81,7 @@
                     </li>
                     <li class="post-comment">
                         <div class="comet-avatar">
-                            <img src="{{posting.owner.avatar}}" alt="">
+                            <img src="{{avatarLogging}}" alt="">
                         </div>
                         <div class="post-comt-box">
                             <form #f="ngForm" (ngSubmit)="onSubmit()">
