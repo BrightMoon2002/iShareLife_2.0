@@ -33,16 +33,7 @@
                                             </div>
                                         </li>
                                     </ul>
-                                    <ol class="pit-rate">
-                                        <li class="rated"><i class="fa fa-star"></i></li>
-                                        <li class="rated"><i class="fa fa-star"></i></li>
-                                        <li class="rated"><i class="fa fa-star"></i></li>
-                                        <li class="rated"><i class="fa fa-star"></i></li>
-                                        <li class=""><i class="fa fa-star"></i></li>
-                                        <li><span>4.7/5</span></li>
-                                    </ol>
                                 </figure>
-
                                 <div class="profile-section">
                                     <div class="row">
                                         <div class="col-lg-2 col-md-3">
@@ -59,38 +50,37 @@
 
                                                 <div class="author-content">
                                                     <a class="h4 author-name" href="about.html">{{account.name}}</a>
-                                                    <div class="country">Ontario, CA</div>
+                                                    <div class="country" *ngIf="check == false">
+                                                        <span *ngIf="checkRelationship==2">Bạn bè </span>
+                                                        <span *ngIf="checkRelationship==1">Đang gửi lời mời</span>
+                                                        <span *ngIf="checkRelationship==0">
+                                                            <span *ngIf="pending==0">Không phải bạn bè</span>
+                                                            <span *ngIf="pending==1">Đang gửi lời mời cho bạn</span>
+                                                        </span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-lg-10 col-md-9">
                                             <ul class="profile-menu">
-                                                <li>
-                                                    <a class="" routerLink="/home/profile">Timeline</a>
+                                                <li *ngIf="check == false">
+                                                    <button *ngIf="checkRelationship==0 && pending == 0"><a (click)="addFriend()">Kết bạn</a> </button>
+                                                    <button *ngIf="checkRelationship==0 && pending == 1"><a (click)="agree()">Đồng ý</a> </button>
+                                                    <button *ngIf="checkRelationship==2"><a (click)="deleteFriend()">Xóa Bạn</a> </button>
                                                 </li>
                                                 <li>
-                                                    <a routerLink="/home/profile/{{account.id}}/info">About</a>                                                </li>
-                                                <li>
-                                                    <a routerLink="/home/profile/{{account.id}}/friend">friend</a>
+                                                    <a class="" routerLink="/home/profile/{{account.id}}">Timeline</a>
                                                 </li>
                                                 <li>
-                                                    <a class="" href="timeline-photos.html">Photos</a>
+                                                    <a routerLink="/home/profile/{{account.id}}/info/{{account.id}}">About</a>                                                </li>
+                                                <li>
+                                                    <a routerLink="/home/profile/{{account.id}}/friend/{{account.id}}">friend</a>
+                                                </li>
+                                                <li>
+                                                    <a href="timeline-photos.html">Danh sách lời mời kết bạn</a>
                                                 </li>
                                                 <li>
                                                     <a class="" href="timeline-videos.html">Videos</a>
-                                                </li>
-                                                <li>
-                                                    <div class="more">
-                                                        <i class="fa fa-ellipsis-h"></i>
-                                                        <ul class="more-dropdown">
-                                                            <li>
-                                                                <a href="timeline-groups.html">Profile Groups</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="statistics.html">Profile Analytics</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
                                                 </li>
                                             </ul>
                                             <ol class="folw-detail">
