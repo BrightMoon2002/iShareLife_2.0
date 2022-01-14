@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import {TokenService} from '../service/token/token.service';
 
 @Component({
   selector: 'app-nav-bar2',
@@ -8,11 +9,20 @@ import {Router} from '@angular/router';
 })
 export class NavBar2Component implements OnInit {
   userSettings = document.querySelector('.user-settings');
+  name: any;
+  isCheckLogin = false;
+  avatar: any;
   constructor(
-    private router: Router
+    private router: Router,
+    private tokenService: TokenService
   ) {
   }
   ngOnInit(): void {
+    if (this.tokenService.getToken()){
+      this.isCheckLogin = true;
+      this.name = this.tokenService.getName();
+      this.avatar = this.tokenService.getAvatar();
+    }
   }
   logout(): void{
     window.sessionStorage.clear();

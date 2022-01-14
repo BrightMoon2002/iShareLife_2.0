@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from '../../service/auth/auth.service';
+import {TokenService} from '../../service/token/token.service';
+import {ChangeAvatar} from '../../model/ChangeAvatar';
 
 @Component({
   selector: 'app-change-avatar',
@@ -7,9 +10,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChangeAvatarComponent implements OnInit {
 
-  constructor() { }
+  status = 'Please choose file';
+  form: any = {};
+  changeAvatar: ChangeAvatar;
+  success: any = {
+    message:  'yes'
+  };
+  constructor(private authService: AuthService,
+              private tokenService: TokenService) { }
 
   ngOnInit(): void {
   }
 
+  onChangeAvatar($event) {
+    console.log('goi ham ');
+    this.form.avatar = $event;
+    console.log('event --> ', $event);
+  }
+
+  onSubmit() {
+    this.changeAvatar = new ChangeAvatar(
+      this.form.avatar
+    );
+    this.authService.changeAvatar(this.changeAvatar).subscribe(data => {
+      if (JSON.stringify(data) === JSON.stringify(this.success)){
+        this.status = 'Upload AVATAR success!';
+        this.tokenService.setAvatar(this.form.avatar);
+        window.location.reload();
+      }
+    });
+  }
 }

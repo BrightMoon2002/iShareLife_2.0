@@ -728,8 +728,8 @@
                 </li>
             </ul>
             <div class="user-img">
-                <h5>Jack Carter</h5>
-                <img src="../../assets/images/resources/admin.jpg" alt="">
+                <h5 style="font-family: Arial; font-size: smaller">{{name}}</h5>
+                <img style="width: 20px; height: 20px" routerLink="change-avatar" *ngIf="isCheckLogin"  [src]="avatar">
                 <span class="status f-online"></span>
                 <div class="user-setting">
                     <span class="seting-title">Chat setting <a href="#" title="">see all</a></span>
