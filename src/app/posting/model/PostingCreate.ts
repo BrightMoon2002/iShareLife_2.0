@@ -2,27 +2,26 @@ import {Account} from './account';
 import {PostingStatusType} from './postingStatusType';
 import {PostingComment} from './comment';
 
-export class Posting {
-  id?: any;
+export class PostingCreate {
   content?: any;
-  dateOfPosting?: Date;
+  dateOfPosting?: string;
   owner?: Account;
   private _comments: any;
   postingStatusType: PostingStatusType;
-  images?: string[];
+  images?: string;
   private Likes?: any;
   // dislikes?: number;
   private Tags?: Account[];
   private _commentNumber: number;
 
-  constructor(id?: any, content?: any, dateOfPosting?: Date, owner?: Account, postingStatusType?: PostingStatusType, images?: string[]) {
-    this.id = id;
+  constructor(content?: any, dateOfPosting?: string, owner?: Account, postingStatusType?: PostingStatusType, images?: string) {
     this.content = content;
     this.dateOfPosting = dateOfPosting;
     this.owner = owner;
     this.postingStatusType = postingStatusType;
     this.images = images;
   }
+
 
   get likes(): number {
     return this.Likes;

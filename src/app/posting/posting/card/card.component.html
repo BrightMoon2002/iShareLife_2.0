@@ -18,7 +18,7 @@
                         </ul>
                     </div>
                 </div>
-                <ins><a href="time-line.html" title="">{{posting.owner.name}}</a> Post Album</ins>
+                <ins><a href="time-line.html" title="">{{posting.owner.name}}</a></ins>
                 <span><i class="fa fa-globe"></i> published: {{posting.dateOfPosting}} </span>
             </div>
             <div class="post-meta">
@@ -53,9 +53,9 @@
 
                         </li>
                         <li>
-                                                                    <span class="comment" title="Comments">
+                                                                    <span (click)="getAllComments(posting.id)" class="comment" title="Comments">
                                                                         <i class="fa fa-commenting"></i>
-                                                                        <ins>52</ins>
+                                                                        <ins>{{posting.commentNumber}}</ins>
                                                                     </span>
                         </li>
 
@@ -72,74 +72,21 @@
             </div>
             <div class="coment-area" style="display: block;">
                 <ul class="we-comet">
-                    <li>
-                        <div class="comet-avatar">
-                            <img src="../../../assets/images/resources/nearly3.jpg" alt="">
-                        </div>
-                        <div class="we-comment">
-                            <h5><a href="time-line.html" title="">Jason borne</a></h5>
-                            <p>we are working for the dance and sing songs. this video is very awesome for the
-                                youngster. please vote this video and like our channel</p>
-                            <div class="inline-itms">
-                                <span>1 year ago</span>
-                                <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
-                                <a href="#" title=""><i class="fa fa-heart"></i><span>20</span></a>
-                            </div>
-                        </div>
+                    <div *ngFor="let comment of comments">
+                        <app-comment [comment]="comment"></app-comment>
+                    </div>
 
-                    </li>
                     <li>
-                        <div class="comet-avatar">
-                            <img src="../../../assets/images/resources/comet-4.jpg" alt="">
-                        </div>
-                        <div class="we-comment">
-                            <h5><a href="time-line.html" title="">Sophia</a></h5>
-                            <p>we are working for the dance and sing songs. this video is very awesome for the
-                                youngster.
-                                <i class="em em-smiley"></i>
-                            </p>
-                            <div class="inline-itms">
-                                <span>1 year ago</span>
-                                <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
-                                <a href="#" title=""><i class="fa fa-heart"></i><span>20</span></a>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="#" title="" class="showmore underline">more comments+</a>
+                        <a (click)="getAllComments(posting.id)" title="" class="showmore underline">more comments+</a>
                     </li>
                     <li class="post-comment">
                         <div class="comet-avatar">
-                            <img src="../../../assets/images/resources/nearly1.jpg" alt="">
+                            <img src="{{posting.owner.avatar}}" alt="">
                         </div>
                         <div class="post-comt-box">
-                            <form method="post">
-                                <textarea placeholder="Post your comment"></textarea>
-                                <div class="add-smiles">
-                                    <div class="uploadimage">
-                                        <i class="fa fa-image"></i>
-                                        <label class="fileContainer">
-                                            <input type="file">
-                                        </label>
-                                    </div>
-                                    <span class="em em-expressionless" title="add icon"></span>
-                                    <div class="smiles-bunch">
-                                        <i class="em em---1"></i>
-                                        <i class="em em-smiley"></i>
-                                        <i class="em em-anguished"></i>
-                                        <i class="em em-laughing"></i>
-                                        <i class="em em-angry"></i>
-                                        <i class="em em-astonished"></i>
-                                        <i class="em em-blush"></i>
-                                        <i class="em em-disappointed"></i>
-                                        <i class="em em-worried"></i>
-                                        <i class="em em-kissing_heart"></i>
-                                        <i class="em em-rage"></i>
-                                        <i class="em em-stuck_out_tongue"></i>
-                                    </div>
-                                </div>
-
-                                <button type="submit"></button>
+                            <form #f="ngForm" (ngSubmit)="onSubmit()">
+                                <textarea placeholder="Post your comment" [(ngModel)]="form.content" #content="ngModel" name="content"></textarea>
+                                <button style="color:black;" type="submit">Send</button>
                             </form>
                         </div>
                     </li>

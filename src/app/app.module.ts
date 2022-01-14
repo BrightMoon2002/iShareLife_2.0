@@ -36,7 +36,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {FooterModule} from './shared/footer';
 import {NgxAudioPlayerModule} from 'ngx-audio-player';
-import {PostingListComponent} from './posting/posting/posting-list/posting-list.component';
+import { CommentComponent } from './posting/posting/comment/comment.component';
 import { DemoComponent } from './demo/demo.component';
 import { HomeComponent } from './home/home.component';
 import {httpInterceptorProviders} from './auth.interceptor';
@@ -44,6 +44,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { InfoComponent } from './profile/info/info.component';
 import { FriendComponent } from './profile/friend/friend.component';
 import { TimeLineComponent } from './profile/time-line/time-line.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { PostingCreateComponent } from './posting/posting/posting-create/posting-create.component';
 
 
 
@@ -61,13 +63,14 @@ import { TimeLineComponent } from './profile/time-line/time-line.component';
     UserAccountComponent,
     UploadAvatarComponent,
     NavBar2Component,
-    PostingListComponent,
+    CommentComponent,
     DemoComponent,
     HomeComponent,
     ProfileComponent,
     InfoComponent,
     FriendComponent,
-    TimeLineComponent
+    TimeLineComponent,
+    PostingCreateComponent
   ],
   imports: [
     HttpClientModule,
@@ -92,6 +95,7 @@ import { TimeLineComponent } from './profile/time-line/time-line.component';
     MatInputModule,
     AngularFireStorageModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    MatProgressSpinnerModule,
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
