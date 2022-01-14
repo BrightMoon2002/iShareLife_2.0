@@ -12,14 +12,14 @@ import {PostingComment} from '../model/comment';
 export class PostingComponent implements OnInit {
   comment: PostingComment;
   @Input()
-  postings: Posting[] = [];
+  postings: Posting[];
   posting: Posting;
   constructor(
     private postingService: PostingService
   ) { }
 
   ngOnInit(): void {
-    // this.getAll();
+
   }
   // getAll(): void {
   //   this.postingService.getAll().subscribe(data => {

@@ -41,4 +41,29 @@ export class PostingCreateComponent implements OnInit {
     this.postingChange.emit(this.posting);
     this.form.content = '';
   }
+
+  // getAll(): void {
+  //   this.postingService.getAll().subscribe(data => {
+  //     for (let i = 0; data.length; i++) {
+  //       this.postingService.findAllUrlByPostingId(data[i].id).subscribe(images => {
+  //         this.postingService.getLikeByPostingId(data[i].id).subscribe(likes => {
+  //           this.postingService.getCommentsByPostingId(data[i].id).subscribe(comments => {
+  //             this.postingService.getAllCommentsByPostingId(data[i].id).subscribe(commentsAll => {
+  //               this.posting = new Posting(data[i].id, data[i].content, data[i].dateOfPosting, new Account(data[i].owner.id, data[i].owner.username, data[i].owner.name, data[i].owner.avatar), data[i].postingStatusType, images);
+  //               this.posting.likes = likes;
+  //               this.posting.commentNumber = commentsAll.length;
+  //               this.posting.comments = comments;
+  //               this.newPostings.push(this.posting);
+  //               this.newPostings = this.newPostings.sort((a, b) => b.id - a.id);
+  //               // if (this.newPosting !== null) {
+  //               //   this.postings.push(this.newPosting);
+  //               // }
+  //               // console.log(this.postings);
+  //             });
+  //           });
+  //         });
+  //       });
+  //     }
+  //   });
+  // }
 }

@@ -46,6 +46,7 @@ import { FriendComponent } from './profile/friend/friend.component';
 import { TimeLineComponent } from './profile/time-line/time-line.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { PostingCreateComponent } from './posting/posting/posting-create/posting-create.component';
+import {ReversePipe} from './posting/posting/pipe/ReversePipe';
 
 
 
@@ -70,7 +71,8 @@ import { PostingCreateComponent } from './posting/posting/posting-create/posting
     InfoComponent,
     FriendComponent,
     TimeLineComponent,
-    PostingCreateComponent
+    PostingCreateComponent,
+    ReversePipe
   ],
   imports: [
     HttpClientModule,
