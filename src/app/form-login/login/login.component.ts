@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   form: any = {};
   roles: string[] = [];
   name: string;
+  avatar: string;
   signInForm: SignInForm;
   isCheckLoginFailed = false;
   constructor(private authService: AuthService,
@@ -31,6 +32,8 @@ export class LoginComponent implements OnInit {
     );
     this.authService.signIn(this.signInForm).subscribe(data => {
       if (data.token !== undefined) {
+        this.tokenService.setUsername(data.username);
+        this.tokenService.setAvatar(data.avatar);
         this.tokenService.setToken(data.token);
         this.tokenService.setName(data.name);
         this.tokenService.setRoles(data.roles);

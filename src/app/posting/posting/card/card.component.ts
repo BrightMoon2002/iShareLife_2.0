@@ -67,6 +67,7 @@ export class CardComponent implements OnInit {
     this.postingService.saveNewComment(this.newComment).subscribe(data => {
       this.getAllComments(this.posting.id);
       this.form.content = '';
+      this.posting.commentNumber = this.posting.commentNumber + 1;
     }
     );
   }
