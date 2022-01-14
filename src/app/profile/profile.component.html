@@ -48,7 +48,7 @@
                                         <div class="col-lg-2 col-md-3">
                                             <div class="profile-author">
                                                 <div class="profile-author-thumb">
-                                                    <img alt="author" src="../../assets/images/resources/author.jpg">
+                                                    <img alt="author" [src]="account.avatar">
                                                     <div class="edit-dp">
                                                         <label class="fileContainer">
                                                             <i class="fa fa-camera"></i>
@@ -58,7 +58,7 @@
                                                 </div>
 
                                                 <div class="author-content">
-                                                    <a class="h4 author-name" href="about.html">Jack Carter</a>
+                                                    <a class="h4 author-name" href="about.html">{{account.name}}</a>
                                                     <div class="country">Ontario, CA</div>
                                                 </div>
                                             </div>
@@ -69,10 +69,9 @@
                                                     <a class="" routerLink="/home/profile">Timeline</a>
                                                 </li>
                                                 <li>
-                                                    <a class="active" routerLink="/home/profile/info">About</a>
-                                                </li>
+                                                    <a routerLink="/home/profile/{{account.id}}/info">About</a>                                                </li>
                                                 <li>
-                                                    <a class="" routerLink="/home/profile/friend">Friends</a>
+                                                    <a routerLink="/home/profile/{{account.id}}/friend">friend</a>
                                                 </li>
                                                 <li>
                                                     <a class="" href="timeline-photos.html">Photos</a>
@@ -111,3 +110,4 @@
         </div>
     </section><!-- content -->
 </div>
+

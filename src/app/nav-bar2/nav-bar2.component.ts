@@ -8,6 +8,8 @@ import {TokenService} from '../service/token/token.service';
   styleUrls: ['./nav-bar2.component.scss']
 })
 export class NavBar2Component implements OnInit {
+  id = window.sessionStorage.getItem('Id_Key');
+
   userSettings = document.querySelector('.user-settings');
   name: any;
   isCheckLogin = false;
