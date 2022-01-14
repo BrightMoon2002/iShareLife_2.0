@@ -7,6 +7,8 @@ import {Router} from '@angular/router';
   styleUrls: ['./nav-bar2.component.scss']
 })
 export class NavBar2Component implements OnInit {
+  id = window.sessionStorage.getItem('Id_Key');
+
   userSettings = document.querySelector('.user-settings');
   constructor(
     private router: Router
