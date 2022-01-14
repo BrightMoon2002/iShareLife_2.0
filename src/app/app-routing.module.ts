@@ -39,11 +39,11 @@ const routes: Routes = [
             component: TimeLineComponent
           },
           {
-            path: 'friend',
+            path: 'friend/:id1',
             component: FriendComponent
           },
           {
-            path: 'info',
+            path: 'info/:id1',
             component: InfoComponent
           }
         ]
