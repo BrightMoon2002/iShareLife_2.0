@@ -47,7 +47,6 @@ export class CardComponent implements OnInit {
         this.like++;
         this.isLiked = !data;
       } else {
-        console.log(data + ' lon ma');
         this.postingService.unLikePost(Number(this.tokenService.getIdKey()), postId).subscribe();
         this.like--;
         this.isLiked = !data;
