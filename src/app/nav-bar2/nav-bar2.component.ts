@@ -35,6 +35,5 @@ export class NavBar2Component implements OnInit {
   UserSettingToggle(): void {
     alert(this.userSettings);
     // @ts-ignore
-
   }
 }
