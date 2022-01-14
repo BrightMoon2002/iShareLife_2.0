@@ -16,7 +16,7 @@ export class FriendService {
     constructor(private http: HttpClient) {
 }
 
-  getAllFriend(): Observable<AccountDetail[]>{
-      return this.http.get<AccountDetail[]>(this.API_FRIEND + '/listFriend');
+  getAllFriend(id: number): Observable<AccountDetail[]>{
+      return this.http.get<AccountDetail[]>(this.API_FRIEND + '/listFriend/' + id);
   }
 }
