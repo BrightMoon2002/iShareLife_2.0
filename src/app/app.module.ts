@@ -44,6 +44,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { InfoComponent } from './profile/info/info.component';
 import { FriendComponent } from './profile/friend/friend.component';
 import { TimeLineComponent } from './profile/time-line/time-line.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 
@@ -92,6 +93,7 @@ import { TimeLineComponent } from './profile/time-line/time-line.component';
     MatInputModule,
     AngularFireStorageModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    MatProgressSpinnerModule,
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
