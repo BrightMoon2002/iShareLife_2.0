@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../service/auth/auth.service';
 import {TokenService} from '../../service/token/token.service';
 import {ChangeAvatar} from '../../model/ChangeAvatar';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-change-avatar',
@@ -17,7 +18,8 @@ export class ChangeAvatarComponent implements OnInit {
     message:  'yes'
   };
   constructor(private authService: AuthService,
-              private tokenService: TokenService) { }
+              private tokenService: TokenService,
+              private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -36,7 +38,7 @@ export class ChangeAvatarComponent implements OnInit {
       if (JSON.stringify(data) === JSON.stringify(this.success)){
         this.status = 'Upload AVATAR success!';
         this.tokenService.setAvatar(this.form.avatar);
-        window.location.reload();
+        this.router.navigate(['home']);
       }
     });
   }
