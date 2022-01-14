@@ -1,0 +1,6 @@
+       <input type="file" class="form-control" id="inputGroupFile01" (change)="onFileChange($event)" multiple>
+        <mat-spinner [diameter]="30" class="text-center" *ngIf="checkUpLoadFile"></mat-spinner>
+        <div *ngIf="downloadUrl" style="margin-bottom: 10px; margin-top: 10px">
+            <img [src]="downloadUrl" style="width: 300px; height: auto">
+        </div>
+

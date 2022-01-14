@@ -47,6 +47,9 @@ import { TimeLineComponent } from './profile/time-line/time-line.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { PostingCreateComponent } from './posting/posting/posting-create/posting-create.component';
 import {ReversePipe} from './posting/posting/pipe/ReversePipe';
+import { UploadImagesComponent } from './posting/upload-images/upload-images.component';
+import { UploadImagesFormComponent } from './posting/upload-images/upload-images-form/upload-images-form.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 
@@ -72,7 +75,9 @@ import {ReversePipe} from './posting/posting/pipe/ReversePipe';
     FriendComponent,
     TimeLineComponent,
     PostingCreateComponent,
-    ReversePipe
+    ReversePipe,
+    UploadImagesComponent,
+    UploadImagesFormComponent
   ],
   imports: [
     HttpClientModule,
@@ -96,6 +101,7 @@ import {ReversePipe} from './posting/posting/pipe/ReversePipe';
     MatSelectModule,
     MatInputModule,
     AngularFireStorageModule,
+    MatDialogModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     MatProgressSpinnerModule,
   ],

@@ -6,6 +6,10 @@ import {PostingStatusType} from '../../model/postingStatusType';
 import {PostingCreate} from '../../model/PostingCreate';
 import {PostingService} from '../../service/posting.service';
 import {Router} from '@angular/router';
+import {MatDialog} from '@angular/material/dialog';
+import {UploadImagesFormComponent} from '../../upload-images/upload-images-form/upload-images-form.component';
+
+
 
 @Component({
   selector: 'app-posting-create',
@@ -22,10 +26,12 @@ export class PostingCreateComponent implements OnInit {
   avatar: string;
   @Output()
   postingChange = new EventEmitter();
+  urls: string;
   constructor(
     private tokenService: TokenService,
     private postingService: PostingService,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -42,28 +48,15 @@ export class PostingCreateComponent implements OnInit {
     this.form.content = '';
   }
 
-  // getAll(): void {
-  //   this.postingService.getAll().subscribe(data => {
-  //     for (let i = 0; data.length; i++) {
-  //       this.postingService.findAllUrlByPostingId(data[i].id).subscribe(images => {
-  //         this.postingService.getLikeByPostingId(data[i].id).subscribe(likes => {
-  //           this.postingService.getCommentsByPostingId(data[i].id).subscribe(comments => {
-  //             this.postingService.getAllCommentsByPostingId(data[i].id).subscribe(commentsAll => {
-  //               this.posting = new Posting(data[i].id, data[i].content, data[i].dateOfPosting, new Account(data[i].owner.id, data[i].owner.username, data[i].owner.name, data[i].owner.avatar), data[i].postingStatusType, images);
-  //               this.posting.likes = likes;
-  //               this.posting.commentNumber = commentsAll.length;
-  //               this.posting.comments = comments;
-  //               this.newPostings.push(this.posting);
-  //               this.newPostings = this.newPostings.sort((a, b) => b.id - a.id);
-  //               // if (this.newPosting !== null) {
-  //               //   this.postings.push(this.newPosting);
-  //               // }
-  //               // console.log(this.postings);
-  //             });
-  //           });
-  //         });
-  //       });
-  //     }
-  //   });
-  // }
+  openDialog(): void {
+    const dialogRef = this.dialog.open(UploadImagesFormComponent, {
+      width: '250px',
+      data: {urls: this.urls}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.urls = result;
+    });
+  }
 }
