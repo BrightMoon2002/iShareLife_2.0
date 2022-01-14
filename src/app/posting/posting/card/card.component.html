@@ -18,7 +18,7 @@
                         </ul>
                     </div>
                 </div>
-                <ins><a href="time-line.html" title="">{{posting.owner.name}}</a> Post Album</ins>
+                <ins><a href="time-line.html" title="">{{posting.owner.name}}</a></ins>
                 <span><i class="fa fa-globe"></i> published: {{posting.dateOfPosting}} </span>
             </div>
             <div class="post-meta">
@@ -53,9 +53,9 @@
 
                         </li>
                         <li>
-                                                                    <span class="comment" title="Comments">
+                                                                    <span (click)="getAllComments(posting.id)" class="comment" title="Comments">
                                                                         <i class="fa fa-commenting"></i>
-                                                                        <ins>52</ins>
+                                                                        <ins>{{posting.commentNumber}}</ins>
                                                                     </span>
                         </li>
 
@@ -84,7 +84,7 @@
                             <img src="{{posting.owner.avatar}}" alt="">
                         </div>
                         <div class="post-comt-box">
-                            <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+                            <form #f="ngForm" (ngSubmit)="onSubmit()">
                                 <textarea placeholder="Post your comment" [(ngModel)]="form.content" #content="ngModel" name="content"></textarea>
                                 <button style="color:black;" type="submit">Send</button>
                             </form>

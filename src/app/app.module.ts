@@ -44,6 +44,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { InfoComponent } from './profile/info/info.component';
 import { FriendComponent } from './profile/friend/friend.component';
 import { TimeLineComponent } from './profile/time-line/time-line.component';
+import { PostingCreateComponent } from './posting/posting/posting-create/posting-create.component';
 
 
 
@@ -67,7 +68,8 @@ import { TimeLineComponent } from './profile/time-line/time-line.component';
     ProfileComponent,
     InfoComponent,
     FriendComponent,
-    TimeLineComponent
+    TimeLineComponent,
+    PostingCreateComponent
   ],
   imports: [
     HttpClientModule,

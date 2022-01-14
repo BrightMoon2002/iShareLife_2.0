@@ -1,9 +1,8 @@
 export class PostingStatusType {
   id?: number;
-  type?: number;
-
-
-  constructor(type: number) {
+  type?: string;
+  constructor(id?: number, type?: string) {
+    this.id = id;
     this.type = type;
   }
 }

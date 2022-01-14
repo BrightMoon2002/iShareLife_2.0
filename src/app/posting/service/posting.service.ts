@@ -4,6 +4,8 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Posting} from '../model/posting';
 import {PostingComment} from '../model/comment';
+import {PostingCreate} from '../model/PostingCreate';
+import {PostingStatusType} from '../model/postingStatusType';
 
 const API = environment.API;
 
@@ -18,7 +20,7 @@ export class PostingService {
     return this.http.get<Posting[]>(API + 'api/posting');
   }
 
-  create(posting: Posting): Observable<Posting> {
+  create(posting: PostingCreate): Observable<Posting> {
     return this.http.post<Posting>(API + 'api/posting', posting);
   }
 
@@ -61,5 +63,9 @@ export class PostingService {
   }
   saveNewComment(postingComment: PostingComment): Observable<PostingComment> {
     return this.http.post<PostingComment>(API + 'api/postingComment', postingComment);
+  }
+
+  getAllStatusPostingType(): Observable<PostingStatusType[]> {
+    return this.http.get<PostingStatusType[]>(API + 'api/postingStatusType');
   }
 }
