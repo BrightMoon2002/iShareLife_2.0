@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {FriendService} from '../service/friend.service';
 import {AccountDetail} from '../model/account-detail';
+import {FriendService} from '../service/friend.service';
+
 
 @Component({
   selector: 'app-friend',
@@ -13,6 +14,8 @@ export class FriendComponent implements OnInit {
   constructor(private friendService: FriendService) {
   }
 
+  sumFriend: number;
+
   ngOnInit(): void {
     this.getListFriend();
   }
@@ -20,6 +23,7 @@ export class FriendComponent implements OnInit {
   getListFriend() {
     this.friendService.getAllFriend().subscribe(listFriend => {
       this.friends = listFriend;
+      this.sumFriend = listFriend.length;
     });
   }
 
