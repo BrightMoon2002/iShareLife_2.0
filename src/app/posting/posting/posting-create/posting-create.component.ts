@@ -6,6 +6,10 @@ import {PostingStatusType} from '../../model/postingStatusType';
 import {PostingCreate} from '../../model/PostingCreate';
 import {PostingService} from '../../service/posting.service';
 import {Router} from '@angular/router';
+import {MatDialog} from '@angular/material/dialog';
+import {UploadImagesFormComponent} from '../../upload-images/upload-images-form/upload-images-form.component';
+
+
 
 @Component({
   selector: 'app-posting-create',
@@ -22,10 +26,12 @@ export class PostingCreateComponent implements OnInit {
   avatar: string;
   @Output()
   postingChange = new EventEmitter();
+  urls: string;
   constructor(
     private tokenService: TokenService,
     private postingService: PostingService,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -40,5 +46,17 @@ export class PostingCreateComponent implements OnInit {
     this.postingService.create(this.posting).subscribe();
     this.postingChange.emit(this.posting);
     this.form.content = '';
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(UploadImagesFormComponent, {
+      width: '250px',
+      data: {urls: this.urls}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.urls = result;
+    });
   }
 }
