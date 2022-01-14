@@ -9,6 +9,7 @@ import {ProfileComponent} from './profile/profile.component';
 import {TimeLineComponent} from './profile/time-line/time-line.component';
 import {FriendComponent} from './profile/friend/friend.component';
 import {InfoComponent} from './profile/info/info.component';
+import {ChangeAvatarComponent} from './change/change-avatar/change-avatar.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path: 'change-avatar',
+    component: ChangeAvatarComponent
   },
   {
     path: 'home', canActivate: [SecurityGuard],
