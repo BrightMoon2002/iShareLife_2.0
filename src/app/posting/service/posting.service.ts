@@ -70,7 +70,10 @@ export class PostingService {
   }
 
   updateComment(id: number, comment: PostingComment): Observable<PostingComment> {
-    console.log(id);
     return this.http.put<PostingComment>(API + 'api/postingComment/' + id, comment);
+  }
+
+  deleteComment(id: number): Observable<PostingComment> {
+    return this.http.delete<PostingComment>(API + 'api/postingComment/' + id);
   }
 }

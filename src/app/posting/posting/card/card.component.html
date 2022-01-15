@@ -73,7 +73,7 @@
             <div class="coment-area" style="display: block;">
                 <ul class="we-comet">
                     <div *ngFor="let comment of comments">
-                        <app-comment [comment]="comment"></app-comment>
+                        <app-comment (idCommentDelete)="deleteComment($event)" [comment]="comment"></app-comment>
                     </div>
 
                     <li>

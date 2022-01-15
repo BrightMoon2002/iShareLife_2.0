@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {PostingService} from '../../service/posting.service';
 import {StatusComment} from '../../model/StatusComment';
 import {Account} from '../../model/account';
@@ -6,6 +6,7 @@ import {PostingComment} from '../../model/comment';
 import {UploadImagesFormComponent} from '../../upload-images/upload-images-form/upload-images-form.component';
 import {MatDialog} from '@angular/material/dialog';
 import {CommentEditComponent} from './comment-edit/comment-edit.component';
+import {CommentDeleteComponent} from './comment-delete/comment-delete.component';
 
 @Component({
   selector: 'app-comment',
@@ -16,6 +17,8 @@ export class CommentComponent implements OnInit {
   @Input()
   comment: PostingComment;
   newContent: string;
+  @Output()
+  idCommentDelete = new EventEmitter();
   constructor(
     private postingService: PostingService,
     public dialog: MatDialog
@@ -41,6 +44,13 @@ export class CommentComponent implements OnInit {
 
 
   openDialogDelete() {
+    const dialogRef = this.dialog.open(CommentDeleteComponent, {
+      width: '500px'
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      this.idCommentDelete.emit(this.comment.id);
+      console.log('The dialog was closed');
+    });
   }
 }

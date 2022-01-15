@@ -26,7 +26,7 @@ export class CardComponent implements OnInit {
   @Input()
   posting: Posting;
   @Input()
-  comments: any;
+  comments: PostingComment[];
   avatarLogging: string;
   newComment: PostingComment;
   form: any = {};
@@ -46,10 +46,12 @@ export class CardComponent implements OnInit {
   @Output()
   postingIdDelete = new EventEmitter();
 
+  @Output()
+  commentIdDelete = new EventEmitter();
+
   constructor(
     private postingService: PostingService,
     private tokenService: TokenService,
-    private router: Router,
     public dialog: MatDialog
   ) {
   }
@@ -81,6 +83,7 @@ export class CardComponent implements OnInit {
   getAllComments(id: any) {
     this.postingService.getAllCommentsByPostingId(id).subscribe(comments => {
       this.comments = comments;
+      this.comments = this.comments.sort((a, b) => b.id - a.id);
     });
   }
 
@@ -123,5 +126,14 @@ export class CardComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.postingIdDelete.emit(this.posting.id);
     });
+  }
+
+  deleteComment($event: any) {
+    this.postingService.deleteComment($event).subscribe();
+    for (let i = 0; i < this.comments.length; i++) {
+      if (this.comments[i].id === $event) {
+        this.comments.splice(i, 1);
+      }
+    }
   }
 }
