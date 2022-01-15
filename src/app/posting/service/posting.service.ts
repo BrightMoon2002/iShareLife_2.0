@@ -32,7 +32,7 @@ export class PostingService {
     return this.http.get<Posting>(API + 'api/posting/' + id);
   }
 
-  deleted(id: any): Observable<any>{
+  delete(id: any): Observable<any>{
     return this.http.delete<any>(API + 'api/posting/' + id);
   }
 
