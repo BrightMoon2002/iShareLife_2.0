@@ -58,4 +58,10 @@ export class NewComponent implements OnInit, OnChanges {
       });
     }, 1000);
   }
+
+  deletePosting($event: any) {
+    this.postingService.delete($event).subscribe();
+    this.newPostings = [];
+    this.getAll();
+  }
 }
