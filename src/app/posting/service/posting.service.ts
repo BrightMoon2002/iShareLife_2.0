@@ -68,4 +68,9 @@ export class PostingService {
   getAllStatusPostingType(): Observable<PostingStatusType[]> {
     return this.http.get<PostingStatusType[]>(API + 'api/postingStatusType');
   }
+
+  updateComment(id: number, comment: PostingComment): Observable<PostingComment> {
+    console.log(id);
+    return this.http.put<PostingComment>(API + 'api/postingComment/' + id, comment);
+  }
 }

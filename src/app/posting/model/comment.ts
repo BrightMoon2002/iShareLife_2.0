@@ -3,8 +3,8 @@ import {StatusComment} from './StatusComment';
 import {Account} from './account';
 
 export class PostingComment {
-    private id?: any;
-    private content?: string;
+    id?: any;
+    content?: string;
     private dateOfComment: string;
     private posting: Posting;
     private statusComment: StatusComment;
@@ -17,21 +17,6 @@ export class PostingComment {
         this.posting = posting;
         this.statusComment = statusComment;
         this.owner = owner;
-    }
-    get _id(): any {
-        return this.id;
-    }
-
-    set _id(value: any) {
-        this.id = value;
-    }
-
-    get _content(): string {
-        return this.content;
-    }
-
-    set _content(value: string) {
-        this.content = value;
     }
 
     get _posting(): Posting {

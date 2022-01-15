@@ -52,6 +52,7 @@ import { UploadImagesFormComponent } from './posting/upload-images/upload-images
 import {MatDialogModule} from '@angular/material/dialog';
 import { PostingEditComponent } from './posting/posting/posting-edit/posting-edit.component';
 import { PostingDeleteComponent } from './posting/posting/posting-delete/posting-delete.component';
+import { CommentEditComponent } from './posting/posting/comment/comment-edit/comment-edit.component';
 
 
 
@@ -81,7 +82,8 @@ import { PostingDeleteComponent } from './posting/posting/posting-delete/posting
     UploadImagesComponent,
     UploadImagesFormComponent,
     PostingEditComponent,
-    PostingDeleteComponent
+    PostingDeleteComponent,
+    CommentEditComponent
   ],
   imports: [
     HttpClientModule,
