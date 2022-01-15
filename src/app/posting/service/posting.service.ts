@@ -32,8 +32,8 @@ export class PostingService {
     return this.http.get<Posting>(API + 'api/posting/' + id);
   }
 
-  delete(id: number): Observable<Posting>{
-    return this.http.delete<Posting>(API + 'api/delete/' + id);
+  delete(id: any): Observable<any>{
+    return this.http.delete<any>(API + 'api/posting/' + id);
   }
 
   findAllUrlByPostingId(id: any): Observable<string[]>{

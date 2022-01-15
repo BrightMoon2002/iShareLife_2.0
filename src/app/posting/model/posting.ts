@@ -9,13 +9,14 @@ export class Posting {
   owner?: Account;
   private _comments: any;
   postingStatusType: PostingStatusType;
-  images?: string[];
+  private images?: string;
+  private imagesArray?: string[];
   private Likes?: any;
   // dislikes?: number;
   private Tags?: Account[];
   private _commentNumber: number;
 
-  constructor(id?: any, content?: any, dateOfPosting?: Date, owner?: Account, postingStatusType?: PostingStatusType, images?: string[]) {
+  constructor(id?: any, content?: any, dateOfPosting?: Date, owner?: Account, postingStatusType?: PostingStatusType, images?: string) {
     this.id = id;
     this.content = content;
     this.dateOfPosting = dateOfPosting;
@@ -54,5 +55,23 @@ export class Posting {
 
   set commentNumber(value: number) {
     this._commentNumber = value;
+  }
+
+
+  get _images(): string {
+    return this.images;
+  }
+
+  set _images(value: string) {
+    this.images = value;
+  }
+
+
+  get _imagesArray(): string[] {
+    return this.imagesArray;
+  }
+
+  set _imagesArray(value: string[]) {
+    this.imagesArray = value;
   }
 }
