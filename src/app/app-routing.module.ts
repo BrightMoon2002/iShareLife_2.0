@@ -10,6 +10,7 @@ import {TimeLineComponent} from './profile/time-line/time-line.component';
 import {FriendComponent} from './profile/friend/friend.component';
 import {InfoComponent} from './profile/info/info.component';
 import {ChangeAvatarComponent} from './change/change-avatar/change-avatar.component';
+import {ListPendingComponent} from './profile/list-pending/list-pending.component';
 
 
 const routes: Routes = [
@@ -45,6 +46,10 @@ const routes: Routes = [
           {
             path: 'info/:id1',
             component: InfoComponent
+          },
+          {
+            path: 'pending',
+            component: ListPendingComponent
           }
         ]
       }
