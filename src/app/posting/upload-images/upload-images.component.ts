@@ -42,4 +42,7 @@ export class UploadImagesComponent implements OnInit {
         });
     }
 
+  deleteImg(i: number) {
+    this.images.splice(i, 1);
+  }
 }

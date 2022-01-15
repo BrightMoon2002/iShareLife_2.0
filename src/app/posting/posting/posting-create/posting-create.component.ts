@@ -54,7 +54,7 @@ export class PostingCreateComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(UploadImagesFormComponent, {
-      width: '250px',
+      width: '500px',
       data: {urls: this.urls}
     });
 
