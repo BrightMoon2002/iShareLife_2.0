@@ -43,16 +43,13 @@ export class NewComponent implements OnInit, OnChanges {
             this.postingService.getLikeByPostingId(data[i].id).subscribe(likes => {
               this.postingService.getCommentsByPostingId(data[i].id).subscribe(comments => {
                 this.postingService.getAllCommentsByPostingId(data[i].id).subscribe(commentsAll => {
-                  this.posting = new Posting(data[i].id, data[i].content, data[i].dateOfPosting, new Account(data[i].owner.id, data[i].owner.username, data[i].owner.name, data[i].owner.avatar), data[i].postingStatusType, images);
+                  this.posting = new Posting(data[i].id, data[i].content, data[i].dateOfPosting, new Account(data[i].owner.id, data[i].owner.username, data[i].owner.name, data[i].owner.avatar), data[i].postingStatusType);
                   this.posting.likes = likes;
                   this.posting.commentNumber = commentsAll.length;
                   this.posting.comments = comments;
+                  this.posting._imagesArray = images;
                   this.newPostings.push(this.posting);
                   this.newPostings = this.newPostings.sort((a, b) => b.id - a.id);
-                  // if (this.newPosting !== null) {
-                  //   this.postings.push(this.newPosting);
-                  // }
-                  // console.log(this.postings);
                 });
               });
             });
@@ -60,5 +57,11 @@ export class NewComponent implements OnInit, OnChanges {
         }
       });
     }, 1000);
+  }
+
+  deletePosting($event: any) {
+    this.postingService.delete($event).subscribe();
+    this.newPostings = [];
+    this.getAll();
   }
 }

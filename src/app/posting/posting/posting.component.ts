@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {PostingService} from '../service/posting.service';
 import {Posting} from '../model/posting';
 import {Account} from '../model/account';
@@ -14,6 +14,9 @@ export class PostingComponent implements OnInit {
   @Input()
   postings: Posting[];
   posting: Posting;
+
+  @Output()
+  idDeletePosting = new EventEmitter();
   constructor(
     private postingService: PostingService
   ) { }
@@ -45,4 +48,7 @@ export class PostingComponent implements OnInit {
   //   });
   // }
 
+  delete($event: any) {
+    this.idDeletePosting.emit($event);
+  }
 }

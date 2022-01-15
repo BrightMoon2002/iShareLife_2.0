@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+
+export interface Images {
+  urls: string[];
+}
 
 @Component({
   selector: 'app-upload-images-form',
@@ -7,12 +12,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UploadImagesFormComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public dialogRef: MatDialogRef<UploadImagesFormComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: Images) { }
 
   ngOnInit(): void {
   }
 
-  uploadImages($event: string) {
-    console.log('hekl');
+  onNoClick() {
+    this.dialogRef.close();
+  }
+
+  changeUrls($event: string[]) {
+    this.data.urls = $event;
   }
 }
