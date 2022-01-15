@@ -7,6 +7,12 @@ import {PostingComment} from '../../model/comment';
 import {StatusComment} from '../../model/StatusComment';
 import {Account} from '../../model/account';
 import {any} from 'codelyzer/util/function';
+import {PostingCreate} from '../../model/PostingCreate';
+import {PostingStatusType} from '../../model/postingStatusType';
+import {UploadImagesFormComponent} from '../../upload-images/upload-images-form/upload-images-form.component';
+import {Router} from '@angular/router';
+import {MatDialog} from '@angular/material/dialog';
+import {PostingEditComponent} from '../posting-edit/posting-edit.component';
 
 @Component({
   selector: 'app-card',
@@ -24,9 +30,23 @@ export class CardComponent implements OnInit {
   newComment: PostingComment;
   form: any = {};
 
+  selected = 1;
+  formEdit: any = {
+    select: 1
+  };
+  postingStatusTypes: PostingStatusType[];
+  postingEdit: PostingCreate;
+  avatar: string;
+  @Output()
+  postingChange = new EventEmitter();
+  urls: string[];
+  imagesJoin: string;
+
   constructor(
     private postingService: PostingService,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private router: Router,
+    public dialog: MatDialog
   ) {
   }
 
@@ -68,5 +88,27 @@ export class CardComponent implements OnInit {
       this.posting.commentNumber = this.posting.commentNumber + 1;
     }
     );
+  }
+
+
+  ngSubmit() {
+    this.postingEdit = new PostingCreate(this.form.content, Date.now().toString(), new Account(this.tokenService.getIdKey(), this.tokenService.getUsername(), this.tokenService.getName(), this.tokenService.getAvatar()), new PostingStatusType(this.form.select), this.imagesJoin);
+    this.postingService.create(this.postingEdit).subscribe();
+    this.imagesJoin = null;
+    this.urls = null;
+    this.postingChange.emit(this.postingEdit);
+    this.formEdit.content = '';
+  }
+
+  openDialogEdit(): void {
+    const dialogRef = this.dialog.open(PostingEditComponent, {
+      width: '1000px',
+      data: {urls: this.urls, posting: this.posting}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.urls = result;
+      this.imagesJoin = this.urls.join(',');
+    });
   }
 }
