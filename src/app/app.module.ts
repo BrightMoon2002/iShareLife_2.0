@@ -51,6 +51,7 @@ import { UploadImagesComponent } from './posting/upload-images/upload-images.com
 import { UploadImagesFormComponent } from './posting/upload-images/upload-images-form/upload-images-form.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { PostingEditComponent } from './posting/posting/posting-edit/posting-edit.component';
+import { PostingDeleteComponent } from './posting/posting/posting-delete/posting-delete.component';
 
 
 
@@ -79,7 +80,8 @@ import { PostingEditComponent } from './posting/posting/posting-edit/posting-edi
     ReversePipe,
     UploadImagesComponent,
     UploadImagesFormComponent,
-    PostingEditComponent
+    PostingEditComponent,
+    PostingDeleteComponent
   ],
   imports: [
     HttpClientModule,

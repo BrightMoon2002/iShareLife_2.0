@@ -13,6 +13,7 @@ import {UploadImagesFormComponent} from '../../upload-images/upload-images-form/
 import {Router} from '@angular/router';
 import {MatDialog} from '@angular/material/dialog';
 import {PostingEditComponent} from '../posting-edit/posting-edit.component';
+import {PostingDeleteComponent} from '../posting-delete/posting-delete.component';
 
 @Component({
   selector: 'app-card',
@@ -41,6 +42,9 @@ export class CardComponent implements OnInit {
   postingChange = new EventEmitter();
   urls: string[];
   imagesJoin: string;
+
+  @Output()
+  postingIdDelete = new EventEmitter();
 
   constructor(
     private postingService: PostingService,
@@ -109,6 +113,15 @@ export class CardComponent implements OnInit {
       console.log('The dialog was closed');
       this.urls = result;
       this.imagesJoin = this.urls.join(',');
+    });
+  }
+
+  openDialogDelete() {
+    const dialogRef = this.dialog.open(PostingDeleteComponent, {
+      width: '1000px'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.postingIdDelete.emit(this.posting.id);
     });
   }
 }
