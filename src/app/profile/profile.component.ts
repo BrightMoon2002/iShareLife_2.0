@@ -63,4 +63,9 @@ export class ProfileComponent implements OnInit {
     this.profileService.deleteFriend(this.id).subscribe();
     window.location.reload();
   }
+
+  defuse() {
+    this.profileService.refusePending(this.id).subscribe();
+    window.location.reload();
+  }
 }

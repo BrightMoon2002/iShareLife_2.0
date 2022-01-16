@@ -11,7 +11,7 @@
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="align-left">
-                                                    <h5>Friends  <span>{{sumFriend}}</span></h5>
+                                                    <h5>Friends  <span>{{sumPending}}</span></h5>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
@@ -29,7 +29,7 @@
                                 </div>
                                 <div class="central-meta padding30">
                                     <div class="row">
-                                        <div *ngFor="let element of friends">
+                                        <div *ngFor="let element of listPending">
                                             <div class="col-lg-3 col-md-6 col-sm-6">
                                                 <div class="friend-box">
                                                     <figure>
@@ -46,11 +46,12 @@
                                                             <li><span>Hobbies:</span> {{element.hobbies}}</li>
                                                             <li><span>Gender:</span> {{element.gender.gender}}</li>
                                                         </ul>
-                                                        <a class="send-mesg" href="#" title="">Message</a>
                                                         <div class="more-opotnz">
                                                             <i class="fa fa-ellipsis-h"></i>
                                                             <ul>
-                                                                <li><a (click)="deleteFriend(element.id)">Xóa Bạn</a></li>
+                                                                <li><a (click)="agreePending(element.id)">Add</a></li>
+                                                                <li><a (click)="refusePending(element.id)">Refuse</a></li>
+
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -72,4 +73,3 @@
         </div>
     </section>
 </div>
-
