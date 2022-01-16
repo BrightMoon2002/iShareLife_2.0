@@ -17,6 +17,9 @@ export class PostingComponent implements OnInit {
 
   @Output()
   idDeletePosting = new EventEmitter();
+
+  @Output()
+  commentIdDelete = new EventEmitter();
   constructor(
     private postingService: PostingService
   ) { }
@@ -24,31 +27,12 @@ export class PostingComponent implements OnInit {
   ngOnInit(): void {
 
   }
-  // getAll(): void {
-  //   this.postingService.getAll().subscribe(data => {
-  //     for (let i = 0; data.length; i++) {
-  //       this.postingService.findAllUrlByPostingId(data[i].id).subscribe(images => {
-  //         this.postingService.getLikeByPostingId(data[i].id).subscribe(likes => {
-  //           this.postingService.getCommentsByPostingId(data[i].id).subscribe(comments => {
-  //             this.postingService.getAllCommentsByPostingId(data[i].id).subscribe(commentsAll => {
-  //               this.posting = new Posting(data[i].id, data[i].content, data[i].dateOfPosting, new Account(data[i].owner.id, data[i].owner.username, data[i].owner.name, data[i].owner.avatar), data[i].postingStatusType, images);
-  //               this.posting.likes = likes;
-  //               this.posting.commentNumber = commentsAll.length;
-  //               this.posting.comments = comments;
-  //               this.postings.push(this.posting);
-  //               // if (this.newPosting !== null) {
-  //               //   this.postings.push(this.newPosting);
-  //               // }
-  //               // console.log(this.postings);
-  //             });
-  //           });
-  //         });
-  //       });
-  //     }
-  //   });
-  // }
 
   delete($event: any) {
     this.idDeletePosting.emit($event);
+  }
+
+  deleteComment($event: any) {
+    this.commentIdDelete.emit($event);
   }
 }

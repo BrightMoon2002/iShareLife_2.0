@@ -1,5 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {PostingComment} from '../../model/comment';
 
 export interface Images {
   urls: string[];
@@ -14,16 +15,12 @@ export class UploadImagesFormComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<UploadImagesFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Images) { }
+    @Inject(MAT_DIALOG_DATA) public data: PostingComment) { }
 
   ngOnInit(): void {
   }
 
   onNoClick() {
     this.dialogRef.close();
-  }
-
-  changeUrls($event: string[]) {
-    this.data.urls = $event;
   }
 }

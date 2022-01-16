@@ -269,7 +269,7 @@
 
                 <!---Posting--->
                 <div class="loadMore">
-                    <app-posting (idDeletePosting)="deletePosting($event)" [postings]="newPostings"></app-posting>
+                    <app-posting (commentIdDelete)="deleteComment($event)" (idDeletePosting)="deletePosting($event)" [postings]="newPostings"></app-posting>
                 </div>
 
 
