@@ -46,6 +46,7 @@ import { FriendComponent } from './profile/friend/friend.component';
 import { TimeLineComponent } from './profile/time-line/time-line.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { PostingCreateComponent } from './posting/posting/posting-create/posting-create.component';
+import { ListPendingComponent } from './profile/list-pending/list-pending.component';
 import {ReversePipe} from './posting/posting/pipe/ReversePipe';
 import { UploadImagesComponent } from './posting/upload-images/upload-images.component';
 import { UploadImagesFormComponent } from './posting/upload-images/upload-images-form/upload-images-form.component';
@@ -55,6 +56,7 @@ import { ChangePasswordComponent } from './form-login/change-password/change-pas
 import { PostingEditComponent } from './posting/posting/posting-edit/posting-edit.component';
 import { PostingDeleteComponent } from './posting/posting/posting-delete/posting-delete.component';
 import { UpdateInfoComponent } from './change/update-info/update-info.component';
+
 
 
 
@@ -80,6 +82,7 @@ import { UpdateInfoComponent } from './change/update-info/update-info.component'
     FriendComponent,
     TimeLineComponent,
     PostingCreateComponent,
+    ListPendingComponent,
     ReversePipe,
     UploadImagesComponent,
     UploadImagesFormComponent,

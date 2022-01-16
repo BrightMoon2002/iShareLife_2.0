@@ -8,31 +8,31 @@
                         <div class="row merged20" id="page-contents">
                             <div class="user-profile">
                                 <figure>
-                                    <div class="edit-pp">
-                                        <label class="fileContainer">
-                                            <i class="fa fa-camera"></i>
-                                            <input type="file">
-                                        </label>
-                                    </div>
+<!--                                    <div class="edit-pp">-->
+<!--                                        <label class="fileContainer">-->
+<!--                                            <i class="fa fa-camera"></i>-->
+<!--                                            <input type="file">-->
+<!--                                        </label>-->
+<!--                                    </div>-->
                                     <img src="" alt=""><img src="../../assets/images/resources/profile-image.jpg" height="640"
                                                             width="1920"/>
-                                    <ul class="profile-controls">
-                                        <li><a href="#" title="Add friend" data-toggle="tooltip"><i class="fa fa-user-plus"></i></a></li>
-                                        <li><a href="#" title="Follow" data-toggle="tooltip"><i class="fa fa-star"></i></a></li>
-                                        <li><a class="send-mesg" href="#" title="Send Message" data-toggle="tooltip"><i class="fa fa-comment"></i></a></li>
-                                        <li>
-                                            <div class="edit-seting" title="Edit Profile image"><i class="fa fa-sliders"></i>
-                                                <ul class="more-dropdown">
-                                                    <li><a href="setting.html" title="">Update Profile Photo</a></li>
-                                                    <li><a href="setting.html" title="">Update Header Photo</a></li>
-                                                    <li><a href="setting.html" title="">Account Settings</a></li>
-                                                    <li><a href="support-and-help.html" title="">Find Support</a></li>
-                                                    <li><a class="bad-report" href="#" title="">Report Profile</a></li>
-                                                    <li><a href="#" title="">Block Profile</a></li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                    </ul>
+<!--                                    <ul class="profile-controls">-->
+<!--                                        <li><a href="#" title="Add friend" data-toggle="tooltip"><i class="fa fa-user-plus"></i></a></li>-->
+<!--                                        <li><a href="#" title="Follow" data-toggle="tooltip"><i class="fa fa-star"></i></a></li>-->
+<!--                                        <li><a class="send-mesg" href="#" title="Send Message" data-toggle="tooltip"><i class="fa fa-comment"></i></a></li>-->
+<!--                                        <li>-->
+<!--                                            <div class="edit-seting" title="Edit Profile image"><i class="fa fa-sliders"></i>-->
+<!--                                                <ul class="more-dropdown">-->
+<!--                                                    <li><a href="setting.html" title="">Update Profile Photo</a></li>-->
+<!--                                                    <li><a href="setting.html" title="">Update Header Photo</a></li>-->
+<!--                                                    <li><a href="setting.html" title="">Account Settings</a></li>-->
+<!--                                                    <li><a href="support-and-help.html" title="">Find Support</a></li>-->
+<!--                                                    <li><a class="bad-report" href="#" title="">Report Profile</a></li>-->
+<!--                                                    <li><a href="#" title="">Block Profile</a></li>-->
+<!--                                                </ul>-->
+<!--                                            </div>-->
+<!--                                        </li>-->
+<!--                                    </ul>-->
                                 </figure>
                                 <div class="profile-section">
                                     <div class="row">
@@ -40,12 +40,12 @@
                                             <div class="profile-author">
                                                 <div class="profile-author-thumb">
                                                     <img alt="author" [src]="account.avatar">
-                                                    <div class="edit-dp">
-                                                        <label class="fileContainer">
-                                                            <i class="fa fa-camera"></i>
-                                                            <input type="file">
-                                                        </label>
-                                                    </div>
+<!--                                                    <div class="edit-dp">-->
+<!--                                                        <label class="fileContainer">-->
+<!--                                                            <i class="fa fa-camera"></i>-->
+<!--                                                            <input type="file">-->
+<!--                                                        </label>-->
+<!--                                                    </div>-->
                                                 </div>
 
                                                 <div class="author-content">
@@ -66,6 +66,7 @@
                                                 <li *ngIf="check == false">
                                                     <button *ngIf="checkRelationship==0 && pending == 0"><a (click)="addFriend()">Kết bạn</a> </button>
                                                     <button *ngIf="checkRelationship==0 && pending == 1"><a (click)="agree()">Đồng ý</a> </button>
+                                                    <button *ngIf="checkRelationship==0 && pending == 1"><a (click)="defuse()">Từ chối</a> </button>
                                                     <button *ngIf="checkRelationship==2"><a (click)="deleteFriend()">Xóa Bạn</a> </button>
                                                 </li>
                                                 <li>
@@ -76,18 +77,15 @@
                                                 <li>
                                                     <a routerLink="/home/profile/{{account.id}}/friend/{{account.id}}">friend</a>
                                                 </li>
-                                                <li>
-                                                    <a href="timeline-photos.html">Danh sách lời mời kết bạn</a>
-                                                </li>
-                                                <li>
-                                                    <a class="" href="timeline-videos.html">Videos</a>
+                                                <li *ngIf="check== true">
+                                                    <a routerLink="/home/profile/{{account.id}}/pending">Pending</a>
                                                 </li>
                                             </ul>
-                                            <ol class="folw-detail">
-                                                <li><span>Posts</span><ins>101</ins></li>
-                                                <li><span>Followers</span><ins>1.3K</ins></li>
-                                                <li><span>Following</span><ins>22</ins></li>
-                                            </ol>
+<!--                                            <ol class="folw-detail">-->
+<!--                                                <li><span>Posts</span><ins>101</ins></li>-->
+<!--                                                <li><span>Followers</span><ins>1.3K</ins></li>-->
+<!--                                                <li><span>Following</span><ins>22</ins></li>-->
+<!--                                            </ol>-->
                                         </div>
                                     </div>
                                 </div>
