@@ -21,6 +21,8 @@ import {PostingDeleteComponent} from '../posting-delete/posting-delete.component
   styleUrls: ['./card.component.scss']
 })
 export class CardComponent implements OnInit {
+  @Input()
+  isProfile: boolean;
   like: number;
   isLiked: boolean;
   @Input()
