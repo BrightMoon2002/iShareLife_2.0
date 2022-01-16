@@ -55,8 +55,9 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { ChangePasswordComponent } from './form-login/change-password/change-password.component';
 import { PostingEditComponent } from './posting/posting/posting-edit/posting-edit.component';
 import { PostingDeleteComponent } from './posting/posting/posting-delete/posting-delete.component';
+import { CommentEditComponent } from './posting/posting/comment/comment-edit/comment-edit.component';
+import { CommentDeleteComponent } from './posting/posting/comment/comment-delete/comment-delete.component';
 import { UpdateInfoComponent } from './change/update-info/update-info.component';
-
 
 
 
@@ -89,6 +90,8 @@ import { UpdateInfoComponent } from './change/update-info/update-info.component'
     ChangePasswordComponent,
     PostingEditComponent,
     PostingDeleteComponent,
+    CommentEditComponent,
+    CommentDeleteComponent
     UpdateInfoComponent
   ],
   imports: [

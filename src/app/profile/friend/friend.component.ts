@@ -33,6 +33,7 @@ export class FriendComponent implements OnInit {
   getListFriend() {
     this.friendService.getAllFriend(this.id).subscribe(listFriend => {
       this.friends = listFriend;
+      console.log(this.friends);
       this.sumFriend = listFriend.length;
     });
   }
