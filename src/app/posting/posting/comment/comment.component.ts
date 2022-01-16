@@ -7,6 +7,7 @@ import {UploadImagesFormComponent} from '../../upload-images/upload-images-form/
 import {MatDialog} from '@angular/material/dialog';
 import {CommentEditComponent} from './comment-edit/comment-edit.component';
 import {CommentDeleteComponent} from './comment-delete/comment-delete.component';
+import {TokenService} from '../../../service/token/token.service';
 
 @Component({
   selector: 'app-comment',
@@ -19,15 +20,16 @@ export class CommentComponent implements OnInit {
   newContent: string;
   @Output()
   idCommentDelete = new EventEmitter();
+  idLogging: number;
   constructor(
     private postingService: PostingService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private tokenService: TokenService
   ) { }
 
   ngOnInit(): void {
-
+    this.idLogging = Number(this.tokenService.getIdKey());
   }
-
 
   openDialogEdit() {
     const dialogRef = this.dialog.open(CommentEditComponent, {

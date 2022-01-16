@@ -6,7 +6,7 @@
             </figure>
             <div class="friend-name">
                 <div class="more">
-                    <div class="more-post-optns"><i class="ti-more-alt"></i>
+                    <div *ngIf="posting.owner.id === idLogging" class="more-post-optns"><i class="ti-more-alt"></i>
                         <ul>
                             <li (click)="openDialogEdit()"><i class="fa fa-pencil-square-o" (click)="openDialogEdit()"></i>Edit Post</li>
                             <li (click)="openDialogDelete()"><i class="fa fa-trash-o" (click)="openDialogDelete()"></i>Delete Post</li>

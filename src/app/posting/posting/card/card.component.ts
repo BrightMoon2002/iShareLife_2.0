@@ -42,6 +42,7 @@ export class CardComponent implements OnInit {
   postingChange = new EventEmitter();
   urls: string[];
   imagesJoin: string;
+  idLogging: number;
 
   @Output()
   postingIdDelete = new EventEmitter();
@@ -64,6 +65,7 @@ export class CardComponent implements OnInit {
       this.isLiked = data;
     });
     this.avatarLogging = this.tokenService.getAvatar();
+    this.idLogging = Number(this.tokenService.getIdKey());
   }
 
   likePost(postId: number) {

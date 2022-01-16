@@ -1,5 +1,5 @@
  <li>
-         <div class="more-post-optns" style="float: right"><i class="ti-more-alt"></i>
+         <div *ngIf="comment.owner.id === idLogging" class="more-post-optns" style="float: right"><i class="ti-more-alt"></i>
              <ul>
                  <li (click)="openDialogEdit()"><i class="fa fa-pencil-square-o" (click)="openDialogEdit()"></i>Edit Comment</li>
                  <li (click)="openDialogDelete()"><i class="fa fa-trash-o" (click)="openDialogDelete()"></i>Delete Comment</li>
