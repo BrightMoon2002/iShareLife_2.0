@@ -16,6 +16,7 @@ export class FriendComponent implements OnInit {
 
   constructor(private friendService: FriendService,
               private activeRouter: ActivatedRoute,
+              private profileService: ProfileService
   ) {
   }
 
@@ -25,17 +26,20 @@ export class FriendComponent implements OnInit {
     this.activeRouter.paramMap.subscribe(accountId => {
       const id = +accountId.get('id1');
       this.id = id;
-      console.log(id + 'dsadasd');
       this.getListFriend();
     });
   }
 
   getListFriend() {
-    console.log(this.id + 'test');
     this.friendService.getAllFriend(this.id).subscribe(listFriend => {
       this.friends = listFriend;
       this.sumFriend = listFriend.length;
     });
   }
 
+
+  deleteFriend(id: number) {
+    this.profileService.deleteFriend(id).subscribe();
+    window.location.reload();
+  }
 }
