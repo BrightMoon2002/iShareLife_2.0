@@ -64,4 +64,10 @@ export class NewComponent implements OnInit, OnChanges {
     this.newPostings = [];
     this.getAll();
   }
+
+  deleteComment($event: any) {
+    this.postingService.deleteComment($event).subscribe();
+    this.newPostings = [];
+    this.getAll();
+  }
 }
