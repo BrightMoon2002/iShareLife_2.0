@@ -39,4 +39,12 @@ export class ProfileService {
   deleteFriend(id: number): Observable<AccountDetail> {
     return this.http.delete<AccountDetail>(API + 'api/relationship/delete/' + id);
   }
+
+  refusePending(id: number): Observable<AccountDetail> {
+    return this.http.delete<AccountDetail>(API + 'api/relationship/refused/' + id);
+  }
+
+  listPending(): Observable<AccountDetail[]> {
+    return this.http.get<AccountDetail[]>( API + 'api/relationship/showPending');
+  }
 }
