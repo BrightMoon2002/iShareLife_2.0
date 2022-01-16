@@ -19,7 +19,7 @@
                             </ul>
                         </div>
                     </div>
-                    <ins><a href="time-line.html" title="">{{posting.owner.name}}</a></ins>
+                    <ins><a routerLink="/home/profile/{{posting.owner.id}}" title="">{{posting.owner.name}}</a></ins>
                     <span><i *ngIf="posting.postingStatusType.id === 1" class="fa fa-globe"></i><i class="fa fa-lock" *ngIf="posting.postingStatusType.id === 2"></i><i class="fa fa-users" *ngIf="posting.postingStatusType.id === 3" style="font-size: 12px"></i> published: {{posting.dateOfPosting}} </span>
                 </div>
                 <div class="post-meta">
@@ -121,7 +121,7 @@
                             </ul>
                         </div>
                     </div>
-                    <ins><a href="time-line.html" title="">{{posting.owner.name}}</a></ins>
+                    <ins><a routerLink="/home/profile/{{posting.owner.id}}" title="">{{posting.owner.name}}</a></ins>
                     <span><mat-icon style="font-size: 12px">{{statusPosting}}</mat-icon> published: {{posting.dateOfPosting}} </span>
                 </div>
                 <div class="post-meta">
