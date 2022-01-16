@@ -45,6 +45,7 @@ export class CardComponent implements OnInit {
   urls: string[];
   imagesJoin: string;
   idLogging: number;
+  statusPosting: string;
 
   @Output()
   postingIdDelete = new EventEmitter();
@@ -68,6 +69,15 @@ export class CardComponent implements OnInit {
     });
     this.avatarLogging = this.tokenService.getAvatar();
     this.idLogging = Number(this.tokenService.getIdKey());
+    if (this.posting.postingStatusType.type === 'Friends') {
+      this.statusPosting = 'people';
+    } else if (this.posting.postingStatusType.type === 'Private') {
+      this.statusPosting = 'lock';
+    } else {
+      this.statusPosting = 'public';
+    }
+    console.log(this.statusPosting + ', ' + this.posting.content);
+
   }
 
   likePost(postId: number) {
@@ -120,6 +130,13 @@ export class CardComponent implements OnInit {
       console.log('The dialog was closed');
       this.urls = result;
       this.imagesJoin = this.urls.join(',');
+      if (this.posting.postingStatusType.type === 'Friends') {
+        this.statusPosting = 'people';
+      } else if (this.posting.postingStatusType.type === 'Private') {
+        this.statusPosting = 'lock';
+      } else {
+        this.statusPosting = 'public';
+      }
     });
   }
 

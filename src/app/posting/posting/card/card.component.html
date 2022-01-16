@@ -20,7 +20,7 @@
                         </div>
                     </div>
                     <ins><a href="time-line.html" title="">{{posting.owner.name}}</a></ins>
-                    <span><i *ngIf="posting.postingStatusType.type === 'Public'" class="fa fa-globe"></i><mat-icon style="font-size: 12px" *ngIf="posting.postingStatusType.type === 'Private'">lock</mat-icon><mat-icon style="font-size: 12px" *ngIf="posting.postingStatusType.type === 'Friends'">people</mat-icon> published: {{posting.dateOfPosting}} </span>
+                    <span><i *ngIf="posting.postingStatusType.id === 1" class="fa fa-globe"></i><i class="fa fa-lock" *ngIf="posting.postingStatusType.id === 2"></i><i class="fa fa-users" *ngIf="posting.postingStatusType.id === 3" style="font-size: 12px"></i> published: {{posting.dateOfPosting}} </span>
                 </div>
                 <div class="post-meta">
                     <p>
@@ -122,7 +122,7 @@
                         </div>
                     </div>
                     <ins><a href="time-line.html" title="">{{posting.owner.name}}</a></ins>
-                    <span><i *ngIf="posting.postingStatusType.type === 'Public'" class="fa fa-globe"></i><mat-icon style="font-size: 12px" *ngIf="posting.postingStatusType.type === 'Private'">lock</mat-icon><mat-icon style="font-size: 12px" *ngIf="posting.postingStatusType.type === 'Friends'">people</mat-icon> published: {{posting.dateOfPosting}} </span>
+                    <span><mat-icon style="font-size: 12px">{{statusPosting}}</mat-icon> published: {{posting.dateOfPosting}} </span>
                 </div>
                 <div class="post-meta">
                     <p>

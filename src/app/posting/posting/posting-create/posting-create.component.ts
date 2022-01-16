@@ -62,7 +62,11 @@ export class PostingCreateComponent implements OnInit {
       console.log('The dialog was closed');
       this.urls = result;
       this.imagesJoin = this.urls.join(',');
-      console.log(this.imagesJoin);
     });
+  }
+
+  deleteImg(i: number) {
+    this.urls.splice(i, 1);
+    this.imagesJoin = this.urls.join(',');
   }
 }

@@ -67,12 +67,8 @@ export class ProfileComponent implements OnInit {
     window.location.reload();
   }
 
-<<<<<<< HEAD
-
-=======
   defuse() {
     this.profileService.refusePending(this.id).subscribe();
     window.location.reload();
   }
->>>>>>> 0b21cd9b585e768972b8059aa8721660f13eb9aa
 }
