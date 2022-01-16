@@ -15,12 +15,16 @@ export class UploadImagesFormComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<UploadImagesFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: PostingComment) { }
+    @Inject(MAT_DIALOG_DATA) public data: Images) { }
 
   ngOnInit(): void {
   }
 
   onNoClick() {
     this.dialogRef.close();
+  }
+
+  changeUrls($event: string[]) {
+    this.data.urls = $event;
   }
 }

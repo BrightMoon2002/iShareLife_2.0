@@ -10,6 +10,8 @@ import {PostingComment} from '../model/comment';
   styleUrls: ['./posting.component.css']
 })
 export class PostingComponent implements OnInit {
+  @Input()
+  isProfile: boolean;
   comment: PostingComment;
   @Input()
   postings: Posting[];

@@ -1,4 +1,4 @@
-import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {Posting} from '../posting/model/posting';
 import {Account} from '../posting/model/account';
 import {PostingService} from '../posting/service/posting.service';
