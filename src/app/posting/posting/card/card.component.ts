@@ -46,6 +46,12 @@ export class CardComponent implements OnInit {
   imagesJoin: string;
   idLogging: number;
   statusPosting: string;
+  @Output()
+  idProfileChoice = new EventEmitter();
+  // @Input()
+  // idProfile: number;
+  // @Input()
+  idProfileFinal: number;
 
   @Output()
   postingIdDelete = new EventEmitter();
@@ -56,7 +62,8 @@ export class CardComponent implements OnInit {
   constructor(
     private postingService: PostingService,
     private tokenService: TokenService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public router: Router
   ) {
   }
 
@@ -76,7 +83,7 @@ export class CardComponent implements OnInit {
     } else {
       this.statusPosting = 'public';
     }
-    console.log(this.statusPosting + ', ' + this.posting.content);
+    this.idProfileFinal = Number(window.sessionStorage.getItem('Id_Profile'));
 
   }
 
@@ -138,6 +145,7 @@ export class CardComponent implements OnInit {
         this.statusPosting = 'public';
       }
     });
+    
   }
 
   openDialogDelete() {
@@ -156,5 +164,10 @@ export class CardComponent implements OnInit {
         this.comments.splice(i, 1);
       }
     }
+  }
+
+  navigateProfile(id: string) {
+    window.sessionStorage.setItem('Id_Profile', id);
+    this.router.navigate(['/home/profile/' + id]);
   }
 }

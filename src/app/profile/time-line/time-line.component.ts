@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Posting} from '../../posting/model/posting';
 import {Account} from '../../posting/model/account';
 import {PostingService} from '../../posting/service/posting.service';
+import {$e} from 'codelyzer/angular/styles/chars';
+import {TokenService} from '../../service/token/token.service';
 
 @Component({
   selector: 'app-time-line',
@@ -11,10 +13,15 @@ import {PostingService} from '../../posting/service/posting.service';
 export class TimeLineComponent implements OnInit {
   posting: Posting;
   newPostings: Posting[] = [];
-  constructor(private postingService: PostingService) { }
+  idProfileFinal: number;
+  idLogging: number;
+  constructor(private postingService: PostingService,
+              private tokenService: TokenService) { }
 
   ngOnInit(): void {
     this.getAll();
+    this.idProfileFinal = Number(window.sessionStorage.getItem('Id_Profile'));
+    this.idLogging = Number(this.tokenService.getIdKey());
   }
 
   create($event: any) {
@@ -62,4 +69,8 @@ export class TimeLineComponent implements OnInit {
     this.getAll();
   }
 
+  getProfileId($event: any) {
+    this.idProfileFinal = $event;
+    console.log(this.idProfileFinal + ' Time-Line');
+  }
 }
