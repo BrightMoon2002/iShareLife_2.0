@@ -11,7 +11,6 @@ export class UploadImagesComponent implements OnInit {
   ref: AngularFireStorageReference;
   downloadUrl: string;
   checkUpLoadFile = false;
-  myMap = new Map();
   @Output()
   giveUrlToCreate = new EventEmitter<string[]>();
   images: Array<string> = [];
