@@ -8,6 +8,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {CommentEditComponent} from './comment-edit/comment-edit.component';
 import {CommentDeleteComponent} from './comment-delete/comment-delete.component';
 import {TokenService} from '../../../service/token/token.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-comment',
@@ -24,7 +25,8 @@ export class CommentComponent implements OnInit {
   constructor(
     private postingService: PostingService,
     public dialog: MatDialog,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -54,5 +56,14 @@ export class CommentComponent implements OnInit {
       this.idCommentDelete.emit(this.comment.id);
       console.log('The dialog was closed');
     });
+  }
+
+  navigateToProfile(id: any) {
+    window.sessionStorage.setItem('Id_Profile', id);
+    this.router.navigate(['/home/profile/' + id]).then(() => {
+      window.location.reload();
+      window.scrollTo(0, 0);
+    });
+
   }
 }

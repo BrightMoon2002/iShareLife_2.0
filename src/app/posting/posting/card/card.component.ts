@@ -84,6 +84,7 @@ export class CardComponent implements OnInit {
       this.statusPosting = 'public';
     }
     this.idProfileFinal = Number(window.sessionStorage.getItem('Id_Profile'));
+    console.log(this.idProfileFinal + ' vvvvvvvvvvvvvvvvvvvvv');
 
   }
 
@@ -164,10 +165,14 @@ export class CardComponent implements OnInit {
         this.comments.splice(i, 1);
       }
     }
+    this.posting.commentNumber = this.posting.commentNumber - 1;
   }
 
   navigateProfile(id: string) {
     window.sessionStorage.setItem('Id_Profile', id);
-    this.router.navigate(['/home/profile/' + id]);
+    this.router.navigate(['/home/profile/' + id]).then(() => {
+      window.location.reload();
+      window.scrollTo(0, 0);
+    });
   }
 }
