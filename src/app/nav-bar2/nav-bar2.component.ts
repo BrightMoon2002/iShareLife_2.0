@@ -100,6 +100,7 @@ export class NavBar2Component implements OnInit {
   }
 
 
+
   navigateToProfile() {
     window.sessionStorage.setItem('Id_Profile', this.id);
     this.router.navigate(['/home/profile/' + this.id]);
