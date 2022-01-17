@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {AccountDetail} from './model/account-detail';
 import {ProfileService} from './service/profile.service';
 import {ActivatedRoute} from '@angular/router';
+import {Posting} from '../posting/model/posting';
+import {PostingService} from '../posting/service/posting.service';
+import {Account} from '../posting/model/account';
 
 @Component({
   selector: 'app-profile',
@@ -10,7 +13,6 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
   account: AccountDetail;
-
   constructor(private profileService: ProfileService,
               private activeRouter: ActivatedRoute) {
   }
@@ -47,6 +49,7 @@ export class ProfileComponent implements OnInit {
         }
       });
     });
+
   }
 
     addFriend(){

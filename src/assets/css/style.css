@@ -670,9 +670,10 @@ header.sticky {
 }
 
 .logo {
+    top: -15px;
     display: inline-block;
     vertical-align: inherit;
-    width: 15%;
+
     position: relative;
     z-index: 10;
 }
@@ -687,7 +688,7 @@ header.sticky {
 .top-area {
     display: inline-block;
     text-align: right;
-    vertical-align: middle;
+    vertical-align: center;
     width: 84%;
 }
 

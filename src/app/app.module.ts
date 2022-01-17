@@ -91,7 +91,7 @@ import { UpdateInfoComponent } from './change/update-info/update-info.component'
     PostingEditComponent,
     PostingDeleteComponent,
     CommentEditComponent,
-    CommentDeleteComponent
+    CommentDeleteComponent,
     UpdateInfoComponent
   ],
   imports: [

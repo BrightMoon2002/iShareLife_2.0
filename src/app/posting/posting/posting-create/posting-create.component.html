@@ -33,8 +33,6 @@
                 <li>
                     <i class="fa fa-image" (click)="openDialog()"></i>
                     <label class="fileContainer">
-<!--                        <app-upload-images (giveUrlToCreate)="uploadImages($event)"></app-upload-images>-->
-
                     </label>
                 </li>
                 <li>
@@ -53,8 +51,19 @@
                     <button class="post-btn-preview" type="submit" data-ripple="">Preview</button>
                 </li>
             </ul>
+            <div *ngFor="let img of urls; let i = index" style="margin-bottom: 10px; margin-top: 10px; display:inline-block;">
+                <form>
+                    <div style="position:relative;">
+                        <button type="submit" (click)="deleteImg(i)" class="close" style="right:0px; position: absolute;">
+                            <span>&times;</span>
+                        </button>
+                        <img width="200px" [src]="img" style="width: 100px; height: auto">
+                    </div>
+                </form>
+            </div>
             <button class="post-btn" (click)="ngSubmit()" type="submit" data-ripple="">Post</button>
         </div>
+
         </form>
         <div class="add-location-post">
             <span>Drag map point to selected area</span>

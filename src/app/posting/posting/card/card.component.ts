@@ -21,6 +21,8 @@ import {PostingDeleteComponent} from '../posting-delete/posting-delete.component
   styleUrls: ['./card.component.scss']
 })
 export class CardComponent implements OnInit {
+  @Input()
+  isProfile: boolean;
   like: number;
   isLiked: boolean;
   @Input()
@@ -43,6 +45,13 @@ export class CardComponent implements OnInit {
   urls: string[];
   imagesJoin: string;
   idLogging: number;
+  statusPosting: string;
+  @Output()
+  idProfileChoice = new EventEmitter();
+  // @Input()
+  // idProfile: number;
+  // @Input()
+  idProfileFinal: number;
 
   @Output()
   postingIdDelete = new EventEmitter();
@@ -53,7 +62,8 @@ export class CardComponent implements OnInit {
   constructor(
     private postingService: PostingService,
     private tokenService: TokenService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public router: Router
   ) {
   }
 
@@ -66,6 +76,15 @@ export class CardComponent implements OnInit {
     });
     this.avatarLogging = this.tokenService.getAvatar();
     this.idLogging = Number(this.tokenService.getIdKey());
+    if (this.posting.postingStatusType.type === 'Friends') {
+      this.statusPosting = 'people';
+    } else if (this.posting.postingStatusType.type === 'Private') {
+      this.statusPosting = 'lock';
+    } else {
+      this.statusPosting = 'public';
+    }
+    this.idProfileFinal = Number(window.sessionStorage.getItem('Id_Profile'));
+
   }
 
   likePost(postId: number) {
@@ -118,7 +137,15 @@ export class CardComponent implements OnInit {
       console.log('The dialog was closed');
       this.urls = result;
       this.imagesJoin = this.urls.join(',');
+      if (this.posting.postingStatusType.type === 'Friends') {
+        this.statusPosting = 'people';
+      } else if (this.posting.postingStatusType.type === 'Private') {
+        this.statusPosting = 'lock';
+      } else {
+        this.statusPosting = 'public';
+      }
     });
+    
   }
 
   openDialogDelete() {
@@ -137,5 +164,10 @@ export class CardComponent implements OnInit {
         this.comments.splice(i, 1);
       }
     }
+  }
+
+  navigateProfile(id: string) {
+    window.sessionStorage.setItem('Id_Profile', id);
+    this.router.navigate(['/home/profile/' + id]);
   }
 }

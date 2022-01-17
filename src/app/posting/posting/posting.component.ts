@@ -10,22 +10,29 @@ import {PostingComment} from '../model/comment';
   styleUrls: ['./posting.component.css']
 })
 export class PostingComponent implements OnInit {
+  @Input()
+  isProfile: boolean;
   comment: PostingComment;
   @Input()
   postings: Posting[];
   posting: Posting;
+  @Output()
+  idProfile = new EventEmitter();
+
+  idProfilePosting: number;
 
   @Output()
   idDeletePosting = new EventEmitter();
 
   @Output()
   commentIdDelete = new EventEmitter();
+  @Input()
+  getIdProfileChoice: number;
   constructor(
     private postingService: PostingService
   ) { }
 
   ngOnInit(): void {
-
   }
 
   delete($event: any) {
@@ -34,5 +41,10 @@ export class PostingComponent implements OnInit {
 
   deleteComment($event: any) {
     this.commentIdDelete.emit($event);
+  }
+
+  getProfileId($event: any) {
+    this.idProfile.emit($event);
+    console.log($event + ' Posting');
   }
 }

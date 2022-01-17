@@ -19,28 +19,37 @@ export class FriendComponent implements OnInit {
               private profileService: ProfileService
   ) {
   }
-
+  currentId = window.sessionStorage.getItem('Id_Key');
   sumFriend: number;
-
+  check: boolean;
   ngOnInit(): void {
     this.activeRouter.paramMap.subscribe(accountId => {
       const id = +accountId.get('id1');
       this.id = id;
       this.getListFriend();
+      if (this.currentId === id.toString()) {
+        this.check = true;
+      } else {
+        this.check = false;
+      }
     });
   }
 
   getListFriend() {
-    this.friendService.getAllFriend(this.id).subscribe(listFriend => {
-      this.friends = listFriend;
-      console.log(this.friends);
-      this.sumFriend = listFriend.length;
-    });
+    setTimeout(() => {
+      this.friendService.getAllFriend(this.id).subscribe(listFriend => {
+        this.friends = listFriend;
+        console.log(this.friends);
+        this.sumFriend = listFriend.length;
+      });
+    }, 500 );
   }
 
 
   deleteFriend(id: number) {
     this.profileService.deleteFriend(id).subscribe();
-    window.location.reload();
+    this.getListFriend();
   }
+
+
 }
