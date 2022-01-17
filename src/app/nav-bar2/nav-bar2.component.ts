@@ -100,6 +100,7 @@ export class NavBar2Component implements OnInit {
   }
 
 
+
   navigateToProfile(id: string) {
     window.sessionStorage.setItem('Id_Profile', id);
     this.router.navigate(['/home/profile/' + id]).then(() => {
@@ -110,15 +111,15 @@ export class NavBar2Component implements OnInit {
 
   openDialogUpdateInfo() {
     const dialogRef = this.dialog.open(UpdateInfoComponent, {
-      width: '800px',
-      data: {
-        name: this.updateInfoRequest.name,
-        email: this.updateInfoRequest.email,
-        hobbies: this.updateInfoRequest.hobbies,
-        address: this.updateInfoRequest.address,
-        phone: this.updateInfoRequest.phone
+        width: '800px',
+        data: {
+          name: this.updateInfoRequest.name,
+          email: this.updateInfoRequest.email,
+          hobbies: this.updateInfoRequest.hobbies,
+          address: this.updateInfoRequest.address,
+          phone: this.updateInfoRequest.phone
+        }
       }
-    }
     );
 
     dialogRef.afterClosed().subscribe(result => {

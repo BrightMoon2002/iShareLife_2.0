@@ -1,7 +1,7 @@
 import {Component, OnInit, OnChanges} from '@angular/core';
 import {AccountDetail} from '../model/account-detail';
 import {FriendService} from '../service/friend.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {ProfileService} from '../service/profile.service';
 
 
@@ -16,11 +16,13 @@ export class FriendComponent implements OnInit {
 
   constructor(private friendService: FriendService,
               private activeRouter: ActivatedRoute,
-              private profileService: ProfileService
+              private profileService: ProfileService,
+              public router: Router
   ) {
   }
   currentId = window.sessionStorage.getItem('Id_Key');
   sumFriend: number;
+  sumMutualFriends: number;
   check: boolean;
   ngOnInit(): void {
     this.activeRouter.paramMap.subscribe(accountId => {
@@ -31,7 +33,10 @@ export class FriendComponent implements OnInit {
         this.check = true;
       } else {
         this.check = false;
-      }
+      };
+      this.profileService.MutualFriends(id).subscribe(list => {
+        this.sumMutualFriends = list.length;
+      })
     });
   }
 
@@ -52,4 +57,14 @@ export class FriendComponent implements OnInit {
   }
 
 
+  navigateToProfile(id: number) {
+    window.sessionStorage.setItem('Id_Profile', String(id)) ;
+    this.router.navigate(['/home/profile/' + id]);
+  }
+
+  mutualFriends() {
+    this.profileService.MutualFriends(this.id).subscribe(list => {
+      this.friends = list;
+    });
+  }
 }
