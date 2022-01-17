@@ -4,6 +4,8 @@ const NAME_KEY = 'Name_Key';
 const ROLE_KEY = 'Role_Key';
 const AVATAR_KEY = 'Avatar_Key';
 const ID_KEY = 'Id_Key';
+const USERNAME_KEY = 'Username_Key';
+const EMAIL_KEY = 'Email_Key';
 
 @Injectable({
   providedIn: 'root'
@@ -54,4 +56,24 @@ export class TokenService {
     window.sessionStorage.removeItem(ID_KEY);
     window.sessionStorage.setItem(ID_KEY, id);
   }
+
+  public getUsername(): string{
+    return window.sessionStorage.getItem(USERNAME_KEY);
+  }
+
+  public setUsername(username: string){
+    window.sessionStorage.removeItem(USERNAME_KEY);
+    window.sessionStorage.setItem(USERNAME_KEY, username);
+  }
+
+  public getEmail(): string{
+    return window.sessionStorage.getItem(EMAIL_KEY);
+  }
+
+  public setEmail(email: string){
+    window.sessionStorage.removeItem(EMAIL_KEY);
+    window.sessionStorage.setItem(EMAIL_KEY, email);
+  }
+
+
 }

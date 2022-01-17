@@ -36,7 +36,28 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {FooterModule} from './shared/footer';
 import {NgxAudioPlayerModule} from 'ngx-audio-player';
-import {PostingListComponent} from './posting/posting/posting-list/posting-list.component';
+import { CommentComponent } from './posting/posting/comment/comment.component';
+import { DemoComponent } from './demo/demo.component';
+import { HomeComponent } from './home/home.component';
+import {httpInterceptorProviders} from './auth.interceptor';
+import { ProfileComponent } from './profile/profile.component';
+import { InfoComponent } from './profile/info/info.component';
+import { FriendComponent } from './profile/friend/friend.component';
+import { TimeLineComponent } from './profile/time-line/time-line.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { PostingCreateComponent } from './posting/posting/posting-create/posting-create.component';
+import { ListPendingComponent } from './profile/list-pending/list-pending.component';
+import {ReversePipe} from './posting/posting/pipe/ReversePipe';
+import { UploadImagesComponent } from './posting/upload-images/upload-images.component';
+import { UploadImagesFormComponent } from './posting/upload-images/upload-images-form/upload-images-form.component';
+import {MatDialogModule} from '@angular/material/dialog';
+
+import { ChangePasswordComponent } from './form-login/change-password/change-password.component';
+import { PostingEditComponent } from './posting/posting/posting-edit/posting-edit.component';
+import { PostingDeleteComponent } from './posting/posting/posting-delete/posting-delete.component';
+import { CommentEditComponent } from './posting/posting/comment/comment-edit/comment-edit.component';
+import { CommentDeleteComponent } from './posting/posting/comment/comment-delete/comment-delete.component';
+import { UpdateInfoComponent } from './change/update-info/update-info.component';
 
 
 
@@ -54,7 +75,24 @@ import {PostingListComponent} from './posting/posting/posting-list/posting-list.
     UserAccountComponent,
     UploadAvatarComponent,
     NavBar2Component,
-    PostingListComponent
+    CommentComponent,
+    DemoComponent,
+    HomeComponent,
+    ProfileComponent,
+    InfoComponent,
+    FriendComponent,
+    TimeLineComponent,
+    PostingCreateComponent,
+    ListPendingComponent,
+    ReversePipe,
+    UploadImagesComponent,
+    UploadImagesFormComponent,
+    ChangePasswordComponent,
+    PostingEditComponent,
+    PostingDeleteComponent,
+    CommentEditComponent,
+    CommentDeleteComponent,
+    UpdateInfoComponent
   ],
   imports: [
     HttpClientModule,
@@ -78,9 +116,11 @@ import {PostingListComponent} from './posting/posting/posting-list/posting-list.
     MatSelectModule,
     MatInputModule,
     AngularFireStorageModule,
+    MatDialogModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    MatProgressSpinnerModule,
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

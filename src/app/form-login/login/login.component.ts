@@ -11,10 +11,11 @@ import {AuthService} from '../../service/auth/auth.service';
 })
 export class LoginComponent implements OnInit {
   hide = true;
-  status = 'Please Login to use the SocialNet';
+  status: any;
   form: any = {};
   roles: string[] = [];
   name: string;
+  avatar: string;
   signInForm: SignInForm;
   isCheckLoginFailed = false;
   constructor(private authService: AuthService,
@@ -31,11 +32,14 @@ export class LoginComponent implements OnInit {
     );
     this.authService.signIn(this.signInForm).subscribe(data => {
       if (data.token !== undefined) {
+        this.tokenService.setUsername(data.username);
+        this.tokenService.setAvatar(data.avatar);
         this.tokenService.setToken(data.token);
         this.tokenService.setName(data.name);
         this.tokenService.setRoles(data.roles);
         this.tokenService.setIdKey(data.id);
-        this.router.navigate(['new']).then(() => {
+        this.tokenService.setEmail(data.email);
+        this.router.navigate(['home']).then(() => {
           window.location.reload();
         });
       } else {
