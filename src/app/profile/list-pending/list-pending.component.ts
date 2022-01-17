@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ProfileService} from '../service/profile.service';
 import {AccountDetail} from '../model/account-detail';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-list-pending',
@@ -10,7 +11,9 @@ import {AccountDetail} from '../model/account-detail';
 export class ListPendingComponent implements OnInit {
   listPending: AccountDetail[] = [];
 
-  constructor(private profileService: ProfileService) {
+  constructor(private profileService: ProfileService,
+              public router: Router
+  ) {
   }
   sumPending: number;
   ngOnInit(): void {
@@ -37,5 +40,10 @@ export class ListPendingComponent implements OnInit {
   refusePending(id: number) {
     this.profileService.refusePending(id).subscribe();
     this.showListPending();
+  }
+
+  navigateToProfile(id: number) {
+    window.sessionStorage.setItem('Id_Profile', String(id)) ;
+    this.router.navigate(['/home/profile/' + id]);
   }
 }

@@ -111,10 +111,10 @@ export class CardComponent implements OnInit {
   onSubmit() {
     this.newComment = new PostingComment(this.form.content, Date.now().toString(), this.posting, new StatusComment(1, 'sent'), new Account(this.tokenService.getIdKey()));
     this.postingService.saveNewComment(this.newComment).subscribe(data => {
-      this.getAllComments(this.posting.id);
-      this.form.content = '';
-      this.posting.commentNumber = this.posting.commentNumber + 1;
-    }
+        this.getAllComments(this.posting.id);
+        this.form.content = '';
+        this.posting.commentNumber = this.posting.commentNumber + 1;
+      }
     );
   }
 
@@ -145,7 +145,6 @@ export class CardComponent implements OnInit {
         this.statusPosting = 'public';
       }
     });
-    
   }
 
   openDialogDelete() {
