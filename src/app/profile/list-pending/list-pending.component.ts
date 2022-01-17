@@ -18,21 +18,24 @@ export class ListPendingComponent implements OnInit {
   }
 
   showListPending() {
-    this.profileService.listPending().subscribe(list => {
-      this.listPending = list;
-      console.log(list);
-      this.sumPending = list.length;
-    });
+    setTimeout(() => {
+      this.profileService.listPending().subscribe(list => {
+        this.listPending = list;
+        console.log(list);
+        this.sumPending = list.length;
+      });
+    }, 500 );
   }
 
   agreePending(id: number) {
     this.profileService.agree(id).subscribe();
-    window.location.reload();
+    this.showListPending();
+    console.log('chan qua');
+    console.log(this.listPending);
   }
 
   refusePending(id: number) {
     this.profileService.refusePending(id).subscribe();
-    window.location.reload();
-
+    this.showListPending();
   }
 }

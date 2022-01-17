@@ -9,9 +9,10 @@ export class AccountDetail {
   hobbies?: string;
   email?: string;
   gender: Gender;
+  address?: string;
 
-
-  constructor(username: string, name: string, avatar: string, phone: string, hobbies: string, email: string, gender: Gender) {
+  // tslint:disable-next-line:max-line-length
+  constructor(username: string, name: string, avatar: string, phone: string, hobbies: string, email: string, gender: Gender, address: string) {
     this.username = username;
     this.name = name;
     this.avatar = avatar;
@@ -19,5 +20,6 @@ export class AccountDetail {
     this.hobbies = hobbies;
     this.email = email;
     this.gender = gender;
+    this.address = address;
   }
 }

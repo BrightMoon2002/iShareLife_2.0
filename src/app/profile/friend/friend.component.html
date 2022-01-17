@@ -14,6 +14,10 @@
                                                     <h5>Friends  <span>{{sumFriend}}</span></h5>
                                                 </div>
                                             </div>
+<!--                                            <div class="col-lg-4">-->
+<!--                                                <h3 (click)="listfriiend()">List of mutual friends</h3>-->
+<!--                                            </div>-->
+
                                             <div class="col-lg-6">
                                                 <div class="row merged20">
                                                     <div class="col-lg-7 col-lg-7 col-sm-7">
@@ -41,10 +45,11 @@
                                                             <a routerLink="/home/profile/{{element.id}}">{{element.name}}</a>
                                                         </div>
                                                         <ul class="frnd-info">
-                                                            <li><span>Phone:{{element.phone}}</span> </li>
-                                                            <li><span>Email:{{element.email}}</span> </li>
-                                                            <li><span>Hobbies:</span> {{element.hobbies}}</li>
-                                                            <li><span>Gender:</span> {{element.gender.gender}}</li>
+                                                            <li *ngIf="element.phone"><span>Phone:{{element.phone}}</span> </li>
+                                                            <li *ngIf="element.address"><span>Address:{{element.address}}</span> </li>
+                                                            <li *ngIf="element.email"><span>Email:{{element.email}}</span> </li>
+                                                            <li *ngIf="element.hobbies"><span>Hobbies:</span> {{element.hobbies}}</li>
+                                                            <li *ngIf="element.gender"><span>Gender:</span> {{element.gender.gender}}</li>
                                                         </ul>
                                                         <a class="send-mesg" href="#" title="">Message</a>
                                                         <div class="more-opotnz">
@@ -59,10 +64,10 @@
                                         </div>
 
                                     </div>
-                                    <div class="lodmore">
-                                        <span>Viewing 1-8 of 44 friends</span>
-                                        <button class="btn-view btn-load-more"></button>
-                                    </div>
+<!--                                    <div class="lodmore">-->
+<!--                                        <span>Viewing 1-8 of 44 friends</span>-->
+<!--                                        <button class="btn-view btn-load-more"></button>-->
+<!--                                    </div>-->
                                 </div>
                             </div>
                         </div>
