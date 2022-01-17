@@ -38,6 +38,7 @@ export class LoginComponent implements OnInit {
         this.tokenService.setName(data.name);
         this.tokenService.setRoles(data.roles);
         this.tokenService.setIdKey(data.id);
+        this.tokenService.setEmail(data.email);
         this.router.navigate(['home']).then(() => {
           window.location.reload();
         });
