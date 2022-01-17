@@ -102,7 +102,8 @@ export class NavBar2Component implements OnInit {
 
   navigateToProfile(id: string) {
     window.sessionStorage.setItem('Id_Profile', id);
-    this.router.navigate(['/home/profile/' + id ]);
+    this.router.navigate(['/home/profile/' + id]);
+  }
 
   openDialogUpdateInfo() {
     const dialogRef = this.dialog.open(UpdateInfoComponent, {
