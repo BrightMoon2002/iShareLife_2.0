@@ -41,10 +41,10 @@
                                                             <a routerLink="/home/profile/{{element.id}}">{{element.name}}</a>
                                                         </div>
                                                         <ul class="frnd-info">
-                                                            <li><span>Phone:{{element.phone}}</span> </li>
-                                                            <li><span>Email:{{element.email}}</span> </li>
-                                                            <li><span>Hobbies:</span> {{element.hobbies}}</li>
-                                                            <li><span>Gender:</span> {{element.gender.gender}}</li>
+                                                            <li *ngIf="element.phone"><span>Phone:{{element.phone}}</span> </li>
+                                                            <li *ngIf="element.email"><span>Email:{{element.email}}</span> </li>
+                                                            <li *ngIf="element.hobbies"><span>Hobbies:</span> {{element.hobbies}}</li>
+                                                            <li *ngIf="element.gender"><span>Gender:</span> {{element.gender.gender}}</li>
                                                         </ul>
                                                         <a class="send-mesg" href="#" title="">Message</a>
                                                         <div class="more-opotnz">
@@ -59,10 +59,10 @@
                                         </div>
 
                                     </div>
-                                    <div class="lodmore">
-                                        <span>Viewing 1-8 of 44 friends</span>
-                                        <button class="btn-view btn-load-more"></button>
-                                    </div>
+<!--                                    <div class="lodmore">-->
+<!--                                        <span>Viewing 1-8 of 44 friends</span>-->
+<!--                                        <button class="btn-view btn-load-more"></button>-->
+<!--                                    </div>-->
                                 </div>
                             </div>
                         </div>
