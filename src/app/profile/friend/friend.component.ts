@@ -19,14 +19,19 @@ export class FriendComponent implements OnInit {
               private profileService: ProfileService
   ) {
   }
-
+  currentId = window.sessionStorage.getItem('Id_Key');
   sumFriend: number;
-
+  check: boolean;
   ngOnInit(): void {
     this.activeRouter.paramMap.subscribe(accountId => {
       const id = +accountId.get('id1');
       this.id = id;
       this.getListFriend();
+      if (this.currentId === id.toString()) {
+        this.check = true;
+      } else {
+        this.check = false;
+      }
     });
   }
 
@@ -45,4 +50,6 @@ export class FriendComponent implements OnInit {
     this.profileService.deleteFriend(id).subscribe();
     this.getListFriend();
   }
+
+
 }
