@@ -6,6 +6,8 @@ import {MatDialog} from '@angular/material/dialog';
 import {ChangePasswordRequest} from '../model/ChangePasswordRequest';
 import {HttpClient} from '@angular/common/http';
 import {AuthService} from '../service/auth/auth.service';
+import {UpdateInfoComponent} from '../change/update-info/update-info.component';
+import {UpdateInfoRequest} from '../model/UpdateInfoRequest';
 
 @Component({
   selector: 'app-nav-bar2',
@@ -14,12 +16,17 @@ import {AuthService} from '../service/auth/auth.service';
 })
 export class NavBar2Component implements OnInit {
   id = window.sessionStorage.getItem('Id_Key');
-
+// error for changePassword
   error1: any = {
     message: 'no_password'
   };
   error2: any = {
     message: 'success'
+  };
+  // error for update info
+
+  error3: any = {
+    message: 'yes'
   };
 
   userSettings = document.querySelector('.user-settings');
@@ -29,6 +36,15 @@ export class NavBar2Component implements OnInit {
   changePasswordRequest: ChangePasswordRequest = {
     oldPassword: '',
     newPassword: ''
+  };
+
+
+  updateInfoRequest: UpdateInfoRequest = {
+    name: '',
+    email: '',
+    hobbies: '',
+    address: '',
+    phone: ''
   };
 
   constructor(
@@ -83,8 +99,36 @@ export class NavBar2Component implements OnInit {
     });
   }
 
+
   navigateToProfile(id: string) {
     window.sessionStorage.setItem('Id_Profile', id);
     this.router.navigate(['/home/profile/' + id ]);
+
+  openDialogUpdateInfo() {
+    const dialogRef = this.dialog.open(UpdateInfoComponent, {
+      width: '800px',
+      data: {
+        name: this.updateInfoRequest.name,
+        email: this.updateInfoRequest.email,
+        hobbies: this.updateInfoRequest.hobbies,
+        address: this.updateInfoRequest.address,
+        phone: this.updateInfoRequest.phone
+      }
+    }
+    );
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.updateInfoRequest.name = result.name;
+      this.updateInfoRequest.email = result.email;
+      this.updateInfoRequest.hobbies = result.hobbies;
+      console.log(this.updateInfoRequest.hobbies);
+      this.updateInfoRequest.phone = result.phone;
+      this.updateInfoRequest.address = result.address;
+      this.authService.updateInfo(this.updateInfoRequest).subscribe(data => {
+        if (JSON.stringify(data) === JSON.stringify(this.error3)) {
+          alert('Change information success!');
+        }
+      });
+    });
   }
 }
