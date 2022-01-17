@@ -84,11 +84,6 @@ export class CardComponent implements OnInit {
       this.statusPosting = 'public';
     }
     this.idProfileFinal = Number(window.sessionStorage.getItem('Id_Profile'));
-<<<<<<< HEAD
-    console.log(this.idProfileFinal + ' vvvvvvvvvvvvvvvvvvvvv');
-=======
-    console.log(this.idProfileFinal + 'check id');
->>>>>>> d558925c22f23cf89641e6805bb13fc1b6266fd0
 
   }
 
