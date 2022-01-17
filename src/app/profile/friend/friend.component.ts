@@ -31,16 +31,18 @@ export class FriendComponent implements OnInit {
   }
 
   getListFriend() {
-    this.friendService.getAllFriend(this.id).subscribe(listFriend => {
-      this.friends = listFriend;
-      console.log(this.friends);
-      this.sumFriend = listFriend.length;
-    });
+    setTimeout(() => {
+      this.friendService.getAllFriend(this.id).subscribe(listFriend => {
+        this.friends = listFriend;
+        console.log(this.friends);
+        this.sumFriend = listFriend.length;
+      });
+    }, 500 );
   }
 
 
   deleteFriend(id: number) {
     this.profileService.deleteFriend(id).subscribe();
-    window.location.reload();
+    this.getListFriend();
   }
 }
