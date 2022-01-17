@@ -22,6 +22,7 @@ export class TimeLineComponent implements OnInit {
     this.getAll();
     this.idProfileFinal = Number(window.sessionStorage.getItem('Id_Profile'));
     this.idLogging = Number(this.tokenService.getIdKey());
+    console.log(this.idProfileFinal + 'id o timeline');
   }
 
   create($event: any) {
