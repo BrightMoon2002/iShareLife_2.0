@@ -46,7 +46,21 @@ import { FriendComponent } from './profile/friend/friend.component';
 import { TimeLineComponent } from './profile/time-line/time-line.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { PostingCreateComponent } from './posting/posting/posting-create/posting-create.component';
+
 import { MessengerComponent } from './messenger/messenger.component';
+import { ListPendingComponent } from './profile/list-pending/list-pending.component';
+import {ReversePipe} from './posting/posting/pipe/ReversePipe';
+import { UploadImagesComponent } from './posting/upload-images/upload-images.component';
+import { UploadImagesFormComponent } from './posting/upload-images/upload-images-form/upload-images-form.component';
+import {MatDialogModule} from '@angular/material/dialog';
+
+import { ChangePasswordComponent } from './form-login/change-password/change-password.component';
+import { PostingEditComponent } from './posting/posting/posting-edit/posting-edit.component';
+import { PostingDeleteComponent } from './posting/posting/posting-delete/posting-delete.component';
+import { CommentEditComponent } from './posting/posting/comment/comment-edit/comment-edit.component';
+import { CommentDeleteComponent } from './posting/posting/comment/comment-delete/comment-delete.component';
+import { UpdateInfoComponent } from './change/update-info/update-info.component';
+
 
 
 
@@ -72,7 +86,18 @@ import { MessengerComponent } from './messenger/messenger.component';
     FriendComponent,
     TimeLineComponent,
     PostingCreateComponent,
-    MessengerComponent
+    MessengerComponent,
+    ListPendingComponent,
+    ReversePipe,
+    UploadImagesComponent,
+    UploadImagesFormComponent,
+    ChangePasswordComponent,
+    PostingEditComponent,
+    PostingDeleteComponent,
+    CommentEditComponent,
+    CommentDeleteComponent,
+    UpdateInfoComponent
+
   ],
   imports: [
     HttpClientModule,
@@ -96,6 +121,7 @@ import { MessengerComponent } from './messenger/messenger.component';
     MatSelectModule,
     MatInputModule,
     AngularFireStorageModule,
+    MatDialogModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     MatProgressSpinnerModule,
   ],
