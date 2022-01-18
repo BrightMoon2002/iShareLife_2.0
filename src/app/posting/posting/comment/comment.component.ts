@@ -22,6 +22,8 @@ export class CommentComponent implements OnInit {
   @Output()
   idCommentDelete = new EventEmitter();
   idLogging: number;
+  isLiked: boolean;
+  like: number;
   constructor(
     private postingService: PostingService,
     public dialog: MatDialog,
@@ -31,6 +33,27 @@ export class CommentComponent implements OnInit {
 
   ngOnInit(): void {
     this.idLogging = Number(this.tokenService.getIdKey());
+    this.postingService.getLikeByPostingCommentId(this.comment.id).subscribe(data => {
+      this.like = data;
+      console.log(data + ' ?????');
+    });
+    this.postingService.isLikedCommentByAccountId(this.comment.id, this.tokenService.getIdKey()).subscribe(data => {
+      this.isLiked = data;
+    });
+  }
+
+  likeComment(commentId: number) {
+    this.postingService.isLikedCommentByAccountId(commentId, this.tokenService.getIdKey()).subscribe(data => {
+      if (data === false) {
+        this.postingService.doLikeComment(Number(this.tokenService.getIdKey()), commentId).subscribe();
+        this.like++;
+        this.isLiked = !data;
+      } else {
+        this.postingService.unLikeComment(Number(this.tokenService.getIdKey()), commentId).subscribe();
+        this.like--;
+        this.isLiked = !data;
+      }
+    });
   }
 
   openDialogEdit() {
@@ -66,4 +89,5 @@ export class CommentComponent implements OnInit {
     });
 
   }
+
 }
