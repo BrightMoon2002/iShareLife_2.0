@@ -1,0 +1,16 @@
+
+    <ul class="drops-menu" *ngFor="let notification of notifications">
+        <li>
+            <a href="notifications.html" title="">
+                <figure>
+                    <img [src]="notification.sender.avatar" alt="">
+                    <span class="status f-online"></span>
+                </figure>
+                <div class="mesg-meta">
+                    <h6>sarah Loren</h6>
+                    <span>commented on your new profile status</span>
+                    <i>2 min ago</i>
+                </div>
+            </a>
+        </li>
+    </ul>

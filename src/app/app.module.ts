@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {NavBarComponent, NavBarModule} from './shared/navbar/nav-bar.component';
 import { NewComponent } from './new/new.component';
-import { NotificationComponent } from './notification/notification.component';
+import { NotificationComponent } from './notification/notification/notification.component';
 import { PostingComponent } from './posting/posting/posting.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatCardModule} from '@angular/material/card';
