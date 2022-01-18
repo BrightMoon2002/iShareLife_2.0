@@ -8,7 +8,7 @@
                             <span class="status f-online"></span>
                         </figure>
                         <div>
-                            <h6 class="unread">{{nameReceiver}}</h6>
+                            <h6 class="unread">{{nameAccountChat}}</h6>
                             <span>Online</span>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                     <ul  class="conversations">
                         <li *ngFor="let mess of messageDetail">
                             <div [class] = "mess.nameSender === nameAccount ? 'me' : 'you'">
-                                <figure><img [src]="mess.nameSender === nameAccount ? avatarAccount : ''" height="45"
+                                <figure><img [src]="mess.nameSender === nameAccount ? avatarAccount : avatarAccountChat" height="45"
                                              width="45"/></figure>
                                 <div class="text-box">
                                     <p>{{mess.content}}</p>
@@ -148,8 +148,8 @@
             </div>
             <div class="col-lg-4 col-md-4">
                 <div class="chater-info">
-                    <figure><img src="../../assets/images/resources/chatuser1.jpg" alt=""></figure>
-                    <h6>Andrew</h6>
+                    <figure><img [src]="avatarAccountChat" alt=""></figure>
+                    <h6>{{nameAccountChat}}</h6>
                     <span>Online</span>
                     <div class="userabout">
                         <span>About</span>
