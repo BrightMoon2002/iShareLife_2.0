@@ -1,5 +1,5 @@
 <div *ngIf="isProfile === false">
-    <div *ngIf="posting.postingStatusType.type === 'Private' && posting.owner.id === idLogging || posting.postingStatusType.type !== 'Private'" class="central-meta item">
+    <div *ngIf="posting.postingStatusType.type === 'Private' && posting.owner.id === idLogging || posting.postingStatusType.type !== 'Private' && relationshipStatus === 2 || relationshipStatus === 0 && idLogging === posting.owner.id" class="central-meta item">
         <div class="user-post">
             <div class="friend-info">
                 <figure>
@@ -101,7 +101,7 @@
 
 <!------Profile---------->
 <div *ngIf="isProfile === true">
-    <div *ngIf="posting.owner.id === idProfileFinal && idProfileFinal !== idLogging && posting.postingStatusType.type !== 'Private' || idProfileFinal === idLogging && posting.owner.id === idProfileFinal" class="central-meta item">
+    <div *ngIf="posting.owner.id === idProfileFinal && idProfileFinal !== idLogging && posting.postingStatusType.type !== 'Private' && relationshipStatus === 2 || idProfileFinal === idLogging && posting.owner.id === idProfileFinal || posting.owner.id === idProfileFinal && idProfileFinal !== idLogging && posting.postingStatusType.type === 'Public' && relationshipStatus === 0" class="central-meta item">
         <div class="user-post">
             <div class="friend-info">
                 <figure>

@@ -33,10 +33,10 @@ export class FriendComponent implements OnInit {
         this.check = true;
       } else {
         this.check = false;
-      };
+      }
       this.profileService.MutualFriends(id).subscribe(list => {
         this.sumMutualFriends = list.length;
-      })
+      });
     });
   }
 

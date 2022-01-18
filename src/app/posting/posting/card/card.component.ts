@@ -14,6 +14,7 @@ import {Router} from '@angular/router';
 import {MatDialog} from '@angular/material/dialog';
 import {PostingEditComponent} from '../posting-edit/posting-edit.component';
 import {PostingDeleteComponent} from '../posting-delete/posting-delete.component';
+import {ProfileService} from '../../../profile/service/profile.service';
 
 @Component({
   selector: 'app-card',
@@ -52,6 +53,7 @@ export class CardComponent implements OnInit {
   // idProfile: number;
   // @Input()
   idProfileFinal: number;
+  relationshipStatus: number;
 
   @Output()
   postingIdDelete = new EventEmitter();
@@ -84,6 +86,9 @@ export class CardComponent implements OnInit {
       this.statusPosting = 'public';
     }
     this.idProfileFinal = Number(window.sessionStorage.getItem('Id_Profile'));
+    this.postingService.getRelationshipStatusById(this.posting.owner.id).subscribe(data => {
+      this.relationshipStatus = data;
+    });
 
   }
 
