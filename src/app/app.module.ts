@@ -61,6 +61,7 @@ import { CommentEditComponent } from './posting/posting/comment/comment-edit/com
 import { CommentDeleteComponent } from './posting/posting/comment/comment-delete/comment-delete.component';
 import { UpdateInfoComponent } from './change/update-info/update-info.component';
 import { ChatMessageComponent } from './chat-message/chat-message.component';
+import { MessageDetailComponent } from './message-detail/message-detail.component';
 
 
 
@@ -99,7 +100,8 @@ import { ChatMessageComponent } from './chat-message/chat-message.component';
     CommentDeleteComponent,
     UpdateInfoComponent,
     ChatMessageComponent,
-    UpdateInfoComponent
+    UpdateInfoComponent,
+    MessageDetailComponent
   ],
   imports: [
     HttpClientModule,
