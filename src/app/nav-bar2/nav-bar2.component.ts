@@ -136,4 +136,8 @@ export class NavBar2Component implements OnInit {
       });
     });
   }
+
+  showMessenger() {
+    this.router.navigate(['messenger-chat']);
+  }
 }

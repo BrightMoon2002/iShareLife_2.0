@@ -825,7 +825,8 @@
             </ul>
 
             <!-- chat - box -->
-            <app-chat-message></app-chat-message>
+<!--            <app-chat-message></app-chat-message>-->
+            <app-messenger></app-messenger>
             <!-- end chat box -->
 
 
@@ -864,7 +865,7 @@
                     </a>
                 </li>
                 <li>
-                    <a routerLink="/messenger-chat" title="Messages" data-toggle="tooltip" data-placement="right">
+                    <a (click)="showMessenger()" title="Messages" data-toggle="tooltip" data-placement="right">
                         <i class="ti-comment-alt"></i>
                     </a>
                 </li>
