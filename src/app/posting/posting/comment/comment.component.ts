@@ -35,7 +35,6 @@ export class CommentComponent implements OnInit {
     this.idLogging = Number(this.tokenService.getIdKey());
     this.postingService.getLikeByPostingCommentId(this.comment.id).subscribe(data => {
       this.like = data;
-      console.log(data + ' ?????');
     });
     this.postingService.isLikedCommentByAccountId(this.comment.id, this.tokenService.getIdKey()).subscribe(data => {
       this.isLiked = data;
