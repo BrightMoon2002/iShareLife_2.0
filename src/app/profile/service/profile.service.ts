@@ -47,4 +47,8 @@ export class ProfileService {
   listPending(): Observable<AccountDetail[]> {
     return this.http.get<AccountDetail[]>( API + 'api/relationship/showPending');
   }
+  MutualFriends(id: number): Observable<AccountDetail[]> {
+    return  this.http.get<AccountDetail[]>( API + 'api/relationship/mutualFriend/' + id);
+  }
+
 }
