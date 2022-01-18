@@ -58,6 +58,7 @@ import { PostingDeleteComponent } from './posting/posting/posting-delete/posting
 import { CommentEditComponent } from './posting/posting/comment/comment-edit/comment-edit.component';
 import { CommentDeleteComponent } from './posting/posting/comment/comment-delete/comment-delete.component';
 import { UpdateInfoComponent } from './change/update-info/update-info.component';
+import { ChatMessageComponent } from './chat-message/chat-message.component';
 
 
 
@@ -92,7 +93,8 @@ import { UpdateInfoComponent } from './change/update-info/update-info.component'
     PostingDeleteComponent,
     CommentEditComponent,
     CommentDeleteComponent,
-    UpdateInfoComponent
+    UpdateInfoComponent,
+    ChatMessageComponent
   ],
   imports: [
     HttpClientModule,
