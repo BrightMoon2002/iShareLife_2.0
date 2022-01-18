@@ -45,6 +45,5 @@ export class PostingComponent implements OnInit {
 
   getProfileId($event: any) {
     this.idProfile.emit($event);
-    console.log($event + ' Posting');
   }
 }
