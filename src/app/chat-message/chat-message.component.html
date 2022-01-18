@@ -1,4 +1,4 @@
-<divaagggggggggg class="tab-content messenger">
+<div class="tab-content messenger">
     <div class="tab-pane active fade show " id="link1">
         <div class="row merged">
             <div class="col-lg-12">
@@ -8,7 +8,7 @@
                             <span class="status f-online"></span>
                         </figure>
                         <div>
-                            <h6 class="unread">{{nameAccountChat}}</h6>
+                            <h6 class="unread">{{chatMessageAccount.name}}</h6>
                             <span>Online</span>
                         </div>
                     </div>
@@ -148,8 +148,8 @@
             </div>
             <div class="col-lg-4 col-md-4">
                 <div class="chater-info">
-                    <figure><img [src]="avatarAccountChat" alt=""></figure>
-                    <h6>{{nameAccountChat}}</h6>
+                    <figure><img src="{{chatMessageAccount.avatar}}" alt=""></figure>
+                    <h6>{{chatMessageAccount.name}}</h6>
                     <span>Online</span>
                     <div class="userabout">
                         <span>About</span>
@@ -1788,4 +1788,4 @@
             </div>
         </div>
     </div>
-</divaagggggggggg>
+</div>
