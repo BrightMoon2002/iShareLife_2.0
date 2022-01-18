@@ -54,13 +54,13 @@
 
                             <div class="mesg-peple">
                                 <ul class="nav nav-tabs nav-tabs--vertical msg-pepl-list">
-                                    <li *ngFor="let messenger of messageAccount" class="nav-item unread">
-                                        <a (click)="showChatLogById(messenger.idSender)" class="active" href="#link1" data-toggle="tab">
-                                            <figure><img [src]="messenger.avatar" alt="">
+                                    <li *ngFor="let messageAccount of messageAccounts" class="nav-item unread">
+                                        <a (click)="showChatLogById(messageAccount)" class="active" href="#link1" data-toggle="tab">
+                                            <figure><img src="{{messageAccount.avatar}}" alt="">
                                                 <span class="status f-online"></span>
                                             </figure>
                                             <div class="user-name">
-                                                <h6 class="">{{messenger.name}}</h6>
+                                                <h6 class="">{{messageAccount.name}}</h6>
                                                 <span>you send a video - 2hrs ago</span>
                                             </div>
                                             <div class="more">
@@ -85,7 +85,7 @@
                         </div>
 
                         <!-- showchat message -->
-                            <app-chat-message [messageDetail]="messageDetail" [idAccountChat]="idAccountChat"></app-chat-message>
+                            <app-chat-message [chatMessageAccount]="messageAccount" [messageDetail]="messageDetail" [idAccountChat]="idAccountChat"></app-chat-message>
                     </div>
                 </div>
             </div>

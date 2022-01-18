@@ -5,6 +5,7 @@ import {TokenService} from '../service/token/token.service';
 import {ChatService} from '../service/chat-message/chat.service';
 import {ProfileService} from '../profile/service/profile.service';
 import {Router} from '@angular/router';
+import {MessageAccountResponse} from '../model/chat/MessageAccountResponse';
 
 @Component({
   selector: 'app-chat-message',
@@ -16,7 +17,10 @@ export class ChatMessageComponent implements OnInit {
   messageDetail: Message[];
   nameReceiver: any;
   @Input()
-  idAccountChat: number;
+  idAccountChat: any;
+
+  @Input()
+  chatMessageAccount: MessageAccountResponse;
   avatarAccountChat: string;
   nameAccountChat: string;
   idAccount = this.tokenService.getIdKey();

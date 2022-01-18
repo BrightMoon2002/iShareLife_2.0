@@ -11,7 +11,8 @@ import {Router} from '@angular/router';
   styleUrls: ['./messenger.component.scss']
 })
 export class MessengerComponent implements OnInit {
-  messageAccount: MessageAccountResponse[];
+  messageAccount: MessageAccountResponse;
+  messageAccounts: MessageAccountResponse[];
   messageDetail: Message[];
   idAccountChat = window.sessionStorage.getItem('idAccountChat');
   avatarAccountChat: string;
@@ -22,24 +23,21 @@ export class MessengerComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.showAllMessageByAccountId();
-    setTimeout(() => {
-      this.messageService.showChatLogById(this.messageAccount[0].idSender).subscribe(data => {
-        this.messageDetail = data;
-        window.sessionStorage.setItem('idAccountChat', this.messageAccount[0].idSender.toString());
+      this.messageService.getListMessageByAccountId().subscribe(data => {
+        this.messageService.showChatLogById(data[0].idSender).subscribe(detail => {
+          this.messageAccounts = data;
+          this.messageAccount = this.messageAccounts[0];
+          this.messageDetail = detail;
+        });
       });
-    }, 500);
+
   }
-  showAllMessageByAccountId() {
-    this.messageService.getListMessageByAccountId().subscribe(data => {
-      this.messageAccount = data;
-    });
-  }
-  showChatLogById(id: any) {
-    this.idAccountChat = id;
-    window.sessionStorage.setItem('idAccountChat', this.idAccountChat.toString());
-    this.messageService.showChatLogById(id).subscribe(data => {
-      this.messageDetail = data;
-    });
+
+  showChatLogById(messageAccount: MessageAccountResponse) {
+      this.messageService.showChatLogById(messageAccount.idSender).subscribe(data => {
+        this.messageAccount = this.messageAccounts[this.messageAccounts.indexOf(messageAccount)];
+        this.messageDetail = data;
+        console.log(this.messageDetail);
+      });
   }
 }

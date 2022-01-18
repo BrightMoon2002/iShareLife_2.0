@@ -8,6 +8,7 @@ import {HttpClient} from '@angular/common/http';
 import {AuthService} from '../service/auth/auth.service';
 import {UpdateInfoComponent} from '../change/update-info/update-info.component';
 import {UpdateInfoRequest} from '../model/UpdateInfoRequest';
+import {ChatService} from '../service/chat-message/chat.service';
 
 @Component({
   selector: 'app-nav-bar2',
@@ -51,7 +52,8 @@ export class NavBar2Component implements OnInit {
     private router: Router,
     private tokenService: TokenService,
     private dialog: MatDialog,
-    private authService: AuthService
+    private authService: AuthService,
+    private chatService: ChatService
   ) {
   }
 
@@ -138,6 +140,9 @@ export class NavBar2Component implements OnInit {
   }
 
   showMessenger() {
-    this.router.navigate(['messenger-chat']);
+    this.chatService.getListMessageByAccountId().subscribe(data => {
+      window.sessionStorage.setItem('idAccountChat', data[0].idSender.toString());
+      this.router.navigate(['messenger-chat']);
+    });
   }
 }
