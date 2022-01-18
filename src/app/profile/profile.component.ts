@@ -27,6 +27,7 @@ export class ProfileComponent implements OnInit {
     this.activeRouter.paramMap.subscribe(accountId => {
       const id = +accountId.get('id');
       this.id = id;
+      window.sessionStorage.setItem('Id_Profile', id.toString());
       this.profileService.findAccountById(id).subscribe(account => {
         this.account = account;
 
@@ -48,6 +49,7 @@ export class ProfileComponent implements OnInit {
         }
       });
     });
+
 
   }
 

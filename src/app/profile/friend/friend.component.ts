@@ -37,9 +37,12 @@ export class FriendComponent implements OnInit {
       } else {
         this.check = false;
       }
+<<<<<<< HEAD
       this.profileService.findAccountById(id).subscribe( data => {
         this.isShow = data.show;
       });
+=======
+>>>>>>> e2e9146cacbd9a73469007404559721c3712ce31
       this.profileService.MutualFriends(id).subscribe(list => {
         this.sumMutualFriends = list.length;
       });

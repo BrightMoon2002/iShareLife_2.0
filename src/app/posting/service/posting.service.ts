@@ -76,4 +76,22 @@ export class PostingService {
   deleteComment(id: number): Observable<PostingComment> {
     return this.http.delete<PostingComment>(API + 'api/postingComment/' + id);
   }
+
+  getRelationshipStatusById(id: number): Observable<number> {
+    return this.http.get<number>(API + 'api/relationship/checkRelationship/' + id);
+  }
+
+  getLikeByPostingCommentId(id: any): Observable<number>{
+    return this.http.get<number>(API + 'api/commentLike/like/' + id);
+  }
+  isLikedCommentByAccountId(cId: any, accId: any): Observable<boolean>{
+    return this.http.get<boolean>(API + 'api/commentLike/liked/' + cId + '/' + accId);
+  }
+  doLikeComment(accId: number, cId: number): Observable<string> {
+    return this.http.post<string>(API + 'api/commentLike/doLike/' + cId + '/' + accId, {});
+  }
+
+  unLikeComment(accId: number, cId: number): Observable<string> {
+    return this.http.delete<string>(API + 'api/commentLike/unLike/' + cId + '/' + accId);
+  }
 }
