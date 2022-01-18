@@ -28,7 +28,6 @@ export class TimeLineComponent implements OnInit {
   create($event: any) {
     this.newPostings = [];
     this.getAll();
-    console.log(this.newPostings);
 
     // this.postingNew = $event;
     // this.newPostings.push(this.postingNew);
@@ -72,6 +71,5 @@ export class TimeLineComponent implements OnInit {
 
   getProfileId($event: any) {
     this.idProfileFinal = $event;
-    console.log(this.idProfileFinal + ' Time-Line');
   }
 }

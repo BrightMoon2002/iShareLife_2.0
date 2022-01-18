@@ -1,5 +1,5 @@
 <div *ngIf="isProfile === false">
-    <div *ngIf="posting.postingStatusType.type === 'Private' && posting.owner.id === idLogging || posting.postingStatusType.type !== 'Private'" class="central-meta item">
+    <div *ngIf="posting.postingStatusType.type === 'Private' && posting.owner.id === idLogging || posting.postingStatusType.type !== 'Private' && relationshipStatus === 2 || relationshipStatus === 0 && idLogging === posting.owner.id" class="central-meta item">
         <div class="user-post">
             <div class="friend-info">
                 <figure>
@@ -101,7 +101,7 @@
 
 <!------Profile---------->
 <div *ngIf="isProfile === true">
-    <div *ngIf="posting.owner.id === idProfileFinal && idProfileFinal !== idLogging && posting.postingStatusType.type !== 'Private' || idProfileFinal === idLogging && posting.owner.id === idProfileFinal" class="central-meta item">
+    <div *ngIf="posting.owner.id === idProfileFinal && idProfileFinal !== idLogging && posting.postingStatusType.type !== 'Private' && relationshipStatus === 2 || idProfileFinal === idLogging && posting.owner.id === idProfileFinal || posting.owner.id === idProfileFinal && idProfileFinal !== idLogging && posting.postingStatusType.type === 'Public' && relationshipStatus === 0" class="central-meta item">
         <div class="user-post">
             <div class="friend-info">
                 <figure>
@@ -121,7 +121,7 @@
                             </ul>
                         </div>
                     </div>
-                    <ins><a routerLink="/home/profile/{{posting.owner.id}}" title="">{{posting.owner.name}}</a></ins>
+                    <ins><a style="cursor: pointer" (click)="navigateProfile(posting.owner.id)" title="">{{posting.owner.name}}</a></ins>
                     <span><i *ngIf="posting.postingStatusType.id === 1" class="fa fa-globe"></i><i class="fa fa-lock" *ngIf="posting.postingStatusType.id === 2"></i><i class="fa fa-users" *ngIf="posting.postingStatusType.id === 3" style="font-size: 12px"></i> published: {{posting.dateOfPosting}} </span>
                 </div>
                 <div class="post-meta">
@@ -180,7 +180,7 @@
                         </div>
 
                         <li>
-                            <a (click)="getAllComments(posting.id)" title="" class="showmore underline">more comments+</a>
+                            <a (click)="getAllComments(posting.id)" style="cursor: pointer" title="" class="showmore underline">more comments+</a>
                         </li>
                         <li class="post-comment">
                             <div class="comet-avatar">

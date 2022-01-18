@@ -76,4 +76,8 @@ export class PostingService {
   deleteComment(id: number): Observable<PostingComment> {
     return this.http.delete<PostingComment>(API + 'api/postingComment/' + id);
   }
+
+  getRelationshipStatusById(id: number): Observable<number> {
+    return this.http.get<number>(API + 'api/relationship/checkRelationship/' + id);
+  }
 }
