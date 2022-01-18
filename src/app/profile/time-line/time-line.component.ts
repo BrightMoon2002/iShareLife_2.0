@@ -22,12 +22,12 @@ export class TimeLineComponent implements OnInit {
     this.getAll();
     this.idProfileFinal = Number(window.sessionStorage.getItem('Id_Profile'));
     this.idLogging = Number(this.tokenService.getIdKey());
+    console.log(this.idProfileFinal + 'id o timeline');
   }
 
   create($event: any) {
     this.newPostings = [];
     this.getAll();
-    console.log(this.newPostings);
 
     // this.postingNew = $event;
     // this.newPostings.push(this.postingNew);
@@ -71,6 +71,5 @@ export class TimeLineComponent implements OnInit {
 
   getProfileId($event: any) {
     this.idProfileFinal = $event;
-    console.log(this.idProfileFinal + ' Time-Line');
   }
 }
