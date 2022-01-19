@@ -42,7 +42,6 @@ export class ProfileComponent implements OnInit {
         this.check = false;
       }
       this.profileService.showpending().subscribe(data => {
-        console.log(data);
         for (const datum of data) {
           if (datum.id === this.id) {
             this.pending = 1;
