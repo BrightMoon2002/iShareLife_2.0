@@ -20,23 +20,13 @@ export class NotificationComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // this.currentId = +this.tokenService.getIdKey();
-    // this.getAll();
   }
-  // getAll(){
-  //   this.notificationService.getAll(this.currentId).subscribe(data => {
-  //     this.notifications = data;
-  //     console.log(data);
-  //     console.log(this.notifications);
-  //   });
-  // }
 
   getPostingId(notification: Notifications) {
     this.posting.emit(notification);
     notification.status = true;
     this.notification = new Notifications(notification.content, notification.sender, notification.account, notification.posting, true);
     this.notification.id = notification.id;
-    console.log(this.notification.id + 'kjgifuhjkhgvyugjhgfu ghjkgifyu')
     this.notificationService.update(notification.id).subscribe();
   }
 }

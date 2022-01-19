@@ -63,6 +63,7 @@ import { UpdateInfoComponent } from './change/update-info/update-info.component'
 import { OnePostComponent } from './notification/one-post/one-post.component';
 import { ChatMessageComponent } from './chat-message/chat-message.component';
 import { MessageDetailComponent } from './message-detail/message-detail.component';
+import { FriendRequestsComponent } from './notification/friend-requests/friend-requests.component';
 
 
 
@@ -103,7 +104,8 @@ import { MessageDetailComponent } from './message-detail/message-detail.componen
     OnePostComponent,
     ChatMessageComponent,
     UpdateInfoComponent,
-    MessageDetailComponent
+    MessageDetailComponent,
+    FriendRequestsComponent
   ],
   imports: [
     HttpClientModule,
