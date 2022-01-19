@@ -18,10 +18,10 @@
             <div class="inline-itms">
                 <span style="color: darkgrey">{{comment.dateOfComment}}</span>
                 <div *ngIf="isLiked === false">
-                    <a (click)="likeComment(comment.id)" title=""><i class="fa fa-heart"></i><span [(ngModel)]="like">{{like}}</span></a>
+                    <a (click)="likeComment(comment)" title=""><i class="fa fa-heart"></i><span [(ngModel)]="like">{{like}}</span></a>
                 </div>
                 <div *ngIf="isLiked === true">
-                    <a (click)="likeComment(comment.id)" title=""><i style="color: orangered;" class="fa fa-heart"></i><span [(ngModel)]="like">{{like}}</span></a>
+                    <a (click)="likeComment(comment)" title=""><i style="color: orangered;" class="fa fa-heart"></i><span [(ngModel)]="like">{{like}}</span></a>
                 </div>
             </div>
         </div>
