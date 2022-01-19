@@ -10,6 +10,7 @@ export class AccountDetail {
   email?: string;
   gender: Gender;
   address?: string;
+  show: boolean;
 
   // tslint:disable-next-line:max-line-length
   constructor(username: string, name: string, avatar: string, phone: string, hobbies: string, email: string, gender: Gender, address: string) {

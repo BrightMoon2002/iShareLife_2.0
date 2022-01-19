@@ -35,7 +35,6 @@ export class AuthService {
     return this.http.put<ChangePasswordRequest>(this.API_CHANGE_PASSWORD, changPassword);
   }
   updateInfo(updateInfo: UpdateInfoRequest): Observable<UpdateInfoRequest> {
-    console.log('aaaaaaaaaadddggggggggg');
     return this.http.put<UpdateInfoRequest>(this.API_UPDATE_INFO, updateInfo);
   }
 }

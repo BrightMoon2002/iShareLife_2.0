@@ -2,9 +2,9 @@ import {Injectable} from '@angular/core';
 import {environment} from '../../../environments/environment.prod';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Account} from '../../posting/model/account';
 import {AccountDetail} from '../model/account-detail';
 import {RelationshipDetail} from '../model/relationship-detail';
+
 
 const API = environment.API;
 
@@ -45,10 +45,15 @@ export class ProfileService {
   }
 
   listPending(): Observable<AccountDetail[]> {
-    return this.http.get<AccountDetail[]>( API + 'api/relationship/showPending');
+    return this.http.get<AccountDetail[]>(API + 'api/relationship/showPending');
   }
+
   MutualFriends(id: number): Observable<AccountDetail[]> {
-    return  this.http.get<AccountDetail[]>( API + 'api/relationship/mutualFriend/' + id);
+    return this.http.get<AccountDetail[]>(API + 'api/relationship/mutualFriend/' + id);
+  }
+
+  changeIsShow(): Observable<AccountDetail> {
+    return this.http.put<AccountDetail>(API + 'api/relationship/isShow', {});
   }
 
 }

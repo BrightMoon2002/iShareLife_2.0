@@ -11,6 +11,7 @@ import {UpdateInfoRequest} from '../model/UpdateInfoRequest';
 import {Notifications} from '../model/Notifications';
 import {NotificationService} from '../notification/service/notification.service';
 import {Posting} from '../posting/model/posting';
+import {ChatService} from '../service/chat-message/chat.service';
 
 @Component({
   selector: 'app-nav-bar2',
@@ -59,7 +60,8 @@ export class NavBar2Component implements OnInit {
     private tokenService: TokenService,
     private dialog: MatDialog,
     private authService: AuthService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private chatService: ChatService
   ) {
   }
 
@@ -146,22 +148,28 @@ export class NavBar2Component implements OnInit {
       });
     });
   }
-
   getPosting(event: any) {
     this.posting = event.posting;
     if (event.status === false){
       this.countNewNotification = this.countNewNotification - 1;
     }
   }
-  getAllNotification(){
+  getAllNotification() {
+    // @ts-ignore
     this.notificationService.getAll(this.currentId).subscribe(data => {
       this.notifications = data;
       // tslint:disable-next-line:prefer-for-of
       for (let i = 0; i < data.length; i++) {
-        if (data[i].status === false){
+        if (data[i].status === false) {
           this.countNewNotification = this.countNewNotification + 1;
         }
       }
+    });
+  }
+  showMessenger() {
+    this.chatService.getListMessageByAccountId().subscribe(data => {
+      window.sessionStorage.setItem('idAccountChat', data[0].idSender.toString());
+      this.router.navigate(['messenger-chat']);
     });
   }
 }
