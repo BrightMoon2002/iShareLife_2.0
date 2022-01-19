@@ -44,8 +44,8 @@
                 <div class="mesge-area">
                     <ul  class="conversations">
                         <li *ngFor="let mess of messageDetail">
-                            <div [class] = "mess.nameSender === nameAccount ? 'me' : 'you'">
-                                <figure><img [src]="mess.nameSender === nameAccount ? avatarAccount : avatarAccountChat" height="45"
+                            <div [class] = "mess.idGuest == idAccount ? 'me' : 'you'">
+                                <figure><img [src]="mess.idGuest == idAccount ? avatarAccount : avatarAccountChat" height="45"
                                              width="45"/></figure>
                                 <div class="text-box">
                                     <p>{{mess.content}}</p>
