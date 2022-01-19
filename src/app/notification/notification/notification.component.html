@@ -8,9 +8,16 @@
                 </figure>
                 <div class="mesg-meta">
                     <h6>{{notification.sender.name}}</h6>
-                    <span> {{notification.content}}</span>
+
+                    <div *ngIf="notification.status; else elseBlock">
+                        <span> {{notification.content}}</span>
+                    </div>
+                    <ng-template #elseBlock>
+                        <strong> {{notification.content}}</strong>
+                    </ng-template>
                     <i>{{notification.date}}</i>
                 </div>
+<!--                <a (click)="delete(notification.id)" style="right: 0" title=""><i class="fa fa-trash"></i></a>-->
             </a>
         </li>
     </ul>

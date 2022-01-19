@@ -12,6 +12,8 @@ import {Notifications} from '../model/Notifications';
 import {NotificationService} from '../notification/service/notification.service';
 import {Posting} from '../posting/model/posting';
 import {ChatService} from '../service/chat-message/chat.service';
+import {ProfileService} from '../profile/service/profile.service';
+import {AccountDetail} from '../profile/model/account-detail';
 
 @Component({
   selector: 'app-nav-bar2',
@@ -54,6 +56,8 @@ export class NavBar2Component implements OnInit {
   posting: Posting;
   currentId: number;
   countNewNotification = 0;
+  private listPending: AccountDetail[];
+  private sumPending: number;
 
   constructor(
     private router: Router,
@@ -61,7 +65,8 @@ export class NavBar2Component implements OnInit {
     private dialog: MatDialog,
     private authService: AuthService,
     private notificationService: NotificationService,
-    private chatService: ChatService
+    private chatService: ChatService,
+    private profileService: ProfileService
   ) {
   }
 
@@ -73,6 +78,7 @@ export class NavBar2Component implements OnInit {
     }
     this.currentId = +this.tokenService.getIdKey();
     this.getAllNotification();
+    this.showListPending();
   }
 
   logout(): void {
@@ -171,5 +177,17 @@ export class NavBar2Component implements OnInit {
       window.sessionStorage.setItem('idAccountChat', data[0].idSender.toString());
       this.router.navigate(['messenger-chat']);
     });
+  }
+  showListPending() {
+    setTimeout(() => {
+      this.profileService.listPending().subscribe(list => {
+        this.listPending = list;
+        this.sumPending = list.length;
+      });
+    }, 500 );
+  }
+
+  onChange(event) {
+    this.showListPending();
   }
 }

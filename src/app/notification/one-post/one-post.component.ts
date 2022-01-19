@@ -22,6 +22,7 @@ export class OnePostComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     this.getPosting();
+    console.log(this.posting);
   }
 
   getPosting(): void {

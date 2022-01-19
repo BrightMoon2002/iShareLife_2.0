@@ -50,7 +50,7 @@ export class CommentComponent implements OnInit {
     this.postingService.isLikedCommentByAccountId(comment.id, this.tokenService.getIdKey()).subscribe(data => {
       if (data === false) {
         if (+this.tokenService.getIdKey() !== comment.owner.id){
-          this.notification = new Notifications('đã like comment cua bạn', new Accounts(+this.tokenService.getIdKey()), new Accounts(comment.owner.id), comment.posting, false);
+          this.notification = new Notifications('đã like comment của bạn', new Accounts(+this.tokenService.getIdKey()), new Accounts(comment.owner.id), comment.posting, false);
           console.log(this.notification);
           this.notificationService.create(this.notification).subscribe();
         }
