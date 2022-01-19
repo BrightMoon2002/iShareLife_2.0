@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {NavBarComponent, NavBarModule} from './shared/navbar/nav-bar.component';
 import { NewComponent } from './new/new.component';
-import { NotificationComponent } from './notification/notification.component';
+import { NotificationComponent } from './notification/notification/notification.component';
 import { PostingComponent } from './posting/posting/posting.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatCardModule} from '@angular/material/card';
@@ -60,6 +60,7 @@ import { PostingDeleteComponent } from './posting/posting/posting-delete/posting
 import { CommentEditComponent } from './posting/posting/comment/comment-edit/comment-edit.component';
 import { CommentDeleteComponent } from './posting/posting/comment/comment-delete/comment-delete.component';
 import { UpdateInfoComponent } from './change/update-info/update-info.component';
+import { OnePostComponent } from './notification/one-post/one-post.component';
 import { ChatMessageComponent } from './chat-message/chat-message.component';
 import { MessageDetailComponent } from './message-detail/message-detail.component';
 
@@ -99,6 +100,7 @@ import { MessageDetailComponent } from './message-detail/message-detail.componen
     CommentEditComponent,
     CommentDeleteComponent,
     UpdateInfoComponent,
+    OnePostComponent,
     ChatMessageComponent,
     UpdateInfoComponent,
     MessageDetailComponent

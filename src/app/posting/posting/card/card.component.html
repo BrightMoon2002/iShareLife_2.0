@@ -44,11 +44,11 @@
                         <ul>
                             <li>
                                 <div *ngIf="isLiked === false">
-                                    <div (click)="likePost(posting.id)" class="likes heart" title="Like/Dislike">❤ <span
+                                    <div (click)="likePost(posting)" class="likes heart" title="Like/Dislike">❤ <span
                                             [(ngModel)]="like">{{like}}</span></div>
                                 </div>
                                 <div *ngIf="isLiked === true">
-                                    <div (click)="likePost(posting.id)" class="likes heart" style="color: orangered" title="Like/Dislike">❤ <span
+                                    <div (click)="likePost(posting)" class="likes heart" style="color: orangered" title="Like/Dislike">❤ <span
                                             [(ngModel)]="like">{{like}}</span></div>
                                 </div>
 

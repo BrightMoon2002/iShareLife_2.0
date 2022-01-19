@@ -8,6 +8,9 @@ import {HttpClient} from '@angular/common/http';
 import {AuthService} from '../service/auth/auth.service';
 import {UpdateInfoComponent} from '../change/update-info/update-info.component';
 import {UpdateInfoRequest} from '../model/UpdateInfoRequest';
+import {Notifications} from '../model/Notifications';
+import {NotificationService} from '../notification/service/notification.service';
+import {Posting} from '../posting/model/posting';
 import {ChatService} from '../service/chat-message/chat.service';
 
 @Component({
@@ -47,12 +50,17 @@ export class NavBar2Component implements OnInit {
     address: '',
     phone: ''
   };
+  notifications: Notifications[] = [];
+  posting: Posting;
+  currentId: number;
+  countNewNotification = 0;
 
   constructor(
     private router: Router,
     private tokenService: TokenService,
     private dialog: MatDialog,
     private authService: AuthService,
+    private notificationService: NotificationService,
     private chatService: ChatService
   ) {
   }
@@ -63,6 +71,8 @@ export class NavBar2Component implements OnInit {
       this.name = this.tokenService.getName();
       this.avatar = this.tokenService.getAvatar();
     }
+    this.currentId = +this.tokenService.getIdKey();
+    this.getAllNotification();
   }
 
   logout(): void {
@@ -138,7 +148,24 @@ export class NavBar2Component implements OnInit {
       });
     });
   }
-
+  getPosting(event: any) {
+    this.posting = event.posting;
+    if (event.status === false){
+      this.countNewNotification = this.countNewNotification - 1;
+    }
+  }
+  getAllNotification() {
+    // @ts-ignore
+    this.notificationService.getAll(this.currentId).subscribe(data => {
+      this.notifications = data;
+      // tslint:disable-next-line:prefer-for-of
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].status === false) {
+          this.countNewNotification = this.countNewNotification + 1;
+        }
+      }
+    });
+  }
   showMessenger() {
     this.chatService.getListMessageByAccountId().subscribe(data => {
       window.sessionStorage.setItem('idAccountChat', data[0].idSender.toString());

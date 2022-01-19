@@ -9,6 +9,9 @@ import {CommentEditComponent} from './comment-edit/comment-edit.component';
 import {CommentDeleteComponent} from './comment-delete/comment-delete.component';
 import {TokenService} from '../../../service/token/token.service';
 import {Router} from '@angular/router';
+import {Notifications} from '../../../model/Notifications';
+import {Accounts} from '../../../model/Accounts';
+import {NotificationService} from '../../../notification/service/notification.service';
 
 @Component({
   selector: 'app-comment',
@@ -24,11 +27,13 @@ export class CommentComponent implements OnInit {
   idLogging: number;
   isLiked: boolean;
   like: number;
+  private notification: Notifications;
   constructor(
     private postingService: PostingService,
     public dialog: MatDialog,
     private tokenService: TokenService,
-    private router: Router
+    private router: Router,
+    private notificationService: NotificationService
   ) { }
 
   ngOnInit(): void {
@@ -41,14 +46,19 @@ export class CommentComponent implements OnInit {
     });
   }
 
-  likeComment(commentId: number) {
-    this.postingService.isLikedCommentByAccountId(commentId, this.tokenService.getIdKey()).subscribe(data => {
+  likeComment(comment: PostingComment) {
+    this.postingService.isLikedCommentByAccountId(comment.id, this.tokenService.getIdKey()).subscribe(data => {
       if (data === false) {
-        this.postingService.doLikeComment(Number(this.tokenService.getIdKey()), commentId).subscribe();
+        if (+this.tokenService.getIdKey() !== comment.owner.id){
+          this.notification = new Notifications('đã like comment cua bạn', new Accounts(+this.tokenService.getIdKey()), new Accounts(comment.owner.id), comment.posting, false);
+          console.log(this.notification);
+          this.notificationService.create(this.notification).subscribe();
+        }
+        this.postingService.doLikeComment(Number(this.tokenService.getIdKey()), comment.id).subscribe();
         this.like++;
         this.isLiked = !data;
       } else {
-        this.postingService.unLikeComment(Number(this.tokenService.getIdKey()), commentId).subscribe();
+        this.postingService.unLikeComment(Number(this.tokenService.getIdKey()), comment.id).subscribe();
         this.like--;
         this.isLiked = !data;
       }
