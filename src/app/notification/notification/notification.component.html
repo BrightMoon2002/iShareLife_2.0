@@ -1,15 +1,15 @@
 
     <ul class="drops-menu" *ngFor="let notification of notifications">
-        <li>
-            <a href="notifications.html" title="">
+        <li (click)="getPostingId(notification)" data-toggle="modal" data-target="#blog-popup">
+            <a>
                 <figure>
-                    <img [src]="notification.sender.avatar" alt="">
+                    <img style="width: 40px; height: 40px" [src]="notification.sender.avatar" alt="">
                     <span class="status f-online"></span>
                 </figure>
                 <div class="mesg-meta">
-                    <h6>sarah Loren</h6>
-                    <span>commented on your new profile status</span>
-                    <i>2 min ago</i>
+                    <h6>{{notification.sender.name}}</h6>
+                    <span> {{notification.content}}</span>
+                    <i>{{notification.date}}</i>
                 </div>
             </a>
         </li>

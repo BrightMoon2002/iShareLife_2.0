@@ -12,6 +12,7 @@ import {InfoComponent} from './profile/info/info.component';
 import {ChangeAvatarComponent} from './change/change-avatar/change-avatar.component';
 import {ListPendingComponent} from './profile/list-pending/list-pending.component';
 import {UploadImagesFormComponent} from './posting/upload-images/upload-images-form/upload-images-form.component';
+import {OnePostComponent} from './notification/one-post/one-post.component';
 
 
 
@@ -32,6 +33,10 @@ const routes: Routes = [
       {
         path: '',
         component: NewComponent
+      },
+      {
+        path: 'notification-post/:id',
+        component: OnePostComponent
       },
       {
         path: 'profile/:id',

@@ -8,6 +8,9 @@ import {HttpClient} from '@angular/common/http';
 import {AuthService} from '../service/auth/auth.service';
 import {UpdateInfoComponent} from '../change/update-info/update-info.component';
 import {UpdateInfoRequest} from '../model/UpdateInfoRequest';
+import {Notifications} from '../model/Notifications';
+import {NotificationService} from '../notification/service/notification.service';
+import {Posting} from '../posting/model/posting';
 
 @Component({
   selector: 'app-nav-bar2',
@@ -46,12 +49,17 @@ export class NavBar2Component implements OnInit {
     address: '',
     phone: ''
   };
+  notifications: Notifications[] = [];
+  posting: Posting;
+  currentId: number;
+  countNewNotification = 0;
 
   constructor(
     private router: Router,
     private tokenService: TokenService,
     private dialog: MatDialog,
-    private authService: AuthService
+    private authService: AuthService,
+    private notificationService: NotificationService
   ) {
   }
 
@@ -61,6 +69,8 @@ export class NavBar2Component implements OnInit {
       this.name = this.tokenService.getName();
       this.avatar = this.tokenService.getAvatar();
     }
+    this.currentId = +this.tokenService.getIdKey();
+    this.getAllNotification();
   }
 
   logout(): void {
@@ -134,6 +144,24 @@ export class NavBar2Component implements OnInit {
           alert('Change information success!');
         }
       });
+    });
+  }
+
+  getPosting(event: any) {
+    this.posting = event.posting;
+    if (event.status === false){
+      this.countNewNotification = this.countNewNotification - 1;
+    }
+  }
+  getAllNotification(){
+    this.notificationService.getAll(this.currentId).subscribe(data => {
+      this.notifications = data;
+      // tslint:disable-next-line:prefer-for-of
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].status === false){
+          this.countNewNotification = this.countNewNotification + 1;
+        }
+      }
     });
   }
 }

@@ -110,7 +110,7 @@
 <!--                        <li><a href="shop-cart.html" title="">Shop Cart</a></li>-->
 <!--                    </ul>-->
 <!--                </li>-->
-<!--                <li><span>Account Setting</span>-->
+<!--                <li><span>Accounts Setting</span>-->
 <!--                    <ul>-->
 <!--                        <li><a href="setting.html" title="">Setting</a></li>-->
 <!--                        <li><a href="privacy.html" title="">Privacy</a></li>-->
@@ -157,7 +157,7 @@
 <!--                            <label for="switch2" data-off-label="OFF"></label>-->
 <!--                        </div>-->
 <!--                        <div class="setting-row">-->
-<!--                            <span>Notification sound</span>-->
+<!--                            <span>Notifications sound</span>-->
 <!--                            <input type="checkbox" id="switch3"/>-->
 <!--                            <label for="switch3"  data-off-label="OFF"></label>-->
 <!--                        </div>-->
@@ -172,7 +172,7 @@
 <!--                            <label for="switch5"  data-off-label="OFF"></label>-->
 <!--                        </div>-->
 <!--                    </form>-->
-<!--                    <h4 class="panel-title">Account Setting</h4>-->
+<!--                    <h4 class="panel-title">Accounts Setting</h4>-->
 <!--                    <form method="post">-->
 <!--                        <div class="setting-row">-->
 <!--                            <span>Sub users</span>-->
@@ -323,12 +323,12 @@
                     </div>
                 </li>
                 <li>
-                    <a href="#" title="Notification" data-ripple="">
-                        <i class="fa fa-bell"></i><em class="bg-purple">7</em>
+                    <a href="#" title="Notifications" data-ripple="">
+                        <i class="fa fa-bell"></i><em class="bg-purple" *ngIf="countNewNotification > 0">{{countNewNotification}}</em>
                     </a>
 <!--                    thay o day-->
                     <div class="dropdowns">
-                        <app-notification></app-notification>
+                        <app-notification [notifications]="notifications" (posting)="getPosting($event)"></app-notification>
                     </div>
 
                 </li>
@@ -819,6 +819,13 @@
         </div>
     </div><!-- right sidebar user chat -->
 
+
+<!--     popup-->
+
+     <div class="modal fade" id="blog-popup">
+         <app-one-post [posting]="posting"></app-one-post>
+     </div>
+
 <!--    <divlkkkkkkkkkk class="fixed-sidebar left">-->
 <!--        <div class="menu-left">-->
 <!--            <ul class="left-menu">-->
@@ -854,13 +861,13 @@
 <!--                    </a>-->
 <!--                </li>-->
 <!--                <li>-->
-<!--                    <a href="notifications.html" title="Notification" data-toggle="tooltip" data-placement="right">-->
+<!--                    <a href="notifications.html" title="Notifications" data-toggle="tooltip" data-placement="right">-->
 <!--                        <i class="fa fa-bell-o"></i>-->
 <!--                    </a>-->
 <!--                </li>-->
 
 <!--                <li>-->
-<!--                    <a href="statistics.html" title="Account Stats" data-toggle="tooltip" data-placement="right">-->
+<!--                    <a href="statistics.html" title="Accounts Stats" data-toggle="tooltip" data-placement="right">-->
 <!--                        <i class="ti-stats-up"></i>-->
 <!--                    </a>-->
 <!--                </li>-->
@@ -971,7 +978,7 @@
 <!--                        <li><a href="shop-cart.html" title="">Shop Cart</a></li>-->
 <!--                    </ul>-->
 <!--                </li>-->
-<!--                <li class="menu-item-has-children"><a class="" href="#" title=""><i class="fa fa-gears"></i>Account Setting</a>-->
+<!--                <li class="menu-item-has-children"><a class="" href="#" title=""><i class="fa fa-gears"></i>Accounts Setting</a>-->
 <!--                    <ul class="submenu">-->
 <!--                        <li><a href="setting.html" title="">Setting</a></li>-->
 <!--                        <li><a href="privacy.html" title="">Privacy</a></li>-->
