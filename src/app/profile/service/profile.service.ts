@@ -17,43 +17,43 @@ export class ProfileService {
   }
 
   findAccountById(id: number): Observable<AccountDetail> {
-    return this.http.get<AccountDetail>(API + 'api/auth/' + id);
+    return this.http.get<AccountDetail>(API + '/api/auth/' + id);
   }
 
   checkRelationship(id: number): Observable<number> {
-    return this.http.get<number>(API + 'api/relationship/checkRelationship/' + id);
+    return this.http.get<number>(API + '/api/relationship/checkRelationship/' + id);
   }
 
   addFriend(id: number): Observable<RelationshipDetail> {
-    return this.http.post<RelationshipDetail>(API + 'api/relationship/add/' + id, {});
+    return this.http.post<RelationshipDetail>(API + '/api/relationship/add/' + id, {});
   }
 
   showpending(): Observable<AccountDetail[]> {
-    return this.http.get<AccountDetail[]>(API + 'api/relationship/showPending');
+    return this.http.get<AccountDetail[]>(API + '/api/relationship/showPending');
   }
 
   agree(id: number): Observable<AccountDetail> {
-    return this.http.put<AccountDetail>(API + 'api/relationship/accept/' + id, {});
+    return this.http.put<AccountDetail>(API + '/api/relationship/accept/' + id, {});
   }
 
   deleteFriend(id: number): Observable<AccountDetail> {
-    return this.http.delete<AccountDetail>(API + 'api/relationship/delete/' + id);
+    return this.http.delete<AccountDetail>(API + '/api/relationship/delete/' + id);
   }
 
   refusePending(id: number): Observable<AccountDetail> {
-    return this.http.delete<AccountDetail>(API + 'api/relationship/refused/' + id);
+    return this.http.delete<AccountDetail>(API + '/api/relationship/refused/' + id);
   }
 
   listPending(): Observable<AccountDetail[]> {
-    return this.http.get<AccountDetail[]>(API + 'api/relationship/showPending');
+    return this.http.get<AccountDetail[]>(API + '/api/relationship/showPending');
   }
 
   MutualFriends(id: number): Observable<AccountDetail[]> {
-    return this.http.get<AccountDetail[]>(API + 'api/relationship/mutualFriend/' + id);
+    return this.http.get<AccountDetail[]>(API + '/api/relationship/mutualFriend/' + id);
   }
 
   changeIsShow(): Observable<AccountDetail> {
-    return this.http.put<AccountDetail>(API + 'api/relationship/isShow', {});
+    return this.http.put<AccountDetail>(API + '/api/relationship/isShow', {});
   }
 
 }

@@ -43,14 +43,14 @@
             <div class="col-lg-8 col-md-8">
                 <div class="mesge-area">
                     <ul  class="conversations">
-                        <li *ngFor="let mess of messageDetail">
-                            <div [class] = "mess.idGuest == idAccount ? 'me' : 'you'">
-                                <figure><img [src]="mess.idGuest == idAccount ? avatarAccount : avatarAccountChat" height="45"
+                        <li *ngFor="let message of socketService.listChat">
+                            <div [class] = "message.idGuest == idAccount ? 'me' : 'you'">
+                                <figure><img [src]="message.idGuest == idAccount ? avatarAccount : chatMessageAccount.avatar" height="45"
                                              width="45"/></figure>
                                 <div class="text-box">
-                                    <p>{{mess.content}}</p>
+                                    <p>{{message.content}}</p>
                                     <span><i class="ti-check"></i><i
-                                            class="ti-check"></i>{{mess.dateSend}} </span>
+                                            class="ti-check"></i>{{message.dateSend}} </span>
                                 </div>
                             </div>
                         </li>
@@ -59,11 +59,12 @@
                 </div>
 
                 <div class="message-writing-box">
-                    <form method="post">
+                    <form (ngSubmit)="createMessage()">
                         <div class="text-area">
-                            <input type="text" placeholder="write your message here..">
-                            <button type="submit"><i class="fa fa-paper-plane-o"></i></button>
+                            <input type="text" name="content" [(ngModel)]="messageForm.value.content" placeholder="write your message here..">
+                            <button type="submit">Send</button>
                         </div>
+                    </form>
                         <div class="emojies">
                             <i><img src="images/smiles/happy-3.png" alt=""></i>
                             <ul class="emojies-list">
@@ -143,7 +144,7 @@
                                 <input type="file">
                             </label>
                         </div>
-                    </form>
+<!--                    </form>-->
                 </div>
             </div>
             <div class="col-lg-4 col-md-4">

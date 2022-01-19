@@ -11,7 +11,7 @@ const API = environment.API;
   providedIn: 'root'
 })
 export class FriendService {
-  API_FRIEND = API + 'api/relationship';
+  API_FRIEND = API + '/api/relationship';
 
     constructor(private http: HttpClient) {
 }
