@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {NavBarComponent, NavBarModule} from './shared/navbar/nav-bar.component';
 import { NewComponent } from './new/new.component';
-import { NotificationComponent } from './notification/notification.component';
+import { NotificationComponent } from './notification/notification/notification.component';
 import { PostingComponent } from './posting/posting/posting.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatCardModule} from '@angular/material/card';
@@ -46,6 +46,8 @@ import { FriendComponent } from './profile/friend/friend.component';
 import { TimeLineComponent } from './profile/time-line/time-line.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { PostingCreateComponent } from './posting/posting/posting-create/posting-create.component';
+
+import { MessengerComponent } from './messenger/messenger.component';
 import { ListPendingComponent } from './profile/list-pending/list-pending.component';
 import {ReversePipe} from './posting/posting/pipe/ReversePipe';
 import { UploadImagesComponent } from './posting/upload-images/upload-images.component';
@@ -59,6 +61,10 @@ import { CommentEditComponent } from './posting/posting/comment/comment-edit/com
 import { CommentDeleteComponent } from './posting/posting/comment/comment-delete/comment-delete.component';
 import { UpdateInfoComponent } from './change/update-info/update-info.component';
 import { SearchComponent } from './search/search.component';
+import { OnePostComponent } from './notification/one-post/one-post.component';
+import { ChatMessageComponent } from './chat-message/chat-message.component';
+import { MessageDetailComponent } from './message-detail/message-detail.component';
+import { FriendRequestsComponent } from './notification/friend-requests/friend-requests.component';
 
 
 
@@ -84,6 +90,7 @@ import { SearchComponent } from './search/search.component';
     FriendComponent,
     TimeLineComponent,
     PostingCreateComponent,
+    MessengerComponent,
     ListPendingComponent,
     ReversePipe,
     UploadImagesComponent,
@@ -94,7 +101,12 @@ import { SearchComponent } from './search/search.component';
     CommentEditComponent,
     CommentDeleteComponent,
     UpdateInfoComponent,
-    SearchComponent
+    SearchComponent,
+    OnePostComponent,
+    ChatMessageComponent,
+    UpdateInfoComponent,
+    MessageDetailComponent,
+    FriendRequestsComponent
   ],
   imports: [
     HttpClientModule,

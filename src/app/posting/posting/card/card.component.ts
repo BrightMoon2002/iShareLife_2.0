@@ -15,6 +15,9 @@ import {MatDialog} from '@angular/material/dialog';
 import {PostingEditComponent} from '../posting-edit/posting-edit.component';
 import {PostingDeleteComponent} from '../posting-delete/posting-delete.component';
 import {ProfileService} from '../../../profile/service/profile.service';
+import {NotificationService} from '../../../notification/service/notification.service';
+import {Notifications} from '../../../model/Notifications';
+import {Accounts} from '../../../model/Accounts';
 
 @Component({
   selector: 'app-card',
@@ -60,12 +63,15 @@ export class CardComponent implements OnInit {
 
   @Output()
   commentIdDelete = new EventEmitter();
+  notification: Notifications;
+
 
   constructor(
     private postingService: PostingService,
     private tokenService: TokenService,
     public dialog: MatDialog,
-    public router: Router
+    public router: Router,
+    private notificationService: NotificationService
   ) {
   }
 
@@ -92,14 +98,19 @@ export class CardComponent implements OnInit {
 
   }
 
-  likePost(postId: number) {
-    this.postingService.isLikedByAccountId(postId, this.tokenService.getIdKey()).subscribe(data => {
+  likePost(post: Posting) {
+    this.postingService.isLikedByAccountId(post.id, this.tokenService.getIdKey()).subscribe(data => {
       if (data === false) {
-        this.postingService.doLikePost(Number(this.tokenService.getIdKey()), postId).subscribe();
+        this.postingService.doLikePost(Number(this.tokenService.getIdKey()), post.id).subscribe();
+        if (+this.tokenService.getIdKey() !== post.owner.id){
+          this.notification = new Notifications('đã thả tim bài post của bạn', new Accounts(+this.tokenService.getIdKey()), new Accounts(post.owner.id), post, false);
+          console.log(this.notification);
+          this.notificationService.create(this.notification).subscribe();
+        }
         this.like++;
         this.isLiked = !data;
       } else {
-        this.postingService.unLikePost(Number(this.tokenService.getIdKey()), postId).subscribe();
+        this.postingService.unLikePost(Number(this.tokenService.getIdKey()), post.id).subscribe();
         this.like--;
         this.isLiked = !data;
       }
@@ -121,6 +132,11 @@ export class CardComponent implements OnInit {
         this.posting.commentNumber = this.posting.commentNumber + 1;
       }
     );
+    if (+this.tokenService.getIdKey() !== this.posting.owner.id){
+      this.notification = new Notifications('đã comment bài post của bạn', new Accounts(+this.tokenService.getIdKey()), new Accounts(this.posting.owner.id), this.posting, false);
+      console.log(this.notification);
+      this.notificationService.create(this.notification).subscribe();
+    }
   }
 
 

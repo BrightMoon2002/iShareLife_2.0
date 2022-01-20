@@ -5165,7 +5165,7 @@ canvas {
     padding-bottom: 30px;
     padding-top: 30px;
     position: fixed;
-    top: 59px;
+    top: 66px;
     width: 66px;
     z-index: 9;
     -webkit-box-shadow: 0 0 34px 0 rgba(63, 66, 87, 0.1);
@@ -15623,10 +15623,9 @@ a.shopping-cart > i {
 .conversations > li:nth-last-child(3) {
     margin-bottom: 0;
 }
-.conversations > li > figure {
+.conversations >li > div > figure {
     display: inline-block;
     margin-bottom: 0;
-    vertical-align: top;
 }
 .text-box {
     display: inline-block;
@@ -15646,11 +15645,16 @@ a.shopping-cart > i {
     position: relative;
 	color: #838195;
 }
-.conversations > li.me .text-box > p{
+.conversations > li > div.me .text-box > p{
 	text-align: left;
 	background: #dbf4fd;
 }
-.conversations > li figure img {
+.conversations > li > div.me figure img {
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 100%;
+    max-width: 25px;
+}
+.conversations > li > div.you figure img {
     border: 1px solid rgba(0, 0, 0, 0.15);
     border-radius: 100%;
     max-width: 25px;
@@ -15688,15 +15692,15 @@ a.shopping-cart > i {
     color: #23d2e2;
     margin-left: -7px;
 }
-.conversations > li.me {
+.conversations > li > div.me {
     text-align: right;
 }
-.conversations > li.me .text-box {
+.conversations > li > div.me .text-box {
     float: right;
     margin-left: 0;
     margin-right: 10px;
 }
-.conversations > li.me > figure {
+.conversations > li > div.me > figure {
     float: right;
 }
 .text-box > p::before {
