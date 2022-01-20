@@ -13,10 +13,8 @@ export class NotificationComponent implements OnInit {
   notifications: Notifications[] = [];
   @Output()
   posting = new EventEmitter();
-  notification: Notifications;
   constructor(
     private notificationService: NotificationService,
-    private tokenService: TokenService
   ) { }
 
   ngOnInit(): void {
@@ -25,8 +23,6 @@ export class NotificationComponent implements OnInit {
   getPostingId(notification: Notifications) {
     this.posting.emit(notification);
     notification.status = true;
-    this.notification = new Notifications(notification.content, notification.sender, notification.account, notification.posting, true);
-    this.notification.id = notification.id;
     this.notificationService.update(notification.id).subscribe();
   }
 }
