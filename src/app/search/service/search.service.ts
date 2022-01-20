@@ -14,11 +14,11 @@ export class SearchService {
   constructor(private http: HttpClient) { }
 
   searchAccount(name: string): Observable<AccountDetail[]> {
-    return this.http.get<AccountDetail[]>(API + 'api/auth/search?name=' + name);
+    return this.http.get<AccountDetail[]>(API + '/api/auth/search?name=' + name);
   }
 
   searchStatus(content: string): Observable<Posting[]> {
-    return this.http.get<Posting[]>(API + 'api/posting/search?content=' + content);
+    return this.http.get<Posting[]>(API + '/api/posting/search?content=' + content);
   }
 
 }
