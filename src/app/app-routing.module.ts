@@ -12,6 +12,7 @@ import {InfoComponent} from './profile/info/info.component';
 import {ChangeAvatarComponent} from './change/change-avatar/change-avatar.component';
 import {ListPendingComponent} from './profile/list-pending/list-pending.component';
 import {UploadImagesFormComponent} from './posting/upload-images/upload-images-form/upload-images-form.component';
+import {SearchComponent} from './search/search.component';
 
 
 
@@ -54,6 +55,10 @@ const routes: Routes = [
             component: ListPendingComponent
           }
         ]
+      },
+      {
+        path: 'search',
+        component: SearchComponent
       }
     ]
   },
