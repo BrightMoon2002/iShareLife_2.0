@@ -8,7 +8,12 @@ import {HttpClient} from '@angular/common/http';
 import {AuthService} from '../service/auth/auth.service';
 import {UpdateInfoComponent} from '../change/update-info/update-info.component';
 import {UpdateInfoRequest} from '../model/UpdateInfoRequest';
+import {Notifications} from '../model/Notifications';
+import {NotificationService} from '../notification/service/notification.service';
+import {Posting} from '../posting/model/posting';
 import {ChatService} from '../service/chat-message/chat.service';
+import {ProfileService} from '../profile/service/profile.service';
+import {AccountDetail} from '../profile/model/account-detail';
 
 @Component({
   selector: 'app-nav-bar2',
@@ -17,6 +22,7 @@ import {ChatService} from '../service/chat-message/chat.service';
 })
 export class NavBar2Component implements OnInit {
   id = window.sessionStorage.getItem('Id_Key');
+  searchName = '';
 // error for changePassword
   error1: any = {
     message: 'no_password'
@@ -47,13 +53,21 @@ export class NavBar2Component implements OnInit {
     address: '',
     phone: ''
   };
+  notifications: Notifications[] = [];
+  posting: Posting;
+  currentId: number;
+  countNewNotification = 0;
+  private listPending: AccountDetail[];
+  private sumPending: number;
 
   constructor(
     private router: Router,
     private tokenService: TokenService,
     private dialog: MatDialog,
     private authService: AuthService,
-    private chatService: ChatService
+    private notificationService: NotificationService,
+    private chatService: ChatService,
+    private profileService: ProfileService
   ) {
   }
 
@@ -63,6 +77,9 @@ export class NavBar2Component implements OnInit {
       this.name = this.tokenService.getName();
       this.avatar = this.tokenService.getAvatar();
     }
+    this.currentId = +this.tokenService.getIdKey();
+    this.getAllNotification();
+    this.showListPending();
   }
 
   logout(): void {
@@ -102,7 +119,6 @@ export class NavBar2Component implements OnInit {
   }
 
 
-
   navigateToProfile(id: string) {
     window.sessionStorage.setItem('Id_Profile', id);
     this.router.navigate(['/home/profile/' + id]).then(() => {
@@ -139,10 +155,48 @@ export class NavBar2Component implements OnInit {
     });
   }
 
+  search() {
+    console.log(this.searchName);
+    window.sessionStorage.setItem('Search' , this.searchName);
+    this.router.navigate(['/home/search']).then(() => {
+      window.location.reload();
+      window.scrollTo(0, 0);
+    });
+  }
+  getPosting(event: any) {
+    this.posting = event.posting;
+    if (event.status === false){
+      this.countNewNotification = this.countNewNotification - 1;
+    }
+  }
+  getAllNotification() {
+    this.notificationService.getAll(this.currentId).subscribe(data => {
+      console.log('trong sub');
+      this.notifications = data;
+      // tslint:disable-next-line:prefer-for-of
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].status === false) {
+          this.countNewNotification = this.countNewNotification + 1;
+        }
+      }
+    });
+  }
   showMessenger() {
     this.chatService.getListMessageByAccountId().subscribe(data => {
       window.sessionStorage.setItem('idAccountChat', data[0].idSender.toString());
       this.router.navigate(['messenger-chat']);
     });
+  }
+  showListPending() {
+    setTimeout(() => {
+      this.profileService.listPending().subscribe(list => {
+        this.listPending = list;
+        this.sumPending = list.length;
+      });
+    }, 500 );
+  }
+
+  onChange(event) {
+    this.showListPending();
   }
 }

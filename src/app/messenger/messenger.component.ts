@@ -4,6 +4,7 @@ import {MessageAccountResponse} from '../model/chat/MessageAccountResponse';
 import {Message} from '../model/chat/Message';
 import {TokenService} from '../service/token/token.service';
 import {Router} from '@angular/router';
+import {SocketService} from '../service/socket/socket.service';
 
 @Component({
   selector: 'app-messenger',
@@ -19,7 +20,8 @@ export class MessengerComponent implements OnInit {
   constructor(
     private messageService: ChatService,
     private tokenService: TokenService,
-    private router: Router
+    private router: Router,
+    private socketService: SocketService
   ) { }
 
   ngOnInit(): void {
@@ -28,16 +30,17 @@ export class MessengerComponent implements OnInit {
           this.messageAccounts = data;
           this.messageAccount = this.messageAccounts[0];
           this.messageDetail = detail;
+
         });
       });
 
   }
 
   showChatLogById(messageAccount: MessageAccountResponse) {
-      this.messageService.showChatLogById(messageAccount.idSender).subscribe(data => {
-        this.messageAccount = this.messageAccounts[this.messageAccounts.indexOf(messageAccount)];
-        this.messageDetail = data;
-        console.log(this.messageDetail);
-      });
+        this.messageService.showChatLogById(messageAccount.idSender).subscribe(data => {
+          this.messageAccount = this.messageAccounts[this.messageAccounts.indexOf(messageAccount)];
+          this.messageDetail = data;
+          this.socketService.List = this.messageDetail;
+        });
   }
 }

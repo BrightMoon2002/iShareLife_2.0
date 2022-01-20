@@ -13,6 +13,7 @@ import {ProfileService} from '../service/profile.service';
 export class FriendComponent implements OnInit {
   friends: AccountDetail[] = [];
   id: number;
+  isShow = true;
 
   constructor(private friendService: FriendService,
               private activeRouter: ActivatedRoute,
@@ -20,10 +21,12 @@ export class FriendComponent implements OnInit {
               public router: Router
   ) {
   }
+
   currentId = window.sessionStorage.getItem('Id_Key');
   sumFriend: number;
   sumMutualFriends: number;
   check: boolean;
+
   ngOnInit(): void {
     this.activeRouter.paramMap.subscribe(accountId => {
       const id = +accountId.get('id1');
@@ -34,20 +37,23 @@ export class FriendComponent implements OnInit {
       } else {
         this.check = false;
       }
+      this.profileService.findAccountById(id).subscribe( data => {
+        this.isShow = data.show;
+      });
       this.profileService.MutualFriends(id).subscribe(list => {
         this.sumMutualFriends = list.length;
       });
     });
   }
 
+
   getListFriend() {
     setTimeout(() => {
       this.friendService.getAllFriend(this.id).subscribe(listFriend => {
         this.friends = listFriend;
-        console.log(this.friends);
         this.sumFriend = listFriend.length;
       });
-    }, 500 );
+    }, 500);
   }
 
 
@@ -58,7 +64,7 @@ export class FriendComponent implements OnInit {
 
 
   navigateToProfile(id: number) {
-    window.sessionStorage.setItem('Id_Profile', String(id)) ;
+    window.sessionStorage.setItem('Id_Profile', String(id));
     this.router.navigate(['/home/profile/' + id]);
   }
 
@@ -66,5 +72,9 @@ export class FriendComponent implements OnInit {
     this.profileService.MutualFriends(this.id).subscribe(list => {
       this.friends = list;
     });
+  }
+
+  checkIsShow() {
+    this.profileService.changeIsShow().subscribe();
   }
 }
