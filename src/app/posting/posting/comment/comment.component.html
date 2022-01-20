@@ -2,7 +2,7 @@
          <div class="more-post-optns" style="float: right"><i class="ti-more-alt"></i>
              <ul>
                  <li *ngIf="comment.owner.id === idLogging" (click)="openDialogEdit()"><i class="fa fa-pencil-square-o" (click)="openDialogEdit()"></i>Edit Comment</li>
-                 <li *ngIf="comment.owner.id === idLogging" (click)="openDialogDelete()"><i class="fa fa-trash-o" (click)="openDialogDelete()"></i>Delete Comment</li>
+                 <li *ngIf="comment.owner.id === idLogging || comment.posting.owner.id === idLogging" (click)="openDialogDelete()"><i class="fa fa-trash-o" (click)="openDialogDelete()"></i>Delete Comment</li>
                  <li class="bad-report"><i class="fa fa-flag"></i>Report Comment</li>
                  <li *ngIf="comment.owner.id === idLogging"><i class="fa fa-address-card-o"></i>Boost This Commet</li>
                  <li *ngIf="comment.owner.id === idLogging"><i class="fa fa-clock-o"></i>Schedule Comment</li>
@@ -17,7 +17,12 @@
             <p style="color: #3a3939; font-family: Arial">{{comment.content}}</p>
             <div class="inline-itms">
                 <span style="color: darkgrey">{{comment.dateOfComment}}</span>
-                <a href="#" title=""><i class="fa fa-heart"></i><span>20</span></a>
+                <div *ngIf="isLiked === false">
+                    <a (click)="likeComment(comment)" title=""><i class="fa fa-heart"></i><span [(ngModel)]="like">{{like}}</span></a>
+                </div>
+                <div *ngIf="isLiked === true">
+                    <a (click)="likeComment(comment)" title=""><i style="color: orangered;" class="fa fa-heart"></i><span [(ngModel)]="like">{{like}}</span></a>
+                </div>
             </div>
         </div>
  </li>

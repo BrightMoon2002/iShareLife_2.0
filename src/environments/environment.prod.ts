@@ -1,5 +1,5 @@
 export const environment = {
-  API: 'http://localhost:8080/',
+  API: 'http://localhost:8080',
   API_LOCAL_R: 'http://localhost:8080/api/auth',
   production: true,
   firebaseConfig: {

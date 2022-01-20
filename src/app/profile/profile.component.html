@@ -25,7 +25,7 @@
 <!--                                                <ul class="more-dropdown">-->
 <!--                                                    <li><a href="setting.html" title="">Update Profile Photo</a></li>-->
 <!--                                                    <li><a href="setting.html" title="">Update Header Photo</a></li>-->
-<!--                                                    <li><a href="setting.html" title="">Account Settings</a></li>-->
+<!--                                                    <li><a href="setting.html" title="">Accounts Settings</a></li>-->
 <!--                                                    <li><a href="support-and-help.html" title="">Find Support</a></li>-->
 <!--                                                    <li><a class="bad-report" href="#" title="">Report Profile</a></li>-->
 <!--                                                    <li><a href="#" title="">Block Profile</a></li>-->
@@ -64,10 +64,10 @@
                                         <div class="col-lg-10 col-md-9">
                                             <ul class="profile-menu">
                                                 <li *ngIf="check == false">
-                                                    <button *ngIf="checkRelationship==0 && pending == 0"><a (click)="addFriend()">Kết bạn</a> </button>
-                                                    <button *ngIf="checkRelationship==0 && pending == 1"><a (click)="agree()">Đồng ý</a> </button>
-                                                    <button *ngIf="checkRelationship==0 && pending == 1"><a (click)="defuse()">Từ chối</a> </button>
-                                                    <button *ngIf="checkRelationship==2"><a (click)="deleteFriend()">Xóa Bạn</a> </button>
+                                                    <button *ngIf="checkRelationship==0 && pending == 0" mat-flat-button color="warn"><a (click)="addFriend()">Kết bạn</a> </button>
+                                                    <button *ngIf="checkRelationship==0 && pending == 1" mat-flat-button color="warn"><a (click)="agree()">Đồng ý</a> </button>
+                                                    <button *ngIf="checkRelationship==0 && pending == 1" mat-flat-button color="warn"><a (click)="defuse()">Từ chối</a> </button>
+                                                    <button *ngIf="checkRelationship==2" mat-flat-button color="warn"><a (click)="deleteFriend()">Xóa Bạn</a> </button>
                                                 </li>
                                                 <li>
                                                     <a class="" routerLink="/home/profile/{{account.id}}">Timeline</a>
