@@ -23,14 +23,17 @@ export class SocketService {
     private chatService: ChatService,
     private tokenService: TokenService
   ) { }
-  connect() {
+  connect(idCurrentUser: any, idReceiver: any) {
     const ws = new SockJS(`${API_URL}/ws`); // endpoint bên backend
     this.stompClient = Stomp.over(ws); // khởi tạo để kếtnối được
     this.stompClient.connect({}, () => { // gọi api của socket
       this.stompClient.subscribe('/topic/chat', data => { // hứng trả về của socket
         console.log(data + 'ffdgfdgfdgd')
         const message = JSON.parse(data.body);
-        this.listChat.push(message);
+        if ((idCurrentUser.toString() === message.idGuest.toString() && idReceiver.toString() === message.idReceiver.toString())
+          || (idReceiver.toString() === message.idGuest.toString() && idCurrentUser.toString() === message.idReceiver.toString())) {
+          this.listChat.push(message);
+        }
       });
     });
   }
