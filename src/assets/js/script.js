@@ -4,6 +4,14 @@ $(window).load(function(){
     $('.wavy-wraper').addClass('hidden');
 });
 
+function getMessages() {
+	var div = $(".mesge-area");
+	div.scrollTop(div.prop('scrollHeight'));
+}
+
+$(function() {
+	getMessages();
+});
 jQuery(document).ready(function($) {
 	
 	"use strict";

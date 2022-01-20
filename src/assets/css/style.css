@@ -3259,6 +3259,12 @@ footer .widget .colla-apps > li a{
     width: 100%;
 }
 
+.messenger-ba {
+    top: 70px;
+    position: fixed;
+    width: 90%;
+    left: 70px;
+}
 
 /*-- short profile widget ---*/
 
@@ -15599,8 +15605,10 @@ a.shopping-cart > i {
 .mesge-area {
     display: inline-block;
     margin-top: 20px;
-    position: relative;
+    position: static;
     width: 100%;
+    height: 500px;
+    overflow: scroll;
 }
 .conversations {
     display: inline-block;
@@ -15610,9 +15618,8 @@ a.shopping-cart > i {
     padding-right: 20px;
     position: relative;
     width: 100%;
-	max-height: 488px;
-	height: 488px;
-	min-height: 488px;
+    height: 100%;
+    overflow: scroll;
 
 }
 .conversations > li {

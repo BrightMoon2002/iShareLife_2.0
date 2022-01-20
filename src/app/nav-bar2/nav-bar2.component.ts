@@ -188,7 +188,7 @@ export class NavBar2Component implements OnInit {
   }
   showMessenger() {
     this.chatService.getListMessageByAccountId().subscribe(data => {
-      this.router.navigate(['messenger-chat']);
+      this.router.navigate(['home/messenger-chat']);
     });
   }
   showListPending() {
