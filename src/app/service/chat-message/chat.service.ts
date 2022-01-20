@@ -18,14 +18,18 @@ export class ChatService {
     return this.http.get<Message[]>(this.API_URL);
   }
   createMessage(message: Message): Observable<Message> {
-    return this.http.post<Message>(this.API_URL + 'chats', message);
+    return this.http.post<Message>(this.API_URL + '/chats', message);
   }
 
   getListMessageByAccountId(): Observable<MessageAccountResponse[]> {
-    return this.http.get<MessageAccountResponse[]>(this.API_URL + 'chats/show-chat-account/' + this.tokenService.getIdKey());
+    return this.http.get<MessageAccountResponse[]>(this.API_URL + '/chats/show-chat-account/' + this.tokenService.getIdKey());
   }
 
   showChatLogById(id: number): Observable<Message[]> {
-    return this.http.get<Message[]>(this.API_URL + 'chats/' + this.tokenService.getIdKey() + '/' + id);
+    return this.http.get<Message[]>(this.API_URL + '/chats/' + this.tokenService.getIdKey() + '/' + id);
+  }
+
+  showAllMessage(): Observable<Message[]> {
+    return this.http.get<Message[]>(this.API_URL + '/chats');
   }
 }
