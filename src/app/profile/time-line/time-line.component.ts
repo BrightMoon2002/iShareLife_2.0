@@ -18,6 +18,7 @@ export class TimeLineComponent implements OnInit {
   newPostings: Posting[] = [];
   idProfileFinal: number;
   idLogging: number;
+  totalLike: number;
   constructor(private postingService: PostingService,
               private tokenService: TokenService,
               private profileService: ProfileService) { }
@@ -29,7 +30,9 @@ export class TimeLineComponent implements OnInit {
       this.account = data;
     });
     this.idLogging = Number(this.tokenService.getIdKey());
-    console.log(this.idProfileFinal + 'id o timeline');
+    this.postingService.getTotalLike(Number(this.tokenService.getIdKey())).subscribe(data => {
+      this.totalLike = data;
+    });
   }
 
   create($event: any) {
