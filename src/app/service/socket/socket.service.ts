@@ -28,6 +28,7 @@ export class SocketService {
     this.stompClient = Stomp.over(ws); // khởi tạo để kếtnối được
     this.stompClient.connect({}, () => { // gọi api của socket
       this.stompClient.subscribe('/topic/chat', data => { // hứng trả về của socket
+        console.log(data + 'ffdgfdgfdgd')
         const message = JSON.parse(data.body);
         if ((idCurrentUser.toString() === message.idGuest.toString() && idReceiver.toString() === message.idReceiver.toString())
           || (idReceiver.toString() === message.idGuest.toString() && idCurrentUser.toString() === message.idReceiver.toString())) {
@@ -44,6 +45,7 @@ export class SocketService {
 
 
   createProductUsingWs(message: MessageRequest) {
+    console.log(message.idSender + 'fgfgdfdg')
     this.stompClient.send('/app/chats', {}, JSON.stringify(message));  // data dưới dạng string nên phải ép kiểu Product
   }
   get List() {

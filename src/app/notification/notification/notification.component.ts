@@ -13,11 +13,14 @@ export class NotificationComponent implements OnInit {
   notifications: Notifications[] = [];
   @Output()
   posting = new EventEmitter();
+  currentId: number;
   constructor(
     private notificationService: NotificationService,
+    private tokenService: TokenService
   ) { }
 
   ngOnInit(): void {
+    this.currentId = +this.tokenService.getIdKey();
   }
 
   getPostingId(notification: Notifications) {

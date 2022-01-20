@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {AfterViewChecked, AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Message} from '../model/chat/Message';
 
 import {TokenService} from '../service/token/token.service';
@@ -16,8 +16,8 @@ import {MessageRequest} from '../model/chat/MessageRequest';
   templateUrl: './chat-message.component.html',
   styleUrls: ['./chat-message.component.scss']
 })
-export class ChatMessageComponent implements OnInit, OnDestroy {
-  @ViewChild('message', {static: false, read: ElementRef}) public messenger: ElementRef<any>;
+export class ChatMessageComponent implements OnInit, OnDestroy, AfterViewChecked {
+  @ViewChild('message') public messenger: ElementRef;
   @Input()
   messageDetail: Message[];
   nameReceiver: any;
@@ -60,9 +60,17 @@ export class ChatMessageComponent implements OnInit, OnDestroy {
   }, 3000);
   }
 
+  scrollToBottom(): void {
+    try {
+      console.log('test scro;;jp[ooooooo');
+      this.messenger.nativeElement.scrollTop = this.messenger.nativeElement.scrollHeight;
+    } catch (ee) {
+      console.log('tlôiioiooioooooo');
+    }
+  }
 findAccountById() {
   this.idAccountChat = this.chatMessageAccount.idSender;
-      this.profileService.findAccountById(this.idAccountChat).subscribe(data => {
+  this.profileService.findAccountById(this.idAccountChat).subscribe(data => {
         this.avatarAccountChat = data.avatar;
         this.nameAccountChat  = data.name;
       });
@@ -73,19 +81,18 @@ createMessage() {
    this.messageForm.value.dateSend = Date.now().toString();
    this.messageForm.value.idSender = this.idAccount;
    this.messageForm.value.idReceiver = this.chatMessageAccount.idSender;
-    this.socketService.createProductUsingWs(this.messageForm.value);
-    this.messageForm.value.content = '';
+   this.socketService.createProductUsingWs(this.messageForm.value);
+   this.messageForm.value.content = '';
   // this.messageService.showChatLogById(this.chatMessageAccount.idSender).subscribe(data => {
   //   this.messageDetail = data;
   //   this.scrollBottom();
   // });
-  this.scrollBottom();
-  this.messageForm.controls.content.reset();
+   this.scrollToBottom();
+   this.messageForm.controls.content.reset();
 }
-  scrollBottom() {
-    setTimeout(() => {
-      this.messenger.nativeElement.scrollTop = this.messenger.nativeElement.scrollHeight;
-    }, 1);
+
+  ngAfterViewChecked(): void {
+    this.scrollToBottom();
   }
 
 }
