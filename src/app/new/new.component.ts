@@ -3,6 +3,9 @@ import {Posting} from '../posting/model/posting';
 import {Account} from '../posting/model/account';
 import {PostingService} from '../posting/service/posting.service';
 import {PostingCreate} from '../posting/model/PostingCreate';
+import {ProfileService} from '../profile/service/profile.service';
+import {AccountDetail} from '../profile/model/account-detail';
+import {TokenService} from '../service/token/token.service';
 
 @Component({
   selector: 'app-new',
@@ -13,9 +16,13 @@ export class NewComponent implements OnInit, OnChanges {
   posting: Posting;
   newPostings: Posting[] = [];
   postingNew: PostingCreate;
-
+  id = Number(window.sessionStorage.getItem('Id_Key'));
+  account: AccountDetail;
+  totalLike: number;
   constructor(
-    private postingService: PostingService
+    private postingService: PostingService,
+    private profileService: ProfileService,
+    private tokenService: TokenService
   ) {
   }
 
@@ -23,6 +30,12 @@ export class NewComponent implements OnInit, OnChanges {
     }
 
   ngOnInit(): void {
+    this.profileService.findAccountById(this.id).subscribe( data => {
+      this.account = data;
+    });
+    this.postingService.getTotalLike(Number(this.tokenService.getIdKey())).subscribe(data => {
+      this.totalLike = data;
+    });
     this.getAll();
   }
 
