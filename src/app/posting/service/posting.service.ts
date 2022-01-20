@@ -94,4 +94,8 @@ export class PostingService {
   unLikeComment(accId: number, cId: number): Observable<string> {
     return this.http.delete<string>(API + '/api/commentLike/unLike/' + cId + '/' + accId);
   }
+
+  getTotalLike(id: number): Observable<number> {
+    return this.http.get<number>(API + '/api/postLike/getTotalLike/' + id);
+  }
 }

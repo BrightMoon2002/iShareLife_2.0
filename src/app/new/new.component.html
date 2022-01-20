@@ -290,7 +290,7 @@
                         <a href="#" title=""><img [src] ="account.avatar" alt="" style="height: 45px ; width: 45px"></a>
                       </figure>
                       <div class="page-meta">
-                        <a href="#" title="" class="underline">My Creative Page</a>
+                        <a href="/home/profile/{{tokenService.getIdKey()}}" title="" class="underline">My Creative Page</a>
                         <span><i class="ti-comment"></i><a href="insight.html" title="">Messages <em>9</em></a></span>
                         <span><i class="ti-bell"></i><a href="insight.html" title="">Notifications <em>2</em></a></span>
                       </div>
@@ -316,8 +316,8 @@
                         <!-- Tab panes -->
                         <div class="tab-content">
                           <div class="tab-pane active fade show " id="link1" >
-                            <span><i class="ti-heart"></i>884</span>
-                            <a href="#" title="weekly-likes">35 new likes this week</a>
+                            <span><i class="ti-heart"></i>{{totalLike}}</span>
+                            <a href="#" title="weekly-likes">{{totalLike}} new likes this week</a>
                             <div class="users-thumb-list">
                               <a href="#" title="Anderw" data-toggle="tooltip">
                                 <img src="../../assets/images/resources/userlist-1.jpg" alt="">
