@@ -41,7 +41,6 @@ export class MessengerComponent implements OnInit {
           this.messageAccount = this.messageAccounts[this.messageAccounts.indexOf(messageAccount)];
           this.messageDetail = data;
           this.socketService.List = this.messageDetail;
-          console.log(JSON.stringify(this.messageDetail));
         });
   }
 }
