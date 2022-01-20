@@ -16,7 +16,7 @@ import {MessageRequest} from '../model/chat/MessageRequest';
   templateUrl: './chat-message.component.html',
   styleUrls: ['./chat-message.component.scss']
 })
-export class ChatMessageComponent implements OnInit {
+export class ChatMessageComponent implements OnInit, OnDestroy {
   @ViewChild('message', {static: false, read: ElementRef}) public messenger: ElementRef<any>;
   @Input()
   messageDetail: Message[];
@@ -48,8 +48,11 @@ export class ChatMessageComponent implements OnInit {
     private socketService: SocketService,
     private messageService: ChatService
   ) {
-    this.socketService.connect();
   }
+
+  ngOnDestroy(): void {
+        this.socketService.disconnect();
+    }
 
   ngOnInit(): void {
     setTimeout(() => {
@@ -72,10 +75,11 @@ createMessage() {
    this.messageForm.value.idReceiver = this.chatMessageAccount.idSender;
     this.socketService.createProductUsingWs(this.messageForm.value);
     this.messageForm.value.content = '';
-  this.messageService.showChatLogById(this.chatMessageAccount.idSender).subscribe(data => {
-    this.messageDetail = data;
-    this.scrollBottom();
-  });
+  // this.messageService.showChatLogById(this.chatMessageAccount.idSender).subscribe(data => {
+  //   this.messageDetail = data;
+  //   this.scrollBottom();
+  // });
+  this.scrollBottom();
   this.messageForm.controls.content.reset();
 }
   scrollBottom() {

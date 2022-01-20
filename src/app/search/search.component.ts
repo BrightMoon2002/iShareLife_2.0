@@ -21,7 +21,7 @@ export class SearchComponent implements OnInit {
               private router: Router,
               private postingService: PostingService) {
   }
-  posting: Posting
+  posting: Posting;
   search = window.sessionStorage.getItem('Search');
 
   ngOnInit(): void {
