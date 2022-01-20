@@ -22,6 +22,7 @@ import {AccountDetail} from '../profile/model/account-detail';
 })
 export class NavBar2Component implements OnInit {
   id = window.sessionStorage.getItem('Id_Key');
+  searchName = '';
 // error for changePassword
   error1: any = {
     message: 'no_password'
@@ -118,7 +119,6 @@ export class NavBar2Component implements OnInit {
   }
 
 
-
   navigateToProfile(id: string) {
     window.sessionStorage.setItem('Id_Profile', id);
     this.router.navigate(['/home/profile/' + id]).then(() => {
@@ -154,6 +154,15 @@ export class NavBar2Component implements OnInit {
       });
     });
   }
+
+  search() {
+    console.log(this.searchName);
+    window.sessionStorage.setItem('Search' , this.searchName);
+    this.router.navigate(['/home/search']).then(() => {
+      window.location.reload();
+      window.scrollTo(0, 0);
+    });
+  }
   getPosting(event: any) {
     this.posting = event.posting;
     if (event.status === false){
@@ -161,8 +170,8 @@ export class NavBar2Component implements OnInit {
     }
   }
   getAllNotification() {
-    // @ts-ignore
     this.notificationService.getAll(this.currentId).subscribe(data => {
+      console.log('trong sub');
       this.notifications = data;
       // tslint:disable-next-line:prefer-for-of
       for (let i = 0; i < data.length; i++) {

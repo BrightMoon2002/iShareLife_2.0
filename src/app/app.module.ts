@@ -60,11 +60,11 @@ import { PostingDeleteComponent } from './posting/posting/posting-delete/posting
 import { CommentEditComponent } from './posting/posting/comment/comment-edit/comment-edit.component';
 import { CommentDeleteComponent } from './posting/posting/comment/comment-delete/comment-delete.component';
 import { UpdateInfoComponent } from './change/update-info/update-info.component';
+import { SearchComponent } from './search/search.component';
 import { OnePostComponent } from './notification/one-post/one-post.component';
 import { ChatMessageComponent } from './chat-message/chat-message.component';
 import { MessageDetailComponent } from './message-detail/message-detail.component';
 import { FriendRequestsComponent } from './notification/friend-requests/friend-requests.component';
-
 
 
 
@@ -101,6 +101,7 @@ import { FriendRequestsComponent } from './notification/friend-requests/friend-r
     CommentEditComponent,
     CommentDeleteComponent,
     UpdateInfoComponent,
+    SearchComponent,
     OnePostComponent,
     ChatMessageComponent,
     UpdateInfoComponent,
