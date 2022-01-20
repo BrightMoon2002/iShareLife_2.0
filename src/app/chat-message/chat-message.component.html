@@ -41,7 +41,7 @@
                 </div>
             </div>
             <div class="col-lg-8 col-md-8">
-                <div class="mesge-area">
+                <div #message (scroll)="createMessage()" class="mesge-area">
                     <ul  class="conversations">
                         <li *ngFor="let message of socketService.listChat">
                             <div [class] = "message.idGuest == idAccount ? 'me' : 'you'">

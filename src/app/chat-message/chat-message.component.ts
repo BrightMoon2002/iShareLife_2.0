@@ -17,7 +17,7 @@ import {MessageRequest} from '../model/chat/MessageRequest';
   styleUrls: ['./chat-message.component.scss']
 })
 export class ChatMessageComponent implements OnInit {
-  @ViewChild('messenger', {static: false, read: ElementRef}) public messsenger: ElementRef<any>;
+  @ViewChild('message', {static: false, read: ElementRef}) public messenger: ElementRef<any>;
   @Input()
   messageDetail: Message[];
   nameReceiver: any;
@@ -64,15 +64,7 @@ findAccountById() {
         this.nameAccountChat  = data.name;
       });
 }
-getAllChatHistory() {
-    this.messageService.showChatLogById(this.chatMessageAccount.idSender).subscribe(listMessage => {
-      this.messageDetail = listMessage;
-    });
-}
-// sendMessage() {
-//     this.webSocketService.sendMessage(this.messageForm.value);
-//     this.messageForm.controls.content.reset();
-// }
+
 
 createMessage() {
    this.messageForm.value.dateSend = Date.now().toString();
@@ -82,9 +74,14 @@ createMessage() {
     this.messageForm.value.content = '';
   this.messageService.showChatLogById(this.chatMessageAccount.idSender).subscribe(data => {
     this.messageDetail = data;
+    this.scrollBottom();
   });
   this.messageForm.controls.content.reset();
 }
-
+  scrollBottom() {
+    setTimeout(() => {
+      this.messenger.nativeElement.scrollTop = this.messenger.nativeElement.scrollHeight;
+    }, 1);
+  }
 
 }
