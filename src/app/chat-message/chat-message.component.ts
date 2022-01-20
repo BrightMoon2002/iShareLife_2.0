@@ -46,7 +46,7 @@ findAccountById() {
   this.idAccountChat = (Number)(window.sessionStorage.getItem('idAccountChat'));
       this.profileService.findAccountById(this.idAccountChat).subscribe(data => {
         this.avatarAccountChat = data.avatar;
-        console.log(data);
+        console.log(data.avatar);
         this.nameAccountChat  = data.name;
       });
 }
