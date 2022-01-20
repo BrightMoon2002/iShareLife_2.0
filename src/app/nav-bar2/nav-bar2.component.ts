@@ -183,7 +183,6 @@ export class NavBar2Component implements OnInit {
   }
   showMessenger() {
     this.chatService.getListMessageByAccountId().subscribe(data => {
-      window.sessionStorage.setItem('idAccountChat', data[0].idSender.toString());
       this.router.navigate(['messenger-chat']);
     });
   }
