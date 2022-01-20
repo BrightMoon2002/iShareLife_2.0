@@ -22,6 +22,7 @@ import {AccountDetail} from '../profile/model/account-detail';
 })
 export class NavBar2Component implements OnInit {
   id = window.sessionStorage.getItem('Id_Key');
+  searchName = '';
 // error for changePassword
   error1: any = {
     message: 'no_password'
@@ -118,7 +119,6 @@ export class NavBar2Component implements OnInit {
   }
 
 
-
   navigateToProfile(id: string) {
     window.sessionStorage.setItem('Id_Profile', id);
     this.router.navigate(['/home/profile/' + id]).then(() => {
@@ -152,6 +152,15 @@ export class NavBar2Component implements OnInit {
           alert('Change information success!');
         }
       });
+    });
+  }
+
+  search() {
+    console.log(this.searchName);
+    window.sessionStorage.setItem('Search' , this.searchName);
+    this.router.navigate(['/home/search']).then(() => {
+      window.location.reload();
+      window.scrollTo(0, 0);
     });
   }
   getPosting(event: any) {
