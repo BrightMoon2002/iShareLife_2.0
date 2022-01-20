@@ -18,6 +18,7 @@ import {ProfileService} from '../../../profile/service/profile.service';
 import {NotificationService} from '../../../notification/service/notification.service';
 import {Notifications} from '../../../model/Notifications';
 import {Accounts} from '../../../model/Accounts';
+import {NotificationSocketService} from '../../../notification/service/socket/notification-socket.service';
 
 @Component({
   selector: 'app-card',
@@ -33,6 +34,7 @@ export class CardComponent implements OnInit {
   posting: Posting;
   @Input()
   comments: PostingComment[];
+  listUserId: number[] = [];
   avatarLogging: string;
   newComment: PostingComment;
   form: any = {};
@@ -71,7 +73,8 @@ export class CardComponent implements OnInit {
     private tokenService: TokenService,
     public dialog: MatDialog,
     public router: Router,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private notifiSocket: NotificationSocketService
   ) {
   }
 
@@ -95,17 +98,38 @@ export class CardComponent implements OnInit {
     this.postingService.getRelationshipStatusById(this.posting.owner.id).subscribe(data => {
       this.relationshipStatus = data;
     });
-
+    this.getListUserId();
   }
-
+  getListUserId(){
+    const listNumberId: number[] = [];
+    this.listUserId.push(this.posting.owner.id);
+    if (this.comments.length > 0){
+      // tslint:disable-next-line:prefer-for-of
+      for (let i = 0; i < this.comments.length; i++) {
+        listNumberId.push(this.comments[i].owner.id);
+      }
+      listNumberId.sort();
+      let checkNum: number = listNumberId[0];
+      if (checkNum !== this.posting.owner.id){
+        this.listUserId.push(checkNum);
+      }
+      for (let i = 1; i < listNumberId.length; i++) {
+        if (listNumberId[i] !== checkNum && listNumberId[i] !== this.posting.owner.id){
+          this.listUserId.push(listNumberId[i]);
+          checkNum = listNumberId[i];
+        }
+      }
+    }
+    console.log(this.listUserId);
+  }
   likePost(post: Posting) {
     this.postingService.isLikedByAccountId(post.id, this.tokenService.getIdKey()).subscribe(data => {
       if (data === false) {
         this.postingService.doLikePost(Number(this.tokenService.getIdKey()), post.id).subscribe();
         if (+this.tokenService.getIdKey() !== post.owner.id){
-          this.notification = new Notifications('đã thả tim bài post của bạn', new Accounts(+this.tokenService.getIdKey()), new Accounts(post.owner.id), post, false);
+          this.notification = new Notifications('đã thả tim bài post của bạn', new Accounts(+this.tokenService.getIdKey()), new Accounts(post.owner.id), post, false, 1);
           console.log(this.notification);
-          this.notificationService.create(this.notification).subscribe();
+          this.notifiSocket.createNotification(this.notification);
         }
         this.like++;
         this.isLiked = !data;
@@ -125,6 +149,7 @@ export class CardComponent implements OnInit {
   }
 
   onSubmit() {
+    const curentId = +this.tokenService.getIdKey();
     this.newComment = new PostingComment(this.form.content, Date.now().toString(), this.posting, new StatusComment(1, 'sent'), new Account(this.tokenService.getIdKey()));
     this.postingService.saveNewComment(this.newComment).subscribe(data => {
         this.getAllComments(this.posting.id);
@@ -132,10 +157,14 @@ export class CardComponent implements OnInit {
         this.posting.commentNumber = this.posting.commentNumber + 1;
       }
     );
-    if (+this.tokenService.getIdKey() !== this.posting.owner.id){
-      this.notification = new Notifications('đã comment bài post của bạn', new Accounts(+this.tokenService.getIdKey()), new Accounts(this.posting.owner.id), this.posting, false);
-      console.log(this.notification);
-      this.notificationService.create(this.notification).subscribe();
+
+    // tslint:disable-next-line:prefer-for-of
+    for (let i = 0; i < this.listUserId.length; i++) {
+      if (this.listUserId[i] !== curentId){
+        // tslint:disable-next-line:max-line-length
+        this.notification = new Notifications('đã comment bài post của ', new Accounts(curentId), new Accounts(this.listUserId[i]), this.posting, false, 2);
+        this.notifiSocket.createNotification(this.notification);
+      }
     }
   }
 

@@ -14,6 +14,7 @@ import {Posting} from '../posting/model/posting';
 import {ChatService} from '../service/chat-message/chat.service';
 import {ProfileService} from '../profile/service/profile.service';
 import {AccountDetail} from '../profile/model/account-detail';
+import {NotificationSocketService} from '../notification/service/socket/notification-socket.service';
 
 @Component({
   selector: 'app-nav-bar2',
@@ -67,7 +68,8 @@ export class NavBar2Component implements OnInit {
     private authService: AuthService,
     private notificationService: NotificationService,
     private chatService: ChatService,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private notifiSocket: NotificationSocketService
   ) {
   }
 
@@ -80,6 +82,7 @@ export class NavBar2Component implements OnInit {
     this.currentId = +this.tokenService.getIdKey();
     this.getAllNotification();
     this.showListPending();
+    this.notifiSocket.connect();
   }
 
   logout(): void {
@@ -166,19 +169,21 @@ export class NavBar2Component implements OnInit {
   getPosting(event: any) {
     this.posting = event.posting;
     if (event.status === false){
-      this.countNewNotification = this.countNewNotification - 1;
+      this.notifiSocket.countNewNotification = this.notifiSocket.countNewNotification - 1;
     }
   }
   getAllNotification() {
     this.notificationService.getAll(this.currentId).subscribe(data => {
       console.log('trong sub');
       this.notifications = data;
+      this.notifiSocket.List = this.notifications;
       // tslint:disable-next-line:prefer-for-of
       for (let i = 0; i < data.length; i++) {
         if (data[i].status === false) {
           this.countNewNotification = this.countNewNotification + 1;
         }
       }
+      this.notifiSocket.countNewNotification = this.countNewNotification;
     });
   }
   showMessenger() {

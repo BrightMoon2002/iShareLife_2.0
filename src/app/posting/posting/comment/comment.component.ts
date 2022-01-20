@@ -12,6 +12,7 @@ import {Router} from '@angular/router';
 import {Notifications} from '../../../model/Notifications';
 import {Accounts} from '../../../model/Accounts';
 import {NotificationService} from '../../../notification/service/notification.service';
+import {NotificationSocketService} from '../../../notification/service/socket/notification-socket.service';
 
 @Component({
   selector: 'app-comment',
@@ -33,7 +34,8 @@ export class CommentComponent implements OnInit {
     public dialog: MatDialog,
     private tokenService: TokenService,
     private router: Router,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private notifiSocket: NotificationSocketService
   ) { }
 
   ngOnInit(): void {
@@ -50,9 +52,9 @@ export class CommentComponent implements OnInit {
     this.postingService.isLikedCommentByAccountId(comment.id, this.tokenService.getIdKey()).subscribe(data => {
       if (data === false) {
         if (+this.tokenService.getIdKey() !== comment.owner.id){
-          this.notification = new Notifications('đã like comment của bạn', new Accounts(+this.tokenService.getIdKey()), new Accounts(comment.owner.id), comment.posting, false);
+          this.notification = new Notifications('đã like comment của bạn', new Accounts(+this.tokenService.getIdKey()), new Accounts(comment.owner.id), comment.posting, false, 1);
           console.log(this.notification);
-          this.notificationService.create(this.notification).subscribe();
+          this.notifiSocket.createNotification(this.notification);
         }
         this.postingService.doLikeComment(Number(this.tokenService.getIdKey()), comment.id).subscribe();
         this.like++;
