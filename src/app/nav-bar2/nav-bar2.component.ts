@@ -161,8 +161,8 @@ export class NavBar2Component implements OnInit {
     }
   }
   getAllNotification() {
-    // @ts-ignore
     this.notificationService.getAll(this.currentId).subscribe(data => {
+      console.log('trong sub');
       this.notifications = data;
       // tslint:disable-next-line:prefer-for-of
       for (let i = 0; i < data.length; i++) {
