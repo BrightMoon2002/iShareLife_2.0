@@ -4,7 +4,7 @@
             <div class="col-lg-12">
                 <div  class="mesg-area-head">
                     <div class="active-user">
-                        <figure><img src="images/resources/friend-avatar3.jpg" alt="">
+                        <figure><img [src]="chatMessageAccount.avatar" alt="">
                             <span class="status f-online"></span>
                         </figure>
                         <div>
@@ -41,8 +41,8 @@
                 </div>
             </div>
             <div class="col-lg-8 col-md-8">
-                <div #message (scroll)="createMessage()" class="mesge-area">
-                    <ul  class="conversations">
+                <div  (scroll)="createMessage()" class="mesge-area">
+                    <ul  #message class="conversations">
                         <li *ngFor="let message of socketService.listChat">
                             <div [class] = "message.idGuest == idAccount ? 'me' : 'you'">
                                 <figure><img [src]="message.idGuest == idAccount ? avatarAccount : chatMessageAccount.avatar" height="45"

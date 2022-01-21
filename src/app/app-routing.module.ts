@@ -30,16 +30,16 @@ const routes: Routes = [
     component: ChangeAvatarComponent
   },
   {
-    path: 'messenger-chat',
-    component: MessengerComponent,
-  },
-  {
     path: 'home', canActivate: [SecurityGuard],
     component: HomeComponent,
     children: [
       {
         path: '',
         component: NewComponent
+      },
+      {
+        path: 'messenger-chat',
+        component: MessengerComponent,
       },
       {
         path: 'notification-post/:id',

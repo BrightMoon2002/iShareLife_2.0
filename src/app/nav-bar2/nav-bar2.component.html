@@ -242,11 +242,11 @@
                 </li>
                 <li>
                     <a href="#" title="Notifications" data-ripple="">
-                        <i class="fa fa-bell"></i><em class="bg-purple" *ngIf="countNewNotification > 0">{{countNewNotification}}</em>
+                        <i class="fa fa-bell"></i><em class="bg-purple" *ngIf="notifiSocket.countNewNotification > 0">{{notifiSocket.countNewNotification}}</em>
                     </a>
 <!--                    thay o day-->
                     <div class="dropdowns">
-                        <app-notification [notifications]="notifications" (posting)="getPosting($event)"></app-notification>
+                        <app-notification [notifications]="notifiSocket.notificationList" (posting)="getPosting($event)"></app-notification>
                     </div>
 
                 </li>
